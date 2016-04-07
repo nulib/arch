@@ -4,6 +4,16 @@
  *= require_self
 */
 
+//=== Inverted navbar
+$navbar-inverse-color:                      #fff;
+$navbar-inverse-bg:                         #401f68;
+$navbar-inverse-border:                     darken($navbar-inverse-bg, 10%);
+
+// Inverted navbar links
+$navbar-inverse-link-color:                 white;
+$navbar-inverse-link-hover-color:           darken($navbar-inverse-link-color, 10%);
+
+
 @import "bootstrap-sprockets";
 @import 'bootstrap';
 @import "font-awesome";
