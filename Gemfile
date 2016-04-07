@@ -47,3 +47,16 @@ group :development do
   gem 'spring'
 end
 
+
+group :development, :test do
+  gem 'solr_wrapper', '>= 0.3'
+end
+
+gem 'rsolr', '~> 1.0.6'
+gem 'globalid'
+gem 'devise'
+gem 'devise-guests', '~> 0.3'
+group :development, :test do
+  gem 'fcrepo_wrapper'
+  gem 'rspec-rails'
+end

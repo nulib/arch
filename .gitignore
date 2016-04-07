@@ -12,7 +12,21 @@
 !/log/.keep
 /tmp
 
+# Ignore some config files
 config/database.yml
 config/secrets.yml
+config/analytics.yml
+config/blacklight.yml
+config/fedora.yml
+config/redis.yml
+config/role_map.yml
+config/resque-pool.yml
+config/solr.yml
+
+# Ignore fedora data
+fcrepo4-data
+
+# Ignore redis snapshot
+dump.rdb
 
 .DS_Store
