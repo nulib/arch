@@ -30,3 +30,6 @@ fcrepo4-data
 dump.rdb
 
 .DS_Store
+
+# Ignore fonts
+*.woff

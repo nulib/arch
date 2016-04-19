@@ -18,4 +18,4 @@
 
 //= require_tree .
 //= require sufia
-
+//= require 'nu-template/scripts'

@@ -1,0 +1,203 @@
+// Header
+
+header {
+    background: $nu-purple;
+}
+
+#top-bar {
+    background: $nu-purple-120;
+    font: 12px/1.4em $AkkuratProBold;
+    min-height: 50px;
+    @extend %clearfix; // clearfix
+
+    #left {
+        display: inline;
+        float: left;
+        padding-left: 0;
+
+        img { // northwestern logo
+            width: 170px;
+            margin: 1.1rem 0 1rem 0;
+        }
+    }
+
+    #right {
+        display: inline;
+        position: relative;
+        float: right;
+        padding-right: 1rem;
+        margin-top: 1.4rem;
+        color: $white;
+
+        a {
+            color: $white;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+
+            &.white-link {
+                color: $white;
+            }
+        }
+
+        li {
+            display: inline;
+            margin-left: 1rem;
+            text-transform: uppercase;
+
+            &:first-child {
+                margin-left: 0;
+            }
+
+            &.drop {
+                position: relative;
+                cursor: pointer;
+
+                &:hover > ul {
+                    display: block;
+                    margin-top: 0;
+                }
+            }
+        }
+
+        .dropdown-carrot {
+            background: url("#{$path-images}/icons/arrow-down-white.svg") no-repeat 0 .1rem;
+            width: 10px;
+            height: 10px;
+            display: inline-block;
+            margin-left: .3em;
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 1.4rem;
+            right: .8rem;
+            color: $white;
+            background: $nu-purple-120;
+            padding: 1rem .5rem .5rem .5rem;
+            text-align: right;
+            width: 150px;
+            z-index: 999999;
+
+            > li {
+                display: block;
+                margin: 0;
+                padding: 0 0 .5rem 0;
+            }
+
+            a {
+                color: $white;
+            }
+        }
+    }
+}
+
+.bottom-bar { // area where department name and search reside
+    display: table;
+    width: 100%;
+    @extend %clearfix; // clearfix
+}
+
+#department {
+    display: table-cell;
+    vertical-align: middle;
+    width: 655px / 1120px * 100%;
+    height: 112px;
+    padding: 1rem 0;
+
+    h1 {
+        font: 32px $AkkuratProRegular;
+        line-height: 1em;
+
+        &.small {
+            font-size: 16px;
+        }
+
+        span {
+            font-size: 14px;
+            line-height: 1em;
+            display: block;
+        }
+
+        img {
+            max-width: 265px;
+            max-height: 34px;
+        }
+    }
+
+    h2 {
+        font: 24px $AkkuratProRegular;
+        line-height: 1em;
+        color: $white;
+        margin: 1rem 0 0 0;
+    }
+
+    a {
+        color: $white;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}
+
+// media queries
+@media screen and (max-width: 1445px) {
+
+    #top-bar {
+        padding: 0 .5rem;
+    }
+}
+
+@media screen and (max-width: 1145px) {
+
+    #department {
+        padding-left: .5rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    #top-bar {
+        display: block;
+        padding: 0;
+
+        #left {
+            display: inline-block;
+            float: none;
+            margin-left: .5rem;
+        }
+
+        #right {
+            display: none;
+        }
+    }
+
+    #department {
+        width: 100%;
+        padding: .5rem;
+        height: auto;
+
+        h1 {
+            margin: .5rem 0;
+            font-size: 24px;
+        }
+
+        h2 {
+            margin-bottom: .2rem;
+        }
+    }
+}
+
+@media screen and (max-width: 480px) {
+
+    #department {
+        h1, h2 {
+            font-size: 22px;
+        }
+    }
+}

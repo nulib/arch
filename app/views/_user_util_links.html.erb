@@ -1,0 +1,27 @@
+<ul id="right">
+  <%= render partial: '/toolbar' %>
+  <% if user_signed_in? %>
+    <li class="drop">
+        <%= link_to sufia.profile_path(current_user), role: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: true, expanded: false} do %>
+          <span class="sr-only">View</span>
+          <span class="hidden-xs">&nbsp;<%= current_user.name %></span>
+          <span class="sr-only"> profile</span>
+          <span class="fa fa-user"></span>
+          <span class="caret"></span>
+        <% end %>
+        <ul class="dropdown">
+          <li><%= link_to 'View Profile', sufia.profile_path(current_user) %></li>
+          <li><%= link_to 'Edit Profile', sufia.edit_profile_path(current_user) %></li>
+          <li><%= link_to 'Logout', main_app.destroy_user_session_path %></li>
+        </ul>
+    </li>
+  <% else %>
+    <li>
+      <%= link_to main_app.new_user_session_path do %>
+        <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Login
+      <% end %>
+    </li>
+  <% end %>
+    <li> | </li>
+    <li><a href="#">Northwestern University Libraries</a></li>
+</ul>

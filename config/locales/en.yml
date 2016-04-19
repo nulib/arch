@@ -25,3 +25,12 @@ en:
     product_name: "Repository | institutional"
     institution_name_full: "Northwestern University"
     institution_name: "NU"
+    search:
+      form:
+        q:
+          label:          "Search Repository"
+          placeholder:    "Enter search terms"
+        option:
+          all:
+            label_short:  "All"
+            label_long:   "Everything"

@@ -1,14 +1,11 @@
-<nav class="navbar navbar-default navbar-static-top" role="navigation">
-  <div class="container-fluid">
-    <ul class="nav navbar-nav col-sm-5 col-md-6">
-      <li <%= 'class=active' if current_page?(sufia.root_path) %>><a href="<%= sufia.root_path %>">Home</a></li>
-      <li <%= 'class=active' if current_page?(search_catalog_path) %>><a href="<%= search_catalog_path %>" >Catalog</a></li>
+<nav id="top-nav" aria-label="main navigation menu">
+	<div class="contain-1120">
+		<ul>
+      <!-- <li <%= 'class=active' if current_page?(sufia.root_path) %>><a href="<%= sufia.root_path %>">Home</a></li> -->
+      <li><a href="#">Browse</a></li>
       <li <%= 'class=active' if current_page?(sufia.about_path) %>><a href="<%= sufia.about_path %>">About</a></li>
       <li <%= 'class=active' if action_name == "help" %>><a href="<%= sufia.static_path('help') %>">Help</a></li>
       <li <%= 'class=active' if current_page?(sufia.contact_path) %>><a href="<%= sufia.contact_path %>">Contact</a></li>
-    </ul><!-- /.nav -->
-    <div class="navbar-right row col-sm-7 col-md-6">
-      <%= render partial: 'catalog/search_form' %>
-    </div>
-  </div>
-</nav><!-- /.navbar -->
+		</ul>
+	</div>
+</nav>

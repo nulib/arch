@@ -1,0 +1,42 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ */
+
+ /* ...
+  *= require jquery-ui
+  *= require select2
+ */
+
+ // the base (do not modify)
+ @import "nul-template/base/reset";
+ @import "nul-template/base/variables";
+ @import "nul-template/base/ie";
+ @import "nul-template/base/mixins-extends";
+ @import "nul-template/base/core";
+ @import "nul-template/base/typography";
+
+ // the main sections (do not modify)
+ @import "nul-template/sections/header";
+ @import "nul-template/sections/search";
+ @import "nul-template/sections/top-nav";
+ @import "nul-template/sections/mobile-nav";
+ @import "nul-template/sections/footer";
+
+ // for specificity (this should be last)
+ @import "nul-template/base/buttons";
+
+ @import "nufia";
+ @import "bootstrap-sprockets";
+ @import 'bootstrap';
+ @import "font-awesome";
+ @import 'sufia/sufia';

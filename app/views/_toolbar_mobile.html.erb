@@ -1,0 +1,51 @@
+<!-- links from #top-bar #right -->
+<ul id="mobile-nav-bottom-left">
+  <% if user_signed_in? %>
+    <% if can? :manage, :all %>
+      <li><span class="fa fa-gear"></span> Admin</span></li>
+
+      <% if respond_to? :admin_stats_path %>
+        <li><%= link_to 'Repository Statistics', sufia.admin_stats_path %></li>
+      <% end %>
+
+      <% if respond_to? :admin_queues_path %>
+        <li><%= link_to 'Message Queues', sufia.admin_queues_path %></li>
+      <% end %>
+    <% end %>
+
+    <span class="fa fa-tachometer"></span> Dashboard</span>
+    <li><%= link_to 'My Dashboard', sufia.dashboard_index_path %></li>
+    <li>
+      <%= link_to sufia.notifications_path do %>
+        Notifications
+        <%= render partial: 'users/notify_number' %>
+      <% end %>
+    </li>
+    <li><%= link_to 'Transfers', sufia.transfers_path %></li>
+
+    <li><%= link_to 'Highlights', sufia.dashboard_highlights_path %></li>
+    <li><%= link_to 'Shares', sufia.dashboard_shares_path %></li>
+  <% else %>
+    <li>
+      <%= link_to main_app.new_user_session_path do %>
+        <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Login
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<!-- links under "resources" in #top-bar #right .dropdown -->
+<ul id="mobile-nav-bottom-right">
+  <% if can? :create, GenericWork %>
+    <span class="fa fa-cube"></span> Works</span>
+    <li><%= link_to 'My Works', sufia.dashboard_works_path %></li>
+    <li><%= link_to 'New Work', sufia.new_curation_concerns_generic_work_path %></li>
+    <li><%= link_to 'Batch Create', sufia.new_batch_upload_path %></li>
+  <% end %>
+
+  <% if can?(:create, Collection) %>
+    <span class="fa fa-cubes"></span> Collections</span>
+    <li><%= link_to 'My Collections', sufia.dashboard_collections_path %></li>
+    <li><%= link_to 'New Collection', collections.new_collection_path %></li>
+  <% end %>
+</ul>

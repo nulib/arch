@@ -1,0 +1,9 @@
+<% provide :page_title, application_name %>
+<%= render 'announcement' %>
+<div id="home-header" class="contain-1440 row">
+  <%= render 'home_header' %>
+</div>
+<div id="home_content" class="row">
+  <%= render 'home_content' %>
+</div>
+<%= tiny_mce_stuff if can? :update, ContentBlock%>
