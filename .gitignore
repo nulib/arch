@@ -33,3 +33,4 @@ dump.rdb
 
 # Ignore fonts
 *.woff
+*.otf
