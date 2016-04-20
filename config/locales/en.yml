@@ -25,6 +25,7 @@ en:
     product_name: "Repository | institutional"
     institution_name_full: "Northwestern University"
     institution_name: "NU"
+    share_button: "Deposit Your Work"
     search:
       form:
         q:
