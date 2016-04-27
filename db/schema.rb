@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160407162172) do
+ActiveRecord::Schema.define(version: 20160427152947) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer  "user_id",       limit: 4,   null: false
@@ -198,6 +198,18 @@ ActiveRecord::Schema.define(version: 20160407162172) do
 
   add_index "proxy_deposit_rights", ["grantee_id"], name: "index_proxy_deposit_rights_on_grantee_id", using: :btree
   add_index "proxy_deposit_rights", ["grantor_id"], name: "index_proxy_deposit_rights_on_grantor_id", using: :btree
+
+  create_table "roles", force: :cascade do |t|
+    t.string "name", limit: 255
+  end
+
+  create_table "roles_users", id: false, force: :cascade do |t|
+    t.integer "role_id", limit: 4
+    t.integer "user_id", limit: 4
+  end
+
+  add_index "roles_users", ["role_id", "user_id"], name: "index_roles_users_on_role_id_and_user_id", using: :btree
+  add_index "roles_users", ["user_id", "role_id"], name: "index_roles_users_on_user_id_and_role_id", using: :btree
 
   create_table "searches", force: :cascade do |t|
     t.text     "query_params", limit: 65535
