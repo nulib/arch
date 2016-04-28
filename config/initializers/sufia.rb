@@ -106,7 +106,7 @@ Sufia.config do |config|
   # config.translate_id_to_uri = ActiveFedora::Noid.config.translate_id_to_uri
 
   # Specify the prefix for Redis keys:
-  # config.redis_namespace = "sufia"
+  config.redis_namespace = "/usr/local/bin/fits-0.6.2/sufia"
 
   # Specify the path to the file characterization tool:
   # config.fits_path = "fits.sh"
