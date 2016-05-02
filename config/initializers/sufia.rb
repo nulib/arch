@@ -106,10 +106,10 @@ Sufia.config do |config|
   # config.translate_id_to_uri = ActiveFedora::Noid.config.translate_id_to_uri
 
   # Specify the prefix for Redis keys:
-  config.redis_namespace = "/usr/local/bin/fits-0.6.2/sufia"
+  # config.redis_namespace = "sufia"
 
   # Specify the path to the file characterization tool:
-  # config.fits_path = "fits.sh"
+  config.fits_path = "/usr/local/bin/fits-0.6.2/fits.sh"
 
   # Specify how many seconds back from the current time that we should show by default of the user's activity on the user's dashboard
   # config.activity_to_show_default_seconds_since_now = 24*60*60
