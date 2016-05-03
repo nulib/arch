@@ -46,6 +46,6 @@
   <% if can?(:create, Collection) %>
     <span class="fa fa-cubes"></span> Collections</span>
     <li><%= link_to 'My Collections', sufia.dashboard_collections_path %></li>
-    <li><%= link_to 'New Collection', collections.new_collection_path %></li>
+    <li><%= link_to 'New Collection', main_app.new_collection_path %></li>
   <% end %>
 </ul>

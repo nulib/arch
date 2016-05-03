@@ -13,6 +13,9 @@
 /tmp
 .byebug_history
 
+# Ignore public uploads directory
+/public/uploads
+
 # Ignore some config files
 config/database.yml
 config/secrets.yml
