@@ -61,6 +61,10 @@ gem 'rsolr', '~> 1.0.6'
 gem 'globalid'
 gem 'devise'
 gem 'devise-guests', '~> 0.3'
+
+# Added for NUfia
+gem 'devise_ldap_authenticatable', '~> 0.8.5'
+
 group :development, :test do
   gem 'fcrepo_wrapper'
   gem 'rspec-rails'

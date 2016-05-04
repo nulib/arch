@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160427152947) do
+ActiveRecord::Schema.define(version: 20160503000000) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer  "user_id",       limit: 4,   null: false
@@ -275,44 +275,43 @@ ActiveRecord::Schema.define(version: 20160427152947) do
   add_index "user_stats", ["user_id"], name: "index_user_stats_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  limit: 255,   default: "",    null: false
-    t.string   "encrypted_password",     limit: 255,   default: "",    null: false
-    t.string   "reset_password_token",   limit: 255
-    t.datetime "reset_password_sent_at"
+    t.string   "email",               limit: 255,   default: "",    null: false
+    t.string   "encrypted_password",  limit: 255,   default: "",    null: false
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          limit: 4,     default: 0,     null: false
+    t.integer  "sign_in_count",       limit: 4,     default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip",     limit: 255
-    t.string   "last_sign_in_ip",        limit: 255
-    t.datetime "created_at",                                           null: false
-    t.datetime "updated_at",                                           null: false
-    t.boolean  "guest",                                default: false
-    t.string   "facebook_handle",        limit: 255
-    t.string   "twitter_handle",         limit: 255
-    t.string   "googleplus_handle",      limit: 255
-    t.string   "display_name",           limit: 255
-    t.string   "address",                limit: 255
-    t.string   "admin_area",             limit: 255
-    t.string   "department",             limit: 255
-    t.string   "title",                  limit: 255
-    t.string   "office",                 limit: 255
-    t.string   "chat_id",                limit: 255
-    t.string   "website",                limit: 255
-    t.string   "affiliation",            limit: 255
-    t.string   "telephone",              limit: 255
-    t.string   "avatar_file_name",       limit: 255
-    t.string   "avatar_content_type",    limit: 255
-    t.integer  "avatar_file_size",       limit: 4
+    t.string   "current_sign_in_ip",  limit: 255
+    t.string   "last_sign_in_ip",     limit: 255
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
+    t.boolean  "guest",                             default: false
+    t.string   "facebook_handle",     limit: 255
+    t.string   "twitter_handle",      limit: 255
+    t.string   "googleplus_handle",   limit: 255
+    t.string   "display_name",        limit: 255
+    t.string   "address",             limit: 255
+    t.string   "admin_area",          limit: 255
+    t.string   "department",          limit: 255
+    t.string   "title",               limit: 255
+    t.string   "office",              limit: 255
+    t.string   "chat_id",             limit: 255
+    t.string   "website",             limit: 255
+    t.string   "affiliation",         limit: 255
+    t.string   "telephone",           limit: 255
+    t.string   "avatar_file_name",    limit: 255
+    t.string   "avatar_content_type", limit: 255
+    t.integer  "avatar_file_size",    limit: 4
     t.datetime "avatar_updated_at"
-    t.text     "group_list",             limit: 65535
+    t.text     "group_list",          limit: 65535
     t.datetime "groups_last_update"
-    t.string   "linkedin_handle",        limit: 255
-    t.string   "orcid",                  limit: 255
+    t.string   "linkedin_handle",     limit: 255
+    t.string   "orcid",               limit: 255
+    t.string   "username",            limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["username"], name: "index_users_on_username", using: :btree
 
   create_table "version_committers", force: :cascade do |t|
     t.string   "obj_id",          limit: 255
