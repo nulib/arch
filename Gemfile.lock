@@ -207,7 +207,7 @@ GEM
     debug_inspector (0.0.2)
     deprecation (0.2.2)
       activesupport
-    devise (4.0.1)
+    devise (4.1.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0, < 5.1)
@@ -215,6 +215,9 @@ GEM
       warden (~> 1.2.3)
     devise-guests (0.5.0)
       devise
+    devise_ldap_authenticatable (0.8.5)
+      devise (>= 3.4.1)
+      net-ldap (>= 0.6.0, <= 0.11)
     diff-lcs (1.2.5)
     dropbox-sdk (1.6.5)
       json
@@ -399,6 +402,7 @@ GEM
     nest (1.1.2)
       redis
     net-http-persistent (2.9.4)
+    net-ldap (0.11)
     noid (0.8.0)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
@@ -664,6 +668,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   devise
   devise-guests (~> 0.3)
+  devise_ldap_authenticatable (~> 0.8.5)
   fcrepo_wrapper
   globalid
   hydra-role-management
