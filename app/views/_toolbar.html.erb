@@ -5,6 +5,8 @@
         <span class="fa fa-gear"></span> Admin <span class="caret"></span>
       <% end %>
       <ul class="dropdown">
+        <li><%= link_to 'Manage Roles', role_management.roles_path %></li>
+
         <% if respond_to? :admin_stats_path %>
           <li><%= link_to 'Repository Statistics', sufia.admin_stats_path %></li>
         <% end %>
