@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   mount BrowseEverything::Engine => '/browse'
 
@@ -8,6 +10,10 @@ Rails.application.routes.draw do
 
   resource :catalog, only: [:index], as: 'catalog', path: '/catalog', controller: 'catalog' do
     concerns :searchable
+  end
+
+  authenticate :user, lambda { |u| u.admin? } do
+    mount Sidekiq::Web => '/sidekiq'
   end
 
   devise_for :users
