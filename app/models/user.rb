@@ -36,8 +36,24 @@ class User < ActiveRecord::Base
     attrs = self.ldap_entry
     unless attrs.nil?
       self.email = attrs[:mail].first
-      self.display_name = attrs[:displayName].first
-      self.department = attrs[:department].first
+      self.display_name = attrs[:displayname].first
+      self.department = extract_department(attrs[:nuPosition1].first)
     end
+  end
+
+  # Extracts the department name from the nuPosition1 NU LDAP field
+  # nuPosition1 is formmatted: title$$department$$address$$$mailcode
+  def extract_department(ldapposition)
+    positionarr = Array.new
+    deptname = String.new
+
+    positionarr = ldapposition.split('$$');
+    if (positionarr[1]) 
+      deptname = positionarr[1]
+    else 
+      deptname = nil
+    end 
+    
+    return deptname
   end
 end
