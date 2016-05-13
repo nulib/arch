@@ -4,9 +4,8 @@
 # You can define all roles on a single server, or split them:
 
 # server 'example.com', user: 'deploy', roles: %w{app db web}, my_property: :my_value
-# server 'example.com', user: 'deploy', roles: %w{app web}, other_property: :other_value
-# server 'db.example.com', user: 'deploy', roles: %w{db}
-
+server 'nufiaweb-s.library.northwestern.edu', user: 'vagrant', roles: %w{app web}, other_property: :other_value
+server 'nufiarepo-s.library.northwestern.edu', user: 'mysql', roles: %w{db}
 
 
 # role-based syntax
@@ -20,6 +19,17 @@
 # role :app, %w{deploy@example.com}, my_property: :my_value
 # role :web, %w{user1@primary.com user2@additional.com}, other_property: :other_value
 # role :db,  %w{deploy@example.com}
+
+
+# rbenv setup
+# ==================
+set :rbenv_ruby, '2.3.0'
+set :rails_env, 'staging'
+
+
+#bundle install only staging gems
+set :bundle_without, %w{development test production}.join(' ')
+set :bundle_with, %w{default staging}.join(' ')
 
 
 
