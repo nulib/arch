@@ -36,8 +36,15 @@ class User < ActiveRecord::Base
     attrs = self.ldap_entry
     unless attrs.nil?
       self.email = attrs[:mail].first
-      self.display_name = attrs[:displayName].first
-      self.department = attrs[:department].first
+      self.display_name = attrs[:displayname].first
+      if Rails.env.development?
+        self.display_name = attrs[:displayName].first
+        self.department = attrs[:department].first
+      else
+        self.display_name = attrs[:displayname].first
+	# nuPosition1 is formmatted: title$$department$$address$$$mailcode
+        self.department = attrs[:nuPosition1].first.split("$$").second
+      end
     end
   end
 end
