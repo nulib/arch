@@ -61,9 +61,9 @@ group :development do
 end
 
 
-group :development, :test do
+#group :development, :test do
   gem 'solr_wrapper', '>= 0.3'
-end
+#end
 
 gem 'rsolr', '~> 1.0.6'
 gem 'globalid'
