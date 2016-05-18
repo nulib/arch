@@ -4,8 +4,7 @@
 # You can define all roles on a single server, or split them:
 
 # server 'example.com', user: 'deploy', roles: %w{app db web}, my_property: :my_value
-server 'nufiaweb-p.library.northwestern.edu', user: 'vagrant', roles: %w{app web}
-server 'nufiarepo-p.library.northwestern.edu', user: 'vagrant', roles: %w{db}
+server 'nufiaweb-p.library.northwestern.edu', user: 'vagrant', roles: %w{app web db}
 
 
 

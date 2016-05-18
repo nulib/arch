@@ -4,8 +4,7 @@
 # You can define all roles on a single server, or split them:
 
 # server 'example.com', user: 'deploy', roles: %w{app db web}, my_property: :my_value
-server 'nufiaweb-s.library.northwestern.edu', user: 'vagrant', roles: %w{app web}, other_property: :other_value
-server 'nufiarepo-s.library.northwestern.edu', user: 'mysql', roles: %w{db}
+server 'nufiaweb-s.library.northwestern.edu', user: 'vagrant', roles: %w{app web db}, other_property: :other_value
 
 
 # role-based syntax
@@ -56,6 +55,13 @@ set :bundle_with, %w{default staging}.join(' ')
 #    forward_agent: false,
 #    auth_methods: %w(password)
 #  }
+
+#set :ssh_options, { 
+#  forward_agent: true, 
+#  paranoid: true, 
+#  keys: "~/.ssh/id_rsa" 
+#}
+
 #
 # The server-based syntax can be used to override options:
 # ------------------------------------
