@@ -1,4 +1,4 @@
-if Rails.env.staging? && SERVICES.present?
+if Rails.env.staging?
 
   Sidekiq.configure_server do |config|
     config.redis = { url: "redis://nufiarepo-s.library.northwestern.edu:6379/0", namespace: 'sidekiq' }
@@ -10,7 +10,7 @@ if Rails.env.staging? && SERVICES.present?
 end
 
 
-if Rails.env.production? && SERVICES.present?
+if Rails.env.production?
 
   Sidekiq.configure_server do |config|
     config.redis = { url: "redis://nufiarepo-plibrary.northwestern.edu:6379/0", namespace: 'sidekiq' }
