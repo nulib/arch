@@ -84,4 +84,3 @@ end
     end
   end
 
-after :deploy, ":create_symlink"
