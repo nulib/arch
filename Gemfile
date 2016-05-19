@@ -32,9 +32,6 @@ gem 'sinatra', :require => nil
 # Use Unicorn as the app server
 # gem 'unicorn'
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
 gem 'sufia', git: 'https://github.com/projecthydra/sufia.git', branch: 'master'
 
 # Admin users enabled by hydra-role-management
@@ -53,12 +50,20 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  # Use Capistrano for deployment
+  gem 'capistrano', '~> 3.1'
+  gem 'capistrano-rails', '~> 1.1'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-bundler'
+  gem 'capistrano-passenger'
+  gem 'capistrano-sidekiq'
 end
 
 
-group :development, :test do
+#group :development, :test do
   gem 'solr_wrapper', '>= 0.3'
-end
+#end
 
 gem 'rsolr', '~> 1.0.6'
 gem 'globalid'
