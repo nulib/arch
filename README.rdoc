@@ -55,5 +55,12 @@ deployment.
      * This may have been configured in Puppet, but /etc/monit/conf.d directory needs to be
   created and owned by the deploy user.
 
-* ...
-
+* Starting sidekiq
+This is the command to start sidekiq in case it needs to be started again:
+```
+su - vagrant
+cd /var/www/nufia
+bundle exec sidekiq -C config/sidekiq.yml -L log/sidekiq.log --environment production -d
+```
+Of course, replace "production" with "staging" if you're running this command in the
+staging environment.
