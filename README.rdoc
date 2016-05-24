@@ -2,7 +2,9 @@
 
 NUfia app based on Sufia 7.
 
-* Dependencies on web (rails) box -- these should match closely with the [Sufia 7 requirements](https://github.com/projecthydra/sufia/blob/master/README.md):
+##Dependencies
+###Dependencies on web (rails) box
+These should match closely with the [Sufia 7 requirements](https://github.com/projecthydra/sufia/blob/master/README.md):
   * Tested using Ruby 2.3.0 and rbenv
   * Ruby gems listed in the Gemfile. Can use bundle install to install them.
   * Phusion Passenger 5.0.27
@@ -11,7 +13,7 @@ NUfia app based on Sufia 7.
   * ffmpeg 2.4.2-1
   * fits
     
-* Dependencies on app server:
+###Dependencies on app server:
   * Redis
   * Fedora 4.5.1 using MySQL
   * MySQL 5
@@ -19,19 +21,17 @@ NUfia app based on Sufia 7.
   * Tomcat 7.0.68
   * Java 8 (1.8.0_74)
 
-* Firewall
+##Firewall
   * ports 80 and 443 open for web (rails) server
   * ports 3000 (redis), 3306 (mysql), 8080 (Fedora), and 8983 (solr) on app server
 
-* Database creation
+##Database creation
 
-* Database initialization
+##Database initialization
 
-* How to run the test suite
+##How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Using capistrano to deploy.
+##Using capistrano to deploy.
 Deploying with capistrano is relatively simple. These instructions assume you have either
 checked out the code from github, or are running it in a vagrant virtual machine. The
 Capfile, config/deploy.rb, config/deploy/[staging|production].rb files have already been
@@ -50,7 +50,7 @@ deployment.
      * During deployment, if you see an error about missing yml files and you have them set up per the instructions above, you may need to run `cap staging create_symlink` or `cap production create_symlink`. Then re-run the deployment.
      * This may have been configured in Puppet, but /etc/monit/conf.d directory needs to be created and owned by the deploy user.
 
-* Starting sidekiq
+##Starting sidekiq
 This is the command to start sidekiq in case it needs to be started again:
 ```
 su - vagrant
