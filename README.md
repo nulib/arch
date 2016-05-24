@@ -26,8 +26,16 @@ These should match closely with the [Sufia 7 requirements](https://github.com/pr
   * ports 3000 (redis), 3306 (mysql), 8080 (Fedora), and 8983 (solr) on app server
 
 ##Database creation
+Puppet should create the database and permissions. Here are the commands to do it manually if needed;
+```
+create database nufia_production character set utf8 collate utf8_bin;
+grant all on nufia_production* to nufia_production@localhost identified by 'password';
+grant all on nufia_production* to nufia_production@hostname.of.db.server identified by 'password';
+flush privileges;
+```
 
 ##Database initialization
+Capistrano runs rake db:migrate to deploy the appropriate database.
 
 ##How to run the test suite
 
