@@ -2,8 +2,7 @@
 
 NUfia app based on Sufia 7.
 
-* Dependencies on web (rails) box:
-(these should match closely with the Sufia 7 requirements)
+* Dependencies on web (rails) box -- these should match closely with the [Sufia 7 requirements](https://github.com/projecthydra/sufia/blob/master/README.md):
   * Tested using Ruby 2.3.0 and rbenv
   * Ruby gems listed in the Gemfile. Can use bundle install to install them.
   * Phusion Passenger 5.0.27
@@ -47,13 +46,9 @@ from github for a particular branch, deploys the code, runs bundle install, rake
 restarts sidekiq, restarts passenger, and more. This command should take care of the full
 deployment.
   4. If this is a new deployment, there may be a couple of items you may need to do:
-     * For NU installations, You may need to checkout code from github.com/nulib/miscellany into 
-  /usr/local/nufia/nufia_config. The private config yml files are expected there.
-     * During deployment, if you see an error about missing yml files and you have them set 
-  up per the instructions above, you may need to run `cap staging create_symlink` or 
-  `cap production create_symlink`. Then re-run the deployment.
-     * This may have been configured in Puppet, but /etc/monit/conf.d directory needs to be
-  created and owned by the deploy user.
+     * For NU installations, You may need to checkout code from github.com/nulib/miscellany into /usr/local/nufia/nufia_config. The private config yml files are expected there.
+     * During deployment, if you see an error about missing yml files and you have them set up per the instructions above, you may need to run `cap staging create_symlink` or `cap production create_symlink`. Then re-run the deployment.
+     * This may have been configured in Puppet, but /etc/monit/conf.d directory needs to be created and owned by the deploy user.
 
 * Starting sidekiq
 This is the command to start sidekiq in case it needs to be started again:
