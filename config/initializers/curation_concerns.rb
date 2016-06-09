@@ -48,8 +48,8 @@ CurationConcerns.configure do |config|
   # If you use a multi-server architecture, this MUST be on a shared volume.
   # config.minter_statefile = '/tmp/minter-state'
 
-  # Specify the prefix for Redis keys:
-  # config.redis_namespace = "curation_concerns"
+  # Specify whether the media display partial should render a download link
+  # config.display_media_download_link = true
 
   # Specify the path to the file characterization tool:
   # config.fits_path = "fits.sh"
@@ -61,3 +61,4 @@ CurationConcerns.configure do |config|
 end
 
 Date::DATE_FORMATS[:standard] = '%m/%d/%Y'
+

@@ -11,18 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160503000000) do
+ActiveRecord::Schema.define(version: 20160609204650) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer  "user_id",       limit: 4,   null: false
     t.string   "user_type",     limit: 255
     t.string   "document_id",   limit: 255
+    t.string   "document_type", limit: 255
     t.string   "title",         limit: 255
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
-    t.string   "document_type", limit: 255
   end
 
+  add_index "bookmarks", ["document_id"], name: "index_bookmarks_on_document_id", using: :btree
   add_index "bookmarks", ["user_id"], name: "index_bookmarks_on_user_id", using: :btree
 
   create_table "checksum_audit_logs", force: :cascade do |t|
@@ -32,8 +33,8 @@ ActiveRecord::Schema.define(version: 20160503000000) do
     t.integer  "pass",            limit: 4
     t.string   "expected_result", limit: 255
     t.string   "actual_result",   limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   add_index "checksum_audit_logs", ["file_set_id", "file_id"], name: "by_file_set_id_and_file_id", using: :btree
@@ -45,6 +46,28 @@ ActiveRecord::Schema.define(version: 20160503000000) do
     t.datetime "updated_at",                 null: false
     t.string   "external_key", limit: 255
   end
+
+  create_table "curation_concerns_operations", force: :cascade do |t|
+    t.string   "status",         limit: 255
+    t.string   "operation_type", limit: 255
+    t.string   "job_class",      limit: 255
+    t.string   "job_id",         limit: 255
+    t.string   "type",           limit: 255
+    t.text     "message",        limit: 65535
+    t.integer  "user_id",        limit: 4
+    t.integer  "parent_id",      limit: 4
+    t.integer  "lft",            limit: 4,                 null: false
+    t.integer  "rgt",            limit: 4,                 null: false
+    t.integer  "depth",          limit: 4,     default: 0, null: false
+    t.integer  "children_count", limit: 4,     default: 0, null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+  end
+
+  add_index "curation_concerns_operations", ["lft"], name: "index_curation_concerns_operations_on_lft", using: :btree
+  add_index "curation_concerns_operations", ["parent_id"], name: "index_curation_concerns_operations_on_parent_id", using: :btree
+  add_index "curation_concerns_operations", ["rgt"], name: "index_curation_concerns_operations_on_rgt", using: :btree
+  add_index "curation_concerns_operations", ["user_id"], name: "index_curation_concerns_operations_on_user_id", using: :btree
 
   create_table "domain_terms", force: :cascade do |t|
     t.string "model", limit: 255
@@ -62,14 +85,14 @@ ActiveRecord::Schema.define(version: 20160503000000) do
   add_index "domain_terms_local_authorities", ["local_authority_id", "domain_term_id"], name: "dtla_by_ids1", using: :btree
 
   create_table "featured_works", force: :cascade do |t|
-    t.integer  "order",           limit: 4,   default: 5
-    t.string   "generic_work_id", limit: 255
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
+    t.integer  "order",      limit: 4,   default: 5
+    t.string   "work_id",    limit: 255
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
-  add_index "featured_works", ["generic_work_id"], name: "index_featured_works_on_generic_work_id", using: :btree
   add_index "featured_works", ["order"], name: "index_featured_works_on_order", using: :btree
+  add_index "featured_works", ["work_id"], name: "index_featured_works_on_work_id", using: :btree
 
   create_table "file_download_stats", force: :cascade do |t|
     t.datetime "date"
@@ -175,7 +198,7 @@ ActiveRecord::Schema.define(version: 20160503000000) do
   add_index "mailboxer_receipts", ["receiver_id", "receiver_type"], name: "index_mailboxer_receipts_on_receiver_id_and_receiver_type", using: :btree
 
   create_table "proxy_deposit_requests", force: :cascade do |t|
-    t.string   "generic_work_id",   limit: 255,                       null: false
+    t.string   "work_id",           limit: 255,                       null: false
     t.integer  "sending_user_id",   limit: 4,                         null: false
     t.integer  "receiving_user_id", limit: 4,                         null: false
     t.datetime "fulfillment_date"
@@ -226,8 +249,8 @@ ActiveRecord::Schema.define(version: 20160503000000) do
     t.string   "path",        limit: 255
     t.string   "itemId",      limit: 255
     t.datetime "expires"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   create_table "subject_local_authority_entries", force: :cascade do |t|
@@ -245,10 +268,10 @@ ActiveRecord::Schema.define(version: 20160503000000) do
   end
 
   create_table "trophies", force: :cascade do |t|
-    t.integer  "user_id",         limit: 4
-    t.string   "generic_work_id", limit: 255
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.integer  "user_id",    limit: 4
+    t.string   "work_id",    limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "uploaded_files", force: :cascade do |t|
@@ -275,17 +298,17 @@ ActiveRecord::Schema.define(version: 20160503000000) do
   add_index "user_stats", ["user_id"], name: "index_user_stats_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",               limit: 255,   default: "",    null: false
-    t.string   "encrypted_password",  limit: 255,   default: "",    null: false
+    t.string   "email",               limit: 255, default: "",    null: false
+    t.string   "encrypted_password",  limit: 255, default: "",    null: false
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",       limit: 4,     default: 0,     null: false
+    t.integer  "sign_in_count",       limit: 4,   default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",  limit: 255
     t.string   "last_sign_in_ip",     limit: 255
-    t.datetime "created_at",                                        null: false
-    t.datetime "updated_at",                                        null: false
-    t.boolean  "guest",                             default: false
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+    t.boolean  "guest",                           default: false
     t.string   "facebook_handle",     limit: 255
     t.string   "twitter_handle",      limit: 255
     t.string   "googleplus_handle",   limit: 255
@@ -303,8 +326,6 @@ ActiveRecord::Schema.define(version: 20160503000000) do
     t.string   "avatar_content_type", limit: 255
     t.integer  "avatar_file_size",    limit: 4
     t.datetime "avatar_updated_at"
-    t.text     "group_list",          limit: 65535
-    t.datetime "groups_last_update"
     t.string   "linkedin_handle",     limit: 255
     t.string   "orcid",               limit: 255
     t.string   "username",            limit: 255
@@ -318,8 +339,8 @@ ActiveRecord::Schema.define(version: 20160503000000) do
     t.string   "datastream_id",   limit: 255
     t.string   "version_id",      limit: 255
     t.string   "committer_login", limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "work_view_stats", force: :cascade do |t|
@@ -334,6 +355,7 @@ ActiveRecord::Schema.define(version: 20160503000000) do
   add_index "work_view_stats", ["user_id"], name: "index_work_view_stats_on_user_id", using: :btree
   add_index "work_view_stats", ["work_id"], name: "index_work_view_stats_on_work_id", using: :btree
 
+  add_foreign_key "curation_concerns_operations", "users"
   add_foreign_key "mailboxer_conversation_opt_outs", "mailboxer_conversations", column: "conversation_id", name: "mb_opt_outs_on_conversations_id"
   add_foreign_key "mailboxer_notifications", "mailboxer_conversations", column: "conversation_id", name: "notifications_on_conversation_id"
   add_foreign_key "mailboxer_receipts", "mailboxer_notifications", column: "notification_id", name: "receipts_on_notification_id"

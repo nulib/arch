@@ -32,7 +32,7 @@ gem 'sinatra', :require => nil
 # Use Unicorn as the app server
 # gem 'unicorn'
 
-gem 'sufia', git: 'https://github.com/projecthydra/sufia.git', branch: 'master'
+gem 'sufia', '7.0.0.beta1'
 
 # Admin users enabled by hydra-role-management
 gem 'hydra-role-management'
@@ -60,19 +60,17 @@ group :development do
   gem 'capistrano-sidekiq'
 end
 
-
-#group :development, :test do
-  gem 'solr_wrapper', '>= 0.3'
-#end
-
-gem 'rsolr', '~> 1.0.6'
-gem 'globalid'
-gem 'devise'
-gem 'devise-guests', '~> 0.3'
-
 # Added for NUfia
 gem 'devise_ldap_authenticatable', '~> 0.8.5'
 
+
+group :development, :test do
+  gem 'solr_wrapper', '>= 0.3'
+end
+
+gem 'rsolr', '~> 1.0'
+gem 'devise'
+gem 'devise-guests', '~> 0.3'
 group :development, :test do
   gem 'fcrepo_wrapper'
   gem 'rspec-rails'
