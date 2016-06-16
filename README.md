@@ -25,6 +25,9 @@ These should match closely with the [Sufia 7 requirements](https://github.com/pr
   * ports 80 and 443 open for web (rails) server
   * ports 3000 (redis), 3306 (mysql), 8080 (Fedora), and 8983 (solr) on app server
 
+##Apache Webserver
+Apache is configured to listen on ports 80 and 443.  SSL certificates are currently not installed by puppet, but must be moved into place manually.  This may be changed in a later release.
+
 ##Database creation
 Puppet should create the database and permissions. Here are the commands to do it manually if needed;
 ```
@@ -67,3 +70,23 @@ bundle exec sidekiq -C config/sidekiq.yml -L log/sidekiq.log --environment produ
 ```
 Of course, replace "production" with "staging" if you're running this command in the
 staging environment.
+
+
+## SOLR configuration
+
+The configuration for SOLR uses the tomcat and nul_solr puppet classes.  The Puppet code is fairly self-documenting.  An http connector is configured that listens on port 8983.
+
+The following classes are used:
+
+    nul_solr
+    tomcat 
+    tomcat::instance
+    tomcat::config::server
+    tomcat::config::server::connector (for tomcat-solr-ajp)
+    tomcat::config::server::connector (for tomcat-solr-http, port 8983)
+    tomcat::war
+    nul_solr::post-install
+    nul_solr::context
+    tomcat::service
+    tomcat::setenv::entry (x3)
+
