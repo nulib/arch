@@ -39,6 +39,7 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', '
 set :sidekiq_role, :app
 set :sidekiq_config, -> { File.join(shared_path, 'config', 'sidekiq.yml') }
 set :pty,  false # for Capistrano 3.x
+set :sidekiq_monit_use_sudo, false
 
 # deprecated way of restarting Passenger but will work for now
 set :passenger_restart_with_touch, true
@@ -83,4 +84,3 @@ end
             info "Created solr.yml symlink"
     end
   end
-
