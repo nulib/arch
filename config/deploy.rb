@@ -21,7 +21,7 @@ set :deploy_to, '/var/www/nufia'
 # set :format_options, command_output: true, log_file: 'log/capistrano.log', color: :auto, truncate: :auto
 
 # Default value for :pty is false
-# set :pty, true
+set :pty, true
 
 # Default value for :linked_files is []
 set :linked_files, fetch(:linked_files, []).push('config/analytics.yml', 'config/blacklight.yml', 'config/browse_everything_providers.yml', 'config/database.yml', 'config/fedora.yml', 'config/ldap.yml', 'config/redis.yml', 'config/role_map.yml', 'config/secrets.yml', 'config/sidekiq.yml', 'config/solr.yml')
@@ -83,4 +83,3 @@ end
             info "Created solr.yml symlink"
     end
   end
-
