@@ -64,9 +64,9 @@ end
 gem 'devise_ldap_authenticatable', '~> 0.8.5'
 
 
-group :development, :test do
+#group :development, :test do
   gem 'solr_wrapper', '>= 0.3'
-end
+#end
 
 gem 'rsolr', '~> 1.0'
 gem 'devise'
