@@ -1,7 +1,7 @@
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
-  # ==> LDAP Configuration 
+  # ==> LDAP Configuration
   config.ldap_logger = true
   config.ldap_create_user = true
   # config.ldap_update_password = true
@@ -10,7 +10,7 @@ Devise.setup do |config|
   # config.ldap_check_group_membership_without_admin = false
   # config.ldap_check_attributes = false
   config.ldap_use_admin_to_bind = true
-  # config.ldap_ad_group_check = false  
+  # config.ldap_ad_group_check = false
 
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
@@ -18,7 +18,10 @@ Devise.setup do |config|
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
   # config.secret_key = 'ebe8fd7c3468830dc30d3a4bab642dad7a308268e75480d89a7f94d5ccca00f12261ae417ea8c9c37d6ca27f5620e7609b29fa0edb63e733be9239115c672f13'
-  config.secret_key = ENV['DEVISE_SECRET_KEY'] if Rails.env.production?
+  #
+  # MAKE SURE secret_key_base is set up correctly
+  #
+  # config.secret_key = ENV['DEVISE_SECRET_KEY'] if Rails.env.production?
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
