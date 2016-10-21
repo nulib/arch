@@ -36,8 +36,13 @@ fcrepo4-data
 # Ignore redis snapshot
 dump.rdb
 
+# Ignore sqlite db
+db/development.sqlite3
+
 .DS_Store
+.ruby-version
 
 # Ignore fonts
 *.woff
 *.otf
+*.otfls
