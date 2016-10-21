@@ -3,8 +3,6 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
-# Use mysql as the database for Active Record
-gem 'sqlite3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -37,11 +35,25 @@ gem 'sufia', '7.0.0.beta1'
 # Admin users enabled by hydra-role-management
 gem 'hydra-role-management'
 
+# Added for NUfia
+gem 'devise_ldap_authenticatable', '~> 0.8.5'
+
+#group :development, :test do
+gem 'solr_wrapper', '>= 0.3'
+#end
+
+gem 'rsolr', '~> 1.0'
+gem 'devise'
+gem 'devise-guests', '~> 0.3'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'sqlite3'
+  gem 'fcrepo_wrapper'
+  gem 'rspec-rails'
 end
 
 group :development do
@@ -58,23 +70,11 @@ group :development do
   gem 'capistrano-bundler'
   gem 'capistrano-passenger'
   gem 'capistrano-sidekiq'
-
   gem 'rb-readline'
 
 end
 
-# Added for NUfia
-gem 'devise_ldap_authenticatable', '~> 0.8.5'
-
-
-#group :development, :test do
-  gem 'solr_wrapper', '>= 0.3'
-#end
-
-gem 'rsolr', '~> 1.0'
-gem 'devise'
-gem 'devise-guests', '~> 0.3'
-group :development, :test do
-  gem 'fcrepo_wrapper'
-  gem 'rspec-rails'
+group :staging, :production do
+  # Use mysql as the database for Active Record
+  gem 'mysql2', '>= 0.3.13', '< 0.5'
 end
