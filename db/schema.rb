@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160609204650) do
+ActiveRecord::Schema.define(version: 20170104224706) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer  "user_id",       null: false
@@ -261,6 +261,13 @@ ActiveRecord::Schema.define(version: 20160609204650) do
 
   add_index "subject_local_authority_entries", ["lowerLabel"], name: "entries_by_lower_label"
 
+  create_table "sufia_features", force: :cascade do |t|
+    t.string   "key",                        null: false
+    t.boolean  "enabled",    default: false, null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
   create_table "tinymce_assets", force: :cascade do |t|
     t.string   "file"
     t.datetime "created_at", null: false
@@ -329,6 +336,10 @@ ActiveRecord::Schema.define(version: 20160609204650) do
     t.string   "linkedin_handle"
     t.string   "orcid"
     t.string   "username"
+    t.string   "arkivo_token"
+    t.string   "arkivo_subscription"
+    t.binary   "zotero_token"
+    t.string   "zotero_userid"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
