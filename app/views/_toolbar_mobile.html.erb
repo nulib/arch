@@ -39,7 +39,7 @@
   <% if can? :create, GenericWork %>
     <span class="fa fa-cube"></span> Works</span>
     <li><%= link_to 'My Works', sufia.dashboard_works_path %></li>
-    <li><%= link_to 'New Work', new_curation_concerns_generic_work_path %></li>
+    <li><%= link_to 'New Work', main_app.new_curation_concerns_generic_work_path %></li>
     <li><%= link_to 'Batch Create', sufia.new_batch_upload_path %></li>
   <% end %>
 
