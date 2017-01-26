@@ -32,10 +32,11 @@ Sufia.config do |config|
 
 
   # Email recipient of messages sent via the contact form
-  config.contact_email = "digitalscholarship@northwestern.edu"
+  #config.contact_email = "digitalscholarship@northwestern.edu"
+  config.contact_email = "karen.didrickson@northwestern.edu"
 
   # Text prefacing the subject entered in the contact form
-  config.subject_prefix = "Arch " + Rails.env + " Contact Form:"
+  config.subject_prefix = "Arch (" + Rails.env + ") Contact Form:"
 
   # Enables a link to the citations page for a generic_file.
 # Default is false
