@@ -20,7 +20,7 @@ Changes proposed in this pull request:
 * 
 
 ## Documentation
-Link to wiki doc or code lines in repo that documents changes:
+Features should have extensive wiki documentation for developers and end users if necessary. Puppet changes or small config changes can self document. Link to wiki doc or code lines in repo that documents changes:
 
 * 
 * 
