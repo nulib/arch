@@ -94,6 +94,7 @@ Rails.application.routes.draw do
 
   get 'help' => 'pages#show', id: 'help_page'
   get 'terms' => 'pages#show', id: 'terms_page'
+  get 'rights' => 'pages#show', id: 'rights_page'
 
   Hydra::BatchEdit.add_routes(self)
   # This must be the very last route in the file because it has a catch-all route for 404 errors.
