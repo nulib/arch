@@ -1,11 +1,41 @@
 en:
   sufia:
+    admin_sets:
+      index:
+        header:         "Administrative Collections"
+    controls:
+      home:             "Home"
+      about:            "About"
+      help:             "Help"
+      contact:          "Contact"
     product_name:       "Arch : Northwestern University Institutional Repository"
     product_twitter_handle: "@NU_LIBRARY"
+    icons:
+      collection:       'fa fa-cubes'
+      default:          'fa fa-cube'
     institution_name:   "Northwestern"
-#    institution_name_full:   "The Institution Name"
+    institution_name_full: "The Institution Name"
+    sort_label: "Sort the listing of items"
     account_name:       "My Institution Account Id"
-    directory:
-      suffix:           "@example.org"
-    footer:
-      copyright_html: "<strong>Copyright &copy; 2016 Project Hydra</strong> Licensed under the Apache License, Version 2.0"
+    account_label:      "User"
+    dashboard:
+      create_work:              "Upload"
+      view_works:               "View Files"
+  simple_form:
+    hints:
+      generic_work:
+        title: "The title of the work as it appears in the file. This is a required field."
+        creator: "The author or group responsible for the work. Add one name per box. This is a required field."
+        keyword: "Enter any words or phrases you would use to describe the work. Use one keyword per box. This is a required field."
+        rights: "Traditional publications are licensed “All Rights Reserved,” which you – as copyright holder – reserve all rights held under copyright law, such as distribution rights and the right to create derivative works. This means that no one can use your content beyond Fair Use and without your permission. <a href='/rights' target='_blank'>More Info</a>"
+        contributor: "A person or group you want to recognize for playing a role in the creation of the content, such as an advisor or funding agency, but not the primary role. If there is a specific role you would like noted, include it in parentheses, e.g. 'Jones, Mary (advisor)'."
+        abstract_or_summary: "A short description of the research findings or data using 300 words or fewer."
+        publisher: "The name of the organization that published this work."
+        date_created: "The date on which the content was created, produced or published. Dates are accepted in the form YYYY-MM-DD, e.g. 1976-07-04."
+        subject: "This field is for controlled subject vocabulary terms. Together, 'Keywords” and “Subjects' help make your work more discoverable online. Use <a href='http://fast.oclc.org/searchfast/''>FAST Subject Headings</a> to link your research with related research. Add one Subject per box."
+        language: "The language in which the paper is written or the data set is documented."
+        identifier: "A unique string of characters such as DOI for a journal article, PubMed ID, PubMed Central ID, or an ISBN for a book. The type of identifier used should be entered before the identifier itself, e.g. “DOI 10.1186/s40169-016-0099-0"
+        location: "The name of the location where the research was published or otherwise made available."
+        related_url: "A link to the publisher’s webpage of the work or other specific content (such as PDF documents) related to the file. For example, the URL of a research project from which the file was derived or a dataset stored in a data repository."
+        source: "Enter the journal title or name of the book in which the work was published. Source refers to the origin of the document."
+        resource_type: "Pre-definied categories to describe the type of content being uploaded, such as 'article' or 'presentation'."
