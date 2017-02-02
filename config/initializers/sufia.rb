@@ -19,7 +19,7 @@ Sufia.config do |config|
 
   # Specify a Google Analytics tracking ID to gather usage statistics
   # Google Analytics ID
-  if Rails.env.production?
+  if Rails.env.production? or Rails.env.staging?
     config.google_analytics_id = 'UA-797260-32'
   end
 
