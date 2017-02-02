@@ -101,3 +101,13 @@ $btn-primary-bg: rgba(131, 110, 170, 1);
 #content-wrapper header  {
   background-color:white;
 }
+
+/* TODO: remove these and figure out why we can't get facets to display properly.
+We've likely overwritten something we needed. */
+button.facets-toggle {
+  display:none;
+}
+#facet-panel-collapse {
+  display:block;
+}
+
