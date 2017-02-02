@@ -3,6 +3,7 @@ en:
     product_name:       "Arch : Northwestern University Institutional Repository"
     product_twitter_handle: "@NU_LIBRARY"
     institution_name:   "Northwestern"
+    institution_name_full: "Northwestern University"
     account_name:       "My Institution Account Id"
     dashboard:
       create_work:              "Upload"
@@ -13,7 +14,7 @@ en:
         title: "The title of the work as it appears in the file. This is a required field."
         creator: "The author or group responsible for the work. Add one name per box. This is a required field."
         keyword: "Enter any words or phrases you would use to describe the work. Use one keyword per box. This is a required field."
-        rights: "Select the usage rights you are granting the public.. <a href='/rights' target='_blank'>More information</a>"
+        rights: "Select the usage rights you are granting the public. <a href='/rights' target='_blank'>More information</a>"
         contributor: "A person or group you want to recognize for playing a role in the creation of the content, such as an advisor or funding agency, but not the primary role. If there is a specific role you would like noted, include it in parentheses, e.g. 'Jones, Mary (advisor)'."
         abstract_or_summary: "A short description of the research findings or data using 300 words or fewer."
         publisher: "The name of the organization that published this work."
@@ -25,3 +26,7 @@ en:
         related_url: "A link to the publisher’s webpage of the work or other specific content (such as PDF documents) related to the file. For example, the URL of a research project from which the file was derived or a dataset stored in a data repository."
         source: "Enter the journal title or name of the book in which the work was published. Source refers to the origin of the document."
         resource_type: "Pre-definied categories to describe the type of content being uploaded, such as 'article' or 'presentation'."
+  curation_concerns:
+    visibility:
+      authenticated:
+        label_html: "Northwestern University"
