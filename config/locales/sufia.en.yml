@@ -1,23 +1,9 @@
 en:
   sufia:
-    admin_sets:
-      index:
-        header:         "Administrative Collections"
-    controls:
-      home:             "Home"
-      about:            "About"
-      help:             "Help"
-      contact:          "Contact"
     product_name:       "Arch : Northwestern University Institutional Repository"
     product_twitter_handle: "@NU_LIBRARY"
-    icons:
-      collection:       'fa fa-cubes'
-      default:          'fa fa-cube'
     institution_name:   "Northwestern"
-    institution_name_full: "The Institution Name"
-    sort_label: "Sort the listing of items"
     account_name:       "My Institution Account Id"
-    account_label:      "User"
     dashboard:
       create_work:              "Upload"
       view_works:               "View Files"
