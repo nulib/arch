@@ -12,19 +12,20 @@ Sufia.config do |config|
     "Edit" => "edit"
   }
 
-  # Enable displaying usage statistics in the UI
-  # Defaults to FALSE
-  # Requires a Google Analytics id and OAuth2 keyfile.  See README for more info
-  # config.analytics = false
-
   # Specify a Google Analytics tracking ID to gather usage statistics
   # Google Analytics ID
   if Rails.env.production? or Rails.env.staging?
-    config.google_analytics_id = 'UA-797260-32'
-  end
 
-  # Specify a date you wish to start collecting Google Analytic statistics for.
-  # config.analytic_start_date = DateTime.new(2014,9,10)
+    # Enable displaying usage statistics in the UI
+    # Defaults to FALSE
+    # Requires a Google Analytics id and OAuth2 keyfile.  See README for more info
+    config.analytics = true
+
+    config.google_analytics_id = 'UA-797260-32'
+
+    # Specify a date you wish to start collecting Google Analytic statistics for.
+    config.analytic_start_date = DateTime.new(2017,2,3)
+  end
 
   # Enables a link to the citations page for a generic_file.
   # Default is false
