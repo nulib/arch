@@ -67,7 +67,7 @@ Sufia.config do |config|
   # config.redis_namespace = "sufia"
 
   # Specify the path to the file characterization tool:
-  config.fits_path = "/usr/local/bin/fits-0.6.2/fits.sh"
+  config.fits_path = "/usr/local/bin/fits-0.8.5/fits.sh"
 
   # Specify the path to the file derivatives creation tool:
   # config.libreoffice_path = "soffice"
