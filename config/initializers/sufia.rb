@@ -24,7 +24,7 @@ Sufia.config do |config|
     config.google_analytics_id = 'UA-797260-32'
 
     # Specify a date you wish to start collecting Google Analytic statistics for.
-    config.analytic_start_date = DateTime.new(2017,2,3)
+    config.analytic_start_date = ''
   end
 
   # Enables a link to the citations page for a generic_file.
