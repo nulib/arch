@@ -27,7 +27,7 @@ set :deploy_to, '/var/www/nufia'
 set :linked_files, fetch(:linked_files, []).push('config/analytics.yml', 'config/blacklight.yml', 'config/browse_everything_providers.yml', 'config/database.yml', 'config/fedora.yml', 'config/ldap.yml', 'config/redis.yml', 'config/role_map.yml', 'config/secrets.yml', 'config/sidekiq.yml', 'config/solr.yml')
 
 # Default value for linked_dirs is []
-set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/derivatives', 'tmp/sockets', 'public/system', 'tmp/uploads')
+set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/system', 'tmp/uploads')
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
