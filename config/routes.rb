@@ -2,10 +2,10 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
   mount BrowseEverything::Engine => '/browse'
-  
+
   Hydra::BatchEdit.add_routes(self)
   mount Blacklight::Engine => '/'
-  
+
     concern :searchable, Blacklight::Routes::Searchable.new
 
   resource :catalog, only: [:index], as: 'catalog', path: '/catalog', controller: 'catalog' do
@@ -37,7 +37,7 @@ Rails.application.routes.draw do
   authenticate :user, lambda { |u| u.admin? } do
     mount Sidekiq::Web => '/sidekiq'
   end
-  
+
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
@@ -95,6 +95,7 @@ Rails.application.routes.draw do
   get 'help' => 'pages#show', id: 'help_page'
   get 'terms' => 'pages#show', id: 'terms_page'
   get 'rights' => 'pages#show', id: 'rights_page'
+  get 'about' => 'pages#show', id: 'about_page'
 
   Hydra::BatchEdit.add_routes(self)
   # This must be the very last route in the file because it has a catch-all route for 404 errors.
