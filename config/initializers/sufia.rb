@@ -12,6 +12,9 @@ Sufia.config do |config|
     "Edit" => "edit"
   }
 
+  #Specify the derivatives storage Location
+  config.derivatives_path = '/var/www/nufia/shared/tmp/derivatives/'
+
   # Specify a Google Analytics tracking ID to gather usage statistics
   # Google Analytics ID
   if Rails.env.production? or Rails.env.staging?
