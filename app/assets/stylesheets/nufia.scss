@@ -1,7 +1,7 @@
 $btn-primary-bg: rgba(131, 110, 170, 1);
 
 #home-header { margin: 0 auto; background: image-url("arch_header_img_1140_310.jpg"); background-repeat:no-repeat; height: 280px}
-#home-header .section-top h3, #home-header .section-top h3 { font: 24px "Campton Extra Bold", Impact, sans-serif; color: white; text-align: center; }
+#home-header .section-top h3, #home-header .section-top h3 { font: 24px "Campton Extra Bold", Impact, sans-serif; color: white; text-align: center; text-shadow:2px 2px 0 black;}
 #home-header .section-top h3:before, #home-header .section-top h3:before { background: url("https://common.northwestern.edu/v8/css/images/icons/grey-slash.svg") no-repeat 50%/17px 21px; padding: 0 20px; content: " "; }
 #home-header .section-top h3:after, #home-header .section-top h3:after { background: url("https://common.northwestern.edu/v8/css/images/icons/grey-slash.svg") no-repeat 50%/17px 21px; padding: 0 25px; content: " "; }
 #home-header .section-top p.subhead, #home-header .section-top p.subhead { color: white; font: 46px/1.2em "Campton Book", Tahoma, sans-serif; margin: .5em 0 1em; text-align: center; }
