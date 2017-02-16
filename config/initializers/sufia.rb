@@ -13,7 +13,7 @@ Sufia.config do |config|
   }
 
   #Specify the derivatives storage Location
-  config.derivatives_path = '/var/www/nufia/shared/tmp/derivatives/'
+  config.derivatives_path = Rails.application.secrets.derivatives_path
 
   # Specify a Google Analytics tracking ID to gather usage statistics
   # Google Analytics ID
@@ -24,7 +24,7 @@ Sufia.config do |config|
     # Requires a Google Analytics id and OAuth2 keyfile.  See README for more info
     config.analytics = true
 
-    config.google_analytics_id = 'UA-797260-32'
+    config.google_analytics_id = Rails.application.secrets.google_analytics_id
 
     # Specify a date you wish to start collecting Google Analytic statistics for.
     config.analytic_start_date = ''
@@ -35,10 +35,10 @@ Sufia.config do |config|
   # config.citations = false
 
   # Email recipient of messages sent via the contact form
-  config.contact_email = "digitalscholarship@northwestern.edu"
+  config.contact_email = Rails.application.secrets.contact_email
 
   # Text prefacing the subject entered in the contact form
-  config.subject_prefix = "Arch (" + Rails.env + ") Contact Form:"
+  config.subject_prefix = "Arch (#{Rails.env}) Contact Form:"
 
   # Enables a link to the citations page for a generic_file.
 # Default is false
@@ -60,7 +60,7 @@ Sufia.config do |config|
   # config.noid_template = ".reeddeeddk"
 
   # Store identifier minter's state in a file for later replayability
-  config.minter_statefile = '/var/www/nufia/minter-storage/minter-state'
+  config.minter_statefile = Rails.application.secrets.minter_state
 
   # Process for translating Fedora URIs to identifiers and vice versa
   # config.translate_uri_to_id = ActiveFedora::Noid.config.translate_uri_to_id
@@ -70,7 +70,7 @@ Sufia.config do |config|
   # config.redis_namespace = "sufia"
 
   # Specify the path to the file characterization tool:
-  config.fits_path = "/usr/local/bin/fits-0.8.5/fits.sh"
+  config.fits_path = Rails.application.secrets.fits_path
 
   # Specify the path to the file derivatives creation tool:
   # config.libreoffice_path = "soffice"
