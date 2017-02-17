@@ -12,10 +12,10 @@
                 <a href="#mobile-nav" class="mobile-link mobile-nav-link"><span class="hide-label">Menu</span></a>
                 <nav id="mobile-nav">
                     <ul aria-label="main menu" tabindex="-1">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li class="active"><a href="#">Catalog</a></li>
-                        <li class="active"><a href="#">About</a></li>
-                        <li class="active"><a href="#">Contact</a></li>
+                        <li class="active"><a href="<%= main_app.search_catalog_path %>">Browse</a></li>
+                        <li class="active"><a href="<%= sufia.about_path %>">About</a></li>
+                        <li class="active"><a href="<%= main_app.help_path %>">Help</a></li>
+                        <li class="active"><a href="<%= sufia.contact_path %>">Contact</a></li>
                     </ul>
                     <div id="mobile-nav-bottom">
                         <%= render partial: '/toolbar_mobile' %>
@@ -28,7 +28,7 @@
     </div>
 	<div class="bottom-bar contain-1120">
 	   <div id="department">
-        <h1><a href="<%= sufia.root_path %>"><strong>Arch</strong></a></h1>
+        <h1><a href="<%= sufia.root_path %>"><strong>LIBRARIES | Arch</strong></a></h1>
 		</div>
     <div id="search" class="hide-mobile">
       <%= render partial: 'catalog/search_form' %>

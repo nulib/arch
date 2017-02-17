@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.6'
+gem 'rails', '~> 4.2'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -30,7 +30,10 @@ gem 'sinatra', :require => nil
 # Use Unicorn as the app server
 # gem 'unicorn'
 
-gem 'sufia', '7.0.0.beta1'
+gem 'sufia', '~> 7.0'
+
+# Sufia 7.2.0 depends upon an unreleased version of Flipflop -- we're working with the maintainer of that gem to get some pull requests that are required to make it work with a Rails engine like Sufia.
+gem 'flipflop', git: 'https://github.com/jcoyne/flipflop.git', branch: 'hydra'
 
 # Admin users enabled by hydra-role-management
 gem 'hydra-role-management'

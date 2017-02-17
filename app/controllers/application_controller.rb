@@ -10,8 +10,7 @@ class ApplicationController < ActionController::Base
   include Sufia::Controller
 
   include CurationConcerns::ThemedLayoutController
-  layout 'sufia-one-column'
-
+  with_themed_layout '1_column'
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
