@@ -1,7 +1,7 @@
 <ul id="right">
   <%= render partial: '/toolbar' %>
   <% if user_signed_in? %>
-    <li class="drop">
+    <li class="drop" style="display:inline-block;">
         <%= link_to sufia.profile_path(current_user), role: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: true, expanded: false} do %>
           <span class="sr-only">View</span>
           <span class="hidden-xs">&nbsp;<%= current_user.name %></span>
