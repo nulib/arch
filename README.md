@@ -1,7 +1,7 @@
 
 (based on Sufia 7)
 
-##Developer Dependencies
+## Developer Dependencies
 
 These should match closely with the [Sufia 7 requirements](https://github.com/projecthydra/sufia/blob/master/README.md):
   * Ruby 2.3.0 and rbenv, Bundler
@@ -11,7 +11,7 @@ These should match closely with the [Sufia 7 requirements](https://github.com/pr
   * fits `brew install fits`
   * redis `brew install redis`
 
-##Developer Installation
+## Developer Installation
 
   * Clone this repository `git clone `
   * From inside the project directory run `bundle install`
