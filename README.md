@@ -5,6 +5,10 @@
 
 These should match closely with the [Sufia 7 requirements](https://github.com/projecthydra/sufia/blob/master/README.md):
   * Ruby 2.3.0 and rbenv, Bundler (https://github.com/rbenv/rbenv#homebrew-on-mac-os-x)
+    * If you get permission errors running `gem install bundler`, try the following:
+      * Set your global ruby environment by running: `rbenv global 2.3.0`
+      * In your user's .bash_profile, include this line at the bottom: eval "$(rbenv init -)"
+      * Open a new terminal window and run: `gem install bundler`
   * JDK (optional - use jenv to manage your Java environment http://www.jenv.be)
   * Download and install LibreOffice https://www.libreoffice.org/download/download/
   * Imagemagick `brew install imagemagick —with-libtiff —with-jp2`
