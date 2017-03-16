@@ -9,7 +9,12 @@ These should match closely with the [Sufia 7 requirements](https://github.com/pr
       * Set your global ruby environment by running: `rbenv global 2.3.0`
       * In your user's .bash_profile, include this line at the bottom: eval "$(rbenv init -)"
       * Open a new terminal window and run: `gem install bundler`
-  * JDK (optional - use jenv to manage your Java environment http://www.jenv.be)
+  * JDK (http://www.oracle.com/technetwork/java/javase/downloads/)
+    * Optional - use jenv to manage your Java environment (http://www.jenv.be)
+    * jenv does not install JDK versions, so install your JDKs separately.
+    * View all your installed JDKs; run: `/usr/libexec/java_home -V`
+    * Add a JDK to jenv.  For jdk1.8.0_121.jdk as an example, run: `add /Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home`
+    * Set up a global version. From above example version, run: `jenv global oracle64-1.8.0.121`
   * Download and install LibreOffice https://www.libreoffice.org/download/download/
   * Imagemagick `brew install imagemagick —with-libtiff —with-jp2`
   * ffmpeg `brew install ffmpeg --with-fdk-aac --with-libvpx --with-libvorbis`
