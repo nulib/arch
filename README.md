@@ -25,3 +25,6 @@ These should match closely with the [Sufia 7 requirements](https://github.com/pr
   * In a separate tab, start Fedora `fcrepo_wrapper`
   * In a separate tab, start Solr `solr_wrapper`
   * Start the Rails app `rails s`
+  
+ ## Deploying
+  * Deploy with capistrano, specifying the environment, ex: `cap staging deploy`
