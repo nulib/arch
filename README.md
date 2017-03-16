@@ -16,7 +16,7 @@ These should match closely with the [Sufia 7 requirements](https://github.com/pr
     * Add a JDK to jenv.  For jdk1.8.0_121.jdk as an example, run: `add /Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home`
     * Set up a global version. From above example version, run: `jenv global oracle64-1.8.0.121`
   * Download and install LibreOffice https://www.libreoffice.org/download/download/
-  * Imagemagick `brew install imagemagick —with-libtiff —with-jp2`
+  * Imagemagick `brew install imagemagick --with-ghostscript --with-openjpeg`
   * ffmpeg `brew install ffmpeg --with-fdk-aac --with-libvpx --with-libvorbis`
   * fits `brew install fits`
   * redis `brew install redis`
