@@ -5,7 +5,7 @@
 
 These should match closely with the [Sufia 7 requirements](https://github.com/projecthydra/sufia/blob/master/README.md):
   * Ruby 2.3.0 and rbenv, Bundler
-  * JDK
+  * JDK (optional - use jenv to manage your Java environment http://www.jenv.be 
   * Imagemagick `brew install imagemagick —with-libtiff —with-jp2`
   * ffmpeg `brew install ffmpeg --with-fdk-aac --with-libvpx --with-libvorbis`
   * fits `brew install fits`
