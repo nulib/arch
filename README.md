@@ -25,6 +25,7 @@ These should match closely with the [Sufia 7 requirements](https://github.com/pr
 
   * Clone this repository `git clone git@github.com:nulib/institutional-repository.git`
   * From inside the project directory run `bundle install`
+    * If on OSx and if you see a mysql error during bundle install, run: `x-code-select --install`
   * Replace the `config/*.yml.example` configuration files with actual config values and rename to `.yml`
   * From inside the project directory run `bundle exec rake db:migrate`
   
