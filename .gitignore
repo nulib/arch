@@ -46,3 +46,6 @@ db/development.sqlite3
 *.woff
 *.otf
 *.otfls
+
+# WebStorm IDE
+.idea/*
