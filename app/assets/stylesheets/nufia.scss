@@ -1,22 +1,61 @@
 $btn-primary-bg: rgba(131, 110, 170, 1);
 
+html {
+  font-size: 100%;
+}
+
+footer {
+  a {
+    &:hover {
+      color: $white;
+    }
+  }
+}
+
+header {
+  #top-bar {
+    ul > li {
+      i {
+        &:first-of-type {
+          padding-right: .5rem;
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 768px) {
+    #mobile-nav-bottom ul {
+      color: $white;
+      > li {
+        // Adds padding between sub navigation groups
+        &.mobile-sub-nav-header {
+          padding-top: .5rem;
+        }
+      }
+    }
+  }
+}
+
 #content-wrapper {
   header  {
     background-color:white;
   }
-  #announcement{
-    background-color:$dark-grey;
+  #announcement {
+    background-color:$medium-grey;
   }
 }
 
-#home-header { 
+#department {
+  width: 700px / 1120px * 100%;
+}
+
+#home-header {
   background: url("arch_header_img_1140_310.jpg") no-repeat;
   height: 280px;
   margin: 0 auto;
 
   a {
     &.button {
-      font: 16px "Akkurat Pro Bold", "Arial Black", sans-serif;
+      font: 16px $AkkuratProBold;
       color: white;
       background: #4e2a84;
       text-align: center;
@@ -79,7 +118,7 @@ $btn-primary-bg: rgba(131, 110, 170, 1);
   .section-top {
     h3 {
       color: white;
-      font: 24px "Campton Extra Bold", Impact, sans-serif;
+      font: 24px $CamptonExtraBold;
       text-align: center;
       text-shadow:2px 2px 0 black;
 
@@ -98,7 +137,7 @@ $btn-primary-bg: rgba(131, 110, 170, 1);
     p {
       &.subhead {
         color: white;
-        font: 46px/1.2em "Campton Book", Tahoma, sans-serif;
+        font: 46px/1.2em $CamptonBook;
         margin: .5em 0 1em;
         text-align: center;
       }
@@ -122,7 +161,7 @@ $btn-primary-bg: rgba(131, 110, 170, 1);
     padding: 3rem 1rem;
     .section-top {
       h3 {
-        font: 20px "Campton Extra Bold", Impact, sans-serif;
+        font: 20px $CamptonExtraBold;
         color: white;
         text-align: center;
         &:before, &:after {
@@ -132,11 +171,30 @@ $btn-primary-bg: rgba(131, 110, 170, 1);
       }
       p.subhead {
         color: white;
-        font: 28px/1.2em "Campton Book", Tahoma, sans-serif;
+        font: 28px/1.2em $CamptonBook;
         margin: .5em 0 1em;
         text-align: center;
       }
     }
   }
 
+}
+
+#search {
+	width: 420px / 1120px * 100%;
+}
+
+.btn-primary {
+  background-color: $nu-purple-60;
+  border-color: $nu-purple-70;
+  &:hover {
+    background-color: $nu-purple-70;
+    &:focus {
+      background-color: $nu-purple-120;
+    }
+  }
+  &:active,
+  &:focus {
+    background-color: $nu-purple-120;
+  }
 }

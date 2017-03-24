@@ -17,23 +17,29 @@
   *= require select2
  */
 
- // the base (do not modify)
- @import "nul-template/base/reset";
- @import "nul-template/base/variables";
- @import "nul-template/base/ie";
- @import "nul-template/base/mixins-extends";
- @import "nul-template/base/core";
- @import "nul-template/base/typography";
 
- // the main sections (do not modify)
- @import "nul-template/sections/header";
- @import "nul-template/sections/search";
- @import "nul-template/sections/top-nav";
- @import "nul-template/sections/mobile-nav";
- @import "nul-template/sections/footer";
+// Northwestern University :: Departmental Templates :: Header/Nav/Footer Version v1.5.4 - 22 December 2016
+// developed by Christopher Garcia - Global Marketing & Communications
+// Questions? Email: webcomm-support@northwestern.edu
 
- // for specificity (this should be last)
- @import "nul-template/base/buttons";
+// the base (do not modify)
+@import "nul-template/base/reset";
+@import "nul-template/base/variables";
+@import "nul-template/base/ie";
+@import "nul-template/base/mixins-extends";
+@import "nul-template/base/core";
+@import "nul-template/base/typography";
 
- @import "sufia";
- @import "nufia";
+// the main sections (do not modify)
+@import "nul-template/sections/header";
+@import "nul-template/sections/search";
+@import "nul-template/sections/top-nav";
+@import "nul-template/sections/mobile-nav";
+@import "nul-template/sections/footer";
+
+// add your own modules below
+@import "sufia";
+@import "nufia";
+
+// for specificity (do not modify)
+@import "nul-template/base/buttons";

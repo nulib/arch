@@ -1,8 +1,8 @@
 <% if user_signed_in? %>
   <% if can? :manage, :all %>
-    <li class="drop" style="display:inline-block;">
+    <li>
       <%= link_to sufia.admin_stats_path, role: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: true, expanded: false } do %>
-        <span class="fa fa-gear"></span> Admin <span class="caret"></span>
+        <i class="fa fa-gear"></i>Admin<span class="dropdown-arrow"></span>
       <% end %>
       <ul class="dropdown">
         <li><%= link_to 'Manage Roles', role_management.roles_path %></li>
@@ -18,13 +18,12 @@
     </li>
   <% end %>
 
-  <li class="drop" style="display:inline-block;">
+  <li>
     <%= link_to sufia.dashboard_index_path, role: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: true, expanded: false } do %>
-      <span class="fa fa-tachometer"></span> Dashboard <span class="caret"></span>
+      <i class="fa fa-tachometer"></i>Dashboard<span class="dropdown-arrow"></span>
     <% end %>
-    <ul class="dropdown">
+    <ul>
       <li><%= link_to 'My Dashboard', sufia.dashboard_index_path %></li>
-      <li class="divider"></li>
       <li>
         <%= link_to sufia.notifications_path do %>
           Notifications
@@ -32,18 +31,17 @@
         <% end %>
       </li>
       <li><%= link_to 'Transfers', sufia.transfers_path %></li>
-      <li class="divider"></li>
       <li><%= link_to 'Highlights', sufia.dashboard_highlights_path %></li>
       <li><%= link_to 'Shares', sufia.dashboard_shares_path %></li>
     </ul>
   </li>
 
   <% if can? :create, GenericWork %>
-    <li class="drop" style="display:inline-block;">
+    <li>
       <%= link_to sufia.dashboard_works_path, role: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: true, expanded: false } do %>
-        <span class="fa fa-cube"></span> Works <span class="caret"></span>
+        <i class="fa fa-cube"></i>Works<span class="dropdown-arrow"></span>
       <% end %>
-      <ul class="dropdown">
+      <ul>
         <li><%= link_to 'My Works', sufia.dashboard_works_path %></li>
         <li><%= link_to 'New Work', main_app.new_curation_concerns_generic_work_path %></li>
         <li><%= link_to 'Batch Create', sufia.new_batch_upload_path %></li>
@@ -52,11 +50,11 @@
   <% end %>
 
   <% if can?(:create, Collection) %>
-    <li class="drop" style="display:inline-block;">
+    <li>
       <%= link_to sufia.dashboard_collections_path, role: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: true, expanded: false } do %>
-        <span class="fa fa-cubes"></span> Collections <span class="caret"></span>
+        <i class="fa fa-cubes"></i>Collections<span class="dropdown-arrow"></span>
       <% end %>
-      <ul class="dropdown">
+      <ul>
         <li><%= link_to 'My Collections', sufia.dashboard_collections_path %></li>
         <li><%= link_to 'New Collection', main_app.new_collection_path %></li>
       </ul>
