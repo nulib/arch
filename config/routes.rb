@@ -2,17 +2,18 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
   mount BrowseEverything::Engine => '/browse'
-  
+
   Hydra::BatchEdit.add_routes(self)
   mount Blacklight::Engine => '/'
-  
-    concern :searchable, Blacklight::Routes::Searchable.new
+
+  concern :searchable, Blacklight::Routes::Searchable.new
 
   resource :catalog, only: [:index], as: 'catalog', path: '/catalog', controller: 'catalog' do
     concerns :searchable
   end
 
   devise_for :users
+  mount Sufia::Engine => '/'
   mount CurationConcerns::Engine, at: '/'
   mount Hydra::RoleManagement::Engine => '/'
   resources :welcome, only: 'index'
@@ -37,7 +38,7 @@ Rails.application.routes.draw do
   authenticate :user, lambda { |u| u.admin? } do
     mount Sidekiq::Web => '/sidekiq'
   end
-  
+
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
@@ -97,7 +98,4 @@ Rails.application.routes.draw do
   get 'rights' => 'pages#show', id: 'rights_page'
 
   Hydra::BatchEdit.add_routes(self)
-  # This must be the very last route in the file because it has a catch-all route for 404 errors.
-  # This behavior seems to show up only in production mode.
-  mount Sufia::Engine => '/'
 end

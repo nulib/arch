@@ -32,9 +32,6 @@ gem 'sinatra', :require => nil
 
 gem 'sufia', '~> 7.0'
 
-# Sufia 7.2.0 depends upon an unreleased version of Flipflop -- we're working with the maintainer of that gem to get some pull requests that are required to make it work with a Rails engine like Sufia.
-gem 'flipflop', git: 'https://github.com/jcoyne/flipflop.git', branch: 'hydra'
-
 # Admin users enabled by hydra-role-management
 gem 'hydra-role-management'
 
