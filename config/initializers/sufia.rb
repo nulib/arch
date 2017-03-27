@@ -1,4 +1,7 @@
 Sufia.config do |config|
+  # Note: order of registration affects Zotero/Arkivo
+  # Injected via `rails g sufia:work GenericWork`
+  config.register_curation_concern :generic_work
   config.max_days_between_audits = 7
   config.max_notifications_for_dashboard = 5
 
