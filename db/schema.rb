@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170324151852) do
+ActiveRecord::Schema.define(version: 20170327170836) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer  "user_id",       null: false
@@ -242,6 +242,25 @@ ActiveRecord::Schema.define(version: 20170324151852) do
 
   add_index "proxy_deposit_rights", ["grantee_id"], name: "index_proxy_deposit_rights_on_grantee_id"
   add_index "proxy_deposit_rights", ["grantor_id"], name: "index_proxy_deposit_rights_on_grantor_id"
+
+  create_table "qa_local_authorities", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "qa_local_authorities", ["name"], name: "index_qa_local_authorities_on_name", unique: true
+
+  create_table "qa_local_authority_entries", force: :cascade do |t|
+    t.integer  "local_authority_id"
+    t.string   "label"
+    t.string   "uri"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "qa_local_authority_entries", ["local_authority_id"], name: "index_qa_local_authority_entries_on_local_authority_id"
+  add_index "qa_local_authority_entries", ["uri"], name: "index_qa_local_authority_entries_on_uri", unique: true
 
   create_table "roles", force: :cascade do |t|
     t.string "name"
