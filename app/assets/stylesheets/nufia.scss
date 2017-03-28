@@ -1,7 +1,43 @@
 $btn-primary-bg: rgba(131, 110, 170, 1);
 
+
+
 html {
   font-size: 100%;
+}
+
+button {
+  &.btn-primary {
+    background-color: $nu-purple-60;
+    border-color: $nu-purple-70;
+    &:hover {
+      background-color: $nu-purple-70;
+      &:focus {
+        background-color: $nu-purple-120;
+      }
+    }
+    &:active,
+    &:focus {
+      background-color: $nu-purple-120;
+    }
+  }
+  &.btn-link {
+    background-color: transparent;
+    border: none;
+    &:hover {
+      @extend a:hover;
+      background-color: transparent;
+      &:active {
+        @extend a:hover;
+        background-color: transparent;
+      }
+    }
+    &:active,
+    &:focus {
+      @extend a;
+      background-color: transparent;
+    }
+  }
 }
 
 footer {
@@ -182,19 +218,4 @@ header {
 
 #search {
 	width: 420px / 1120px * 100%;
-}
-
-.btn-primary {
-  background-color: $nu-purple-60;
-  border-color: $nu-purple-70;
-  &:hover {
-    background-color: $nu-purple-70;
-    &:focus {
-      background-color: $nu-purple-120;
-    }
-  }
-  &:active,
-  &:focus {
-    background-color: $nu-purple-120;
-  }
 }
