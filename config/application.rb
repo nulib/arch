@@ -8,7 +8,7 @@ Bundler.require(*Rails.groups)
 
 module Nufia7
   class Application < Rails::Application
-    
+
     config.generators do |g|
       g.test_framework :rspec, :spec => true
     end
@@ -30,5 +30,10 @@ module Nufia7
 
     config.assets.paths << Rails.root.join("app", "assets", "fonts")
     config.active_job.queue_adapter = :sidekiq
+
+    # The compile method (default in tinymce-rails 4.5.2) doesn't work when also
+    # using tinymce-rails-imageupload, so revert to the :copy method
+    # https://github.com/spohlenz/tinymce-rails/issues/183
+    config.tinymce.install = :copy
   end
 end
