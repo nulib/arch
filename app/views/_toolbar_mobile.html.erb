@@ -41,7 +41,8 @@
     <li><i class="fa fa-cube"></i>Works</li>
     <li><%= link_to 'My Works', sufia.dashboard_works_path %></li>
     <li><%= link_to 'New Work', main_app.new_curation_concerns_generic_work_path %></li>
-    <li><%= link_to 'Batch Create', sufia.new_batch_upload_path %></li>
+    <li><%= link_to t("sufia.toolbar.works.batch"),
+                    sufia.new_batch_upload_path(payload_concern: create_work_presenter.first_model) %></li>
   <% end %>
 
   <% if can?(:create, Collection) %>
