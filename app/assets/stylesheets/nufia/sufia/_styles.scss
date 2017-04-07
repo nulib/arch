@@ -7,3 +7,16 @@
     font-family: $AkkuratProBold;
   }
 }
+
+//TODO: Find a better home for this?
+#sidebar {
+  .panel-footer {
+    .btn {
+      display: block;
+      width: 100%;
+      &:first-of-type {
+        margin-bottom: .5rem;
+      }
+    }
+  }
+}
