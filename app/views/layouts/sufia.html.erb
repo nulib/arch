@@ -10,7 +10,9 @@
     <a href="#skip_to_content" class="sr-only">Skip to Content</a>
     <%= render partial: '/masthead' %>
     <%= content_for(:navbar) %>
-    <%= render partial: '/flash_msg' %>
+    <div class="contain-1120">
+      <%= render partial: '/flash_msg' %>
+    </div>
     <%= content_for(:precontainer_content) %>
     <div id="page" class="<%= content_for?(:container_class) ? yield(:container_class) : 'container' %>" role="main">
       <div class="row">
