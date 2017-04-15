@@ -1,0 +1,15 @@
+// Taken from: http://www.northwestern.edu/templates/page-types
+.landing-page {
+  section {
+    margin-bottom: 5rem;
+  }
+  #page {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+}
+.standard-page {
+  #page {
+    max-width: 1120px;
+  }
+}
