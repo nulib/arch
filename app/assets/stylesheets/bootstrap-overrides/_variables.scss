@@ -25,3 +25,32 @@ $font-size-h3: 26px;
 $font-size-h4: 21px;
 $headings-color: $nu-purple;
 $headings-font-family: $CamptonBook;
+
+/**************
+ * Components *
+ **************/
+$border-radius-base: 0;
+
+/***********
+ * Buttons *
+ ***********/
+$btn-primary-bg: $nu-purple;
+
+/**************************
+ * Form states and alerts *
+ **************************/
+$state-success-bg: $nu-purple-10;
+$state-warning-bg: $nu-purple-10;
+$state-info-bg: $nu-purple-10;
+$state-danger-bg: $blood-orange;
+
+/**********
+ * Panels *
+ **********/
+$panel-footer-bg: $rich-black-10;
+$panel-default-heading-bg: $rich-black-10;
+
+/*********
+ * Close *
+ *********/
+$close-text-shadow: 0;
