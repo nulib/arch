@@ -1,11 +1,17 @@
-<!-- File Overwrite: Overwrites gem file 'sufia-7.3.0/app/views/sufia/homepage/index.html.erb' -->
+<!-- File Override: gem file 'sufia-7.3.0/app/views/sufia/homepage/index.html.erb' -->
 
 <% provide :page_title, application_name %>
-<%= render 'announcement' %>
-<div id="home-header" class="contain-1440 row">
+<% provide :body_class, 'landing-page' %>
+<% provide :is_home, true %>
+
+<!-- Announcement -->
+<!--
+<div class="contain-1120"><%= render 'announcement' %></div>
+-->
+<div id="home-header">
   <%= render 'home_header' %>
 </div>
-<div id="home_content" class="row">
+<div id="home_content">
   <%= render 'home_content' %>
 </div>
 <%= tiny_mce_stuff if can? :update, ContentBlock%>

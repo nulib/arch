@@ -17,30 +17,18 @@
   *= require select2
  */
 
+// NU styles
+@import "nul-template/main";
+@import "nul-template-overrides/main";
 
-// Northwestern University :: Departmental Templates :: Header/Nav/Footer Version v1.5.4 - 22 December 2016
-// developed by Christopher Garcia - Global Marketing & Communications
-// Questions? Email: webcomm-support@northwestern.edu
-
-// the base (do not modify)
-@import "nul-template/base/reset";
-@import "nul-template/base/variables";
-@import "nul-template/base/ie";
-@import "nul-template/base/mixins-extends";
-@import "nul-template/base/core";
-@import "nul-template/base/typography";
-
-// the main sections (do not modify)
-@import "nul-template/sections/header";
-@import "nul-template/sections/search";
-@import "nul-template/sections/top-nav";
-@import "nul-template/sections/mobile-nav";
-@import "nul-template/sections/footer";
-
-// add your own modules below
-@import "bootstrap-overrides/main";
+// Sufia / Bootstrap styles
+@import "bootstrap-overrides/variables";
 @import "sufia";
-@import "nufia";
+@import "sufia-overrides/main";
+@import "bootstrap-overrides/main";
 
-// for specificity (do not modify)
+// Arch styles
+@import "arch/main";
+
+// (NU Style template specifies this goes last)
 @import "nul-template/base/buttons";
