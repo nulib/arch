@@ -3,6 +3,7 @@
   <% if user_signed_in? %>
     <% if can? :manage, :all %>
       <li><i class="fa fa-gear"></i>Admin</li>
+      <li><%= link_to 'Admin Dashboard', sufia.admin_path %></li>
       <li><%= link_to 'Manage Roles', role_management.roles_path %></li>
 
       <% if respond_to? :admin_stats_path %>
