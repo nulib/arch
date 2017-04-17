@@ -1,0 +1,29 @@
+#department {
+  width: 700px / 1120px * 100%;
+  h1 {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+#top-bar {
+  ul > li {
+    i {
+      &:first-of-type {
+        padding-right: .5rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #mobile-nav-bottom ul {
+    color: $white;
+    > li {
+      // Adds padding between sub navigation groups
+      &.mobile-sub-nav-header {
+        padding-top: .5rem;
+      }
+    }
+  }
+}

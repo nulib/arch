@@ -29,6 +29,7 @@ config/resque-pool.yml
 config/solr.yml
 config/browse_everything_providers.yml
 config/sidekiq.yml
+config/nufia-c31655401151.p12
 
 # Ignore fedora data
 fcrepo4-data
@@ -46,3 +47,6 @@ db/development.sqlite3
 *.woff
 *.otf
 *.otfls
+
+# WebStorm IDE
+.idea/*

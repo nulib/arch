@@ -2,7 +2,6 @@ class CatalogController < ApplicationController
   include Hydra::Catalog
   include Hydra::Controller::ControllerBehavior
   include Sufia::Catalog
-  include BlacklightAdvancedSearch::Controller
 
   # These before_filters apply the hydra access controls
   before_filter :enforce_show_permissions, only: :show
@@ -290,4 +289,3 @@ class CatalogController < ApplicationController
     false
   end
 end
-

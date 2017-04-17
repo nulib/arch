@@ -12,13 +12,12 @@
         float: right;
         height: 55px;
     }
-
     .mobile-link {
         display: inline-block;
         padding: 1em;
         height: 55px;
         width: 55px;
-        cursor: pointer;
+        cursor: pointer;  
         position: relative;
 
         &.mobile-search-link {
@@ -38,144 +37,151 @@
         }
     }
 
-    // mobile navigation
 	#mobile-nav {
 		display: none;
-		background: $light-grey;
+		background: $white;
 		position: absolute;
 		top: 55px;
 		left: 0;
 		right: 0;
 		z-index: 9998;
 
-		a {
-			color: $nu-purple;
-			display: inline-block;
-			text-decoration: none;
-			width: 100%;
+        ul { // first level
+            background: $white;
 
-            &:focus {
-                outline: 0;
-            }
+            ul { // second level
+                display: none;
+                background: $light-grey;
 
-			&.caret {
-				width: 61px;
-				height: 50px;
-				text-align: center;
-				position: absolute;
-				top: 0;
-				right: 0;
-				background: url("#{$path-images}/icons/mobile-down-arrow-ltpurple.svg") no-repeat center / 20px 20px;
-				text-indent: -9999px;
-			}
+                ul { // third level
+                    background-color: darken($light-grey, 4%);
 
-			&.open {
-                -webkit-transform: rotate(180deg);
-                -moz-transform: rotate(180deg);
-                -ms-transform: rotate(180deg);
-                -o-transform: rotate(180deg);
-                transform: rotate(180deg);
-			}
-		}
+                    ul { // fourth level
+                        background-color: darken($light-grey, 8%);
 
-		li {
-			font: 18px/50px $AkkuratProBold;
-			background: $white;
-			padding: 10px;
-			border-bottom: 1px solid $light-grey;
-			list-style: none;
-			padding: 0 20px;
-			position: relative;
+                        ul { // fifth level
+                            background-color: darken($light-grey, 12%);                    
 
+                            ul { // sixth level
+                                background-color: darken($light-grey, 16%);           
+                            }
+                        }
+                    }
+                }
+            }   
+        }        
+        
+        li { // first level
+            position: relative;
+            font: 18px $AkkuratProBold;
+            // padding: 1em 0;
+        
             a {
-                font: 18px/48px $AkkuratProBold;
+                text-decoration: none;
                 color: $nu-purple;
+                display: block;
+                border-bottom: 1px solid $light-grey;
+                position: relative;
+                padding: .9em 3em .9em .8em;
+
+                &.active {
+                    color: $black;
+                    font-family: $AkkuratProBold;
+                }              
             }
 
-			li {
-				padding: 0;
-				border-bottom: 0 none;
+            .arrow {
+                
+                &.open a {
+                    -webkit-transform: rotate(180deg);
+                    -ms-transform: rotate(180deg);
+                    transform: rotate(180deg);
+                    border: none;
+                }                  
+                
+                a {
+                    width: 50px;
+                    height: 48px;
+                    background: url("#{$path-images}/icons/mobile-down-arrow-ltpurple.svg") no-repeat center / 20px 20px;
+                    display: block;
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    text-indent: -9999px;
+                    overflow: hidden;
+                    border: none;
+                    padding: 0;
+                }
             }
+            
+            li { // second level
+                font: 16px/1.2em $AkkuratProRegular;  
+            
+                a { 
+                    padding-left: 1.5em;
+                }                
 
-			ul {
-				display: none;
-				padding: 0 0 5px 20px;
+                li a { // third level
+                    padding-left: 2em;
+                }
+                li li a { // fourth level
+                    padding-left: 2.5em;
+                }
 
-				a {
-					border: 0 none;
-                    font: 16px/48px $AkkuratProRegular;
-				}
-			}
-		}
+                li li li a { // fifth level
+                    padding-left: 3em;
+                }
 
-		.active {
-			background: $light-grey;
+                li li li li a { // sixth level
+                    padding-left: 3.5em;
+                }    
+            }            
+        }
+    }
 
-			ul {
-				display: block;
-                border-top: 1px solid $medium-grey;
-			}
-
-			li {
-				background: $light-grey;
-            }
-		}
-
-		.hide-label {
-			visibility: hidden;
-			display: none;
-		}
-	}
-
+    // for bottom part of navigation (links from #top-bar)
 	#mobile-nav-bottom {
 		background: $nu-purple-120;
-    color: $white;
+        
+		&:after {
+			@include clearfix();
+		}        
 
 		ul {
 			margin: 0;
             padding: 1rem;
+            background: none;
 		}
-
+        
 		li {
 			background: transparent;
-			border: 0 none;
 			padding: 0;
 			font-size: 12px;
 			line-height: 24px;
+            margin: 0;
+            list-style: none;
+            
+            &:last-child {
+                border: none;
+            }            
 
             a {
                 text-transform: uppercase;
                 color: $white;
-                font: 12px/1em $AkkuratProBold;
+                font: 12px/2em $AkkuratProBold;
+                border: none;
+                padding: inherit;
 
                 &.white-link {
                     color: $white;
                 }
             }
         }
-
-		#mobile-nav-bottom-left {
+        
+		#mobile-nav-bottom-left, #mobile-nav-bottom-right {
 			width: 50%;
 			display: inline-block;
 			float: left;
-
-            li {
-				margin-left: 20px;
-			}
-		}
-
-		#mobile-nav-bottom-right {
-			width: 50%;
-			display: inline-block;
-			float: left;
-
-            li {
-				margin-left: 10px;
-			}
-		}
-
-		&:after {
-			@include clearfix();
 		}
 	}
 }

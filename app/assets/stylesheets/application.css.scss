@@ -17,26 +17,18 @@
   *= require select2
  */
 
- // the base (do not modify)
- @import "nul-template/base/reset";
- @import "nul-template/base/variables";
- @import "nul-template/base/ie";
- @import "nul-template/base/mixins-extends";
- @import "nul-template/base/core";
- @import "nul-template/base/typography";
+// NU styles
+@import "nul-template/main";
+@import "nul-template-overrides/main";
 
- // the main sections (do not modify)
- @import "nul-template/sections/header";
- @import "nul-template/sections/search";
- @import "nul-template/sections/top-nav";
- @import "nul-template/sections/mobile-nav";
- @import "nul-template/sections/footer";
+// Sufia / Bootstrap styles
+@import "bootstrap-overrides/variables";
+@import "sufia";
+@import "sufia-overrides/main";
+@import "bootstrap-overrides/main";
 
- // for specificity (this should be last)
- @import "nul-template/base/buttons";
+// Arch styles
+@import "arch/main";
 
- @import "nufia";
- @import "bootstrap-sprockets";
- @import 'bootstrap';
- @import "font-awesome";
- @import 'sufia/sufia';
+// (NU Style template specifies this goes last)
+@import "nul-template/base/buttons";
