@@ -12,6 +12,7 @@
 !/log/.keep
 /tmp
 .byebug_history
+.rspec
 
 # Ignore public uploads directory
 /public/uploads
@@ -39,6 +40,7 @@ dump.rdb
 
 # Ignore sqlite db
 db/development.sqlite3
+db/test.sqlite3
 
 .DS_Store
 .ruby-version
