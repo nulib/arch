@@ -48,12 +48,13 @@ gem 'devise-guests', '~> 0.3'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'sqlite3'
+  gem 'byebug'
+  gem 'capybara', '~> 2.8'
   gem 'fcrepo_wrapper'
   gem 'rspec-rails', '~> 3.6'
+  gem 'sqlite3'
 end
 
 group :development do
