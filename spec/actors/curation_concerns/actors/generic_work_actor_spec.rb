@@ -1,8 +1,8 @@
 # Generated via
-#  `rails generate curation_concerns:work GenericWork`
+#  `rails generate hyrax:work GenericWork`
 require 'rails_helper'
 
-describe CurationConcerns::Actors::GenericWorkActor do
+describe Hyrax::Actors::GenericWorkActor do
   it "has tests" do
     skip "Add your tests here"
   end

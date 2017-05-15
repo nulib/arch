@@ -1,5 +1,5 @@
 en:
-  sufia:
+  hyrax:
     product_name:       "Arch : Northwestern University Institutional Repository"
     product_twitter_handle: "@NU_LIBRARY"
     institution_name:   "Northwestern"
@@ -8,6 +8,9 @@ en:
     dashboard:
       create_work:              "Upload"
       view_works:               "View Files"
+    visibility:
+      authenticated:
+        label_html: "Northwestern University"
   simple_form:
     hints:
       generic_work:
@@ -26,8 +29,3 @@ en:
         related_url: "A link to the publisher’s webpage of the work or other specific content (such as PDF documents) related to the file. For example, the URL of a research project from which the file was derived or a dataset stored in a data repository."
         source: "Enter the journal title or name of the book in which the work was published. Source refers to the origin of the document."
         resource_type: "Pre-definied categories to describe the type of content being uploaded, such as 'article' or 'presentation'."
-  curation_concerns:
-    visibility:
-      authenticated:
-        label_html: "Northwestern University"
-        

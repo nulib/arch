@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170327170836) do
+ActiveRecord::Schema.define(version: 20170515155306) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer  "user_id",       null: false
@@ -121,6 +121,13 @@ ActiveRecord::Schema.define(version: 20170327170836) do
     t.index ["follower_id", "follower_type"], name: "fk_follows"
   end
 
+  create_table "hyrax_features", force: :cascade do |t|
+    t.string   "key",                        null: false
+    t.boolean  "enabled",    default: false, null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
   create_table "local_authorities", force: :cascade do |t|
     t.string "name"
   end
@@ -195,12 +202,11 @@ ActiveRecord::Schema.define(version: 20170327170836) do
   create_table "permission_templates", force: :cascade do |t|
     t.string   "admin_set_id"
     t.string   "visibility"
-    t.string   "workflow_name",  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.date     "release_date"
     t.string   "release_period"
-    t.index ["admin_set_id"], name: "index_permission_templates_on_admin_set_id"
+    t.index ["admin_set_id"], name: "index_permission_templates_on_admin_set_id", unique: true
   end
 
   create_table "proxy_deposit_requests", force: :cascade do |t|
@@ -418,13 +424,15 @@ ActiveRecord::Schema.define(version: 20170327170836) do
   end
 
   create_table "sipity_workflows", force: :cascade do |t|
-    t.string   "name",                null: false
+    t.string   "name",                   null: false
     t.string   "label"
     t.text     "description"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.boolean  "allows_access_grant"
-    t.index ["name"], name: "index_sipity_workflows_on_name", unique: true
+    t.integer  "permission_template_id"
+    t.boolean  "active"
+    t.index ["permission_template_id", "name"], name: "index_sipity_workflows_on_permission_template_and_name", unique: true
   end
 
   create_table "subject_local_authority_entries", force: :cascade do |t|
@@ -432,13 +440,6 @@ ActiveRecord::Schema.define(version: 20170327170836) do
     t.string "lowerLabel"
     t.string "url"
     t.index ["lowerLabel"], name: "entries_by_lower_label"
-  end
-
-  create_table "sufia_features", force: :cascade do |t|
-    t.string   "key",                        null: false
-    t.boolean  "enabled",    default: false, null: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
   end
 
   create_table "tinymce_assets", force: :cascade do |t|

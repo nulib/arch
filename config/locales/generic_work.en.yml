@@ -1,5 +1,5 @@
 en:
-  sufia:
+  hyrax:
     icons:
       generic_work:     'fa fa-file-text-o'
     select_type:
@@ -34,4 +34,3 @@ en:
         language: "The language of the work's content."
         publisher: "The person or group making the work available. Generally this is the institution."
         rights: "Licensing and distribution information governing access to the work. Select from the provided drop-down list."
-

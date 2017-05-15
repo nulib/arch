@@ -1,8 +1,7 @@
 class Ability
   include Hydra::Ability
 
-  include CurationConcerns::Ability
-  include Sufia::Ability
+  include Hyrax::Ability
 
   self.ability_logic += [:everyone_can_create_curation_concerns]
 
@@ -34,4 +33,3 @@ class Ability
     # end
   end
 end
-
