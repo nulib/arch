@@ -7,7 +7,7 @@ include Warden::Test::Helpers
 RSpec.feature 'Create a GenericWork', js: false do
   context 'a logged in user' do
     let(:user_attributes) do
-      { username: 'test@example.com' }
+      { username: 'test_netid' }
     end
     let(:user) do
       User.new(user_attributes) { |u| u.save(validate: false) }
@@ -20,14 +20,13 @@ RSpec.feature 'Create a GenericWork', js: false do
 
     scenario do
       visit '/dashboard'
-      click_link "Works"
-      click_link "Add new work"
+      click_link 'Upload'
 
       # If you generate more than one work uncomment these lines
       # choose "payload_concern", option: "GenericWork"
       # click_button "Create work"
 
-      expect(page).to have_content "Add New Generic work"
+      expect(page).to have_content 'Add New Generic Work'
     end
   end
 end
