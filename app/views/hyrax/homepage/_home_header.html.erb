@@ -1,0 +1,16 @@
+<section class="hero">
+	<!-- note: no section top -->
+	<div class="hero-image in-page" style="background: url(<%= asset_path 'arch_hero_image.jpg' %>) no-repeat center / cover">
+		<h3>Arch</h3>
+		<p>Preserve and Share Your Research</p>
+		<ul class="center-list">
+			<li>
+        <%= link_to hyrax.dashboard_index_path,
+            class: "btn" do %>
+          <%= t('hyrax.share_button') %>
+        <% end %>
+      </li>
+		</ul>
+    <%= render partial: "marketing" %>
+	</div>
+</section>
