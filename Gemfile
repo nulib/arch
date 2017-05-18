@@ -72,7 +72,7 @@ group :development do
   gem 'capistrano-passenger'
   gem 'capistrano-sidekiq'
   gem 'rb-readline'
-
+  gem 'xray-rails'
 end
 
 group :staging, :production do
