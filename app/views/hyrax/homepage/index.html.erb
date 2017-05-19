@@ -1,16 +1,11 @@
-<!-- File Override: gem file 'hyrax-1.0.0.rc2/app/views/hyrax/homepage/index.html.erb' -->
-
 <% provide :page_title, application_name %>
 <% provide :body_class, 'landing-page' %>
 <% provide :is_home, true %>
 
-<!-- Announcement -->
-<!--
-<div class="contain-1120"><%= render 'announcement' %></div>
--->
 <div id="home-header">
   <%= render 'home_header' %>
 </div>
-<div id="home_content">
+
+<div class="row home-content">
   <%= render 'home_content' %>
 </div>
