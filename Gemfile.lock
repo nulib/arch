@@ -72,13 +72,13 @@ GEM
       execjs
     awesome_nested_set (3.1.3)
       activerecord (>= 4.0.0, < 5.2)
-    aws-sdk (2.9.23)
-      aws-sdk-resources (= 2.9.23)
-    aws-sdk-core (2.9.23)
+    aws-sdk (2.9.24)
+      aws-sdk-resources (= 2.9.24)
+    aws-sdk-core (2.9.24)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.9.23)
-      aws-sdk-core (= 2.9.23)
+    aws-sdk-resources (2.9.24)
+      aws-sdk-core (= 2.9.24)
     aws-sigv4 (1.0.0)
     babel-source (5.8.35)
     babel-transpiler (0.7.0)
@@ -317,7 +317,7 @@ GEM
       hydra-file_characterization (~> 0.3, >= 0.3.3)
       hydra-pcdm (>= 0.9)
       om (~> 3.1)
-    hyrax (1.0.0)
+    hyrax (1.0.1)
       active-fedora (>= 11.1.3)
       active_attr (~> 0.9.0)
       active_fedora-noid (~> 2.0, >= 2.0.2)
@@ -667,9 +667,6 @@ GEM
     xml-simple (1.1.5)
     xpath (2.0.0)
       nokogiri (~> 1.3)
-    xray-rails (0.1.22)
-      coffee-rails
-      rails (>= 3.1.0)
 
 PLATFORMS
   ruby
@@ -691,7 +688,7 @@ DEPENDENCIES
   devise_ldap_authenticatable (~> 0.8.5)
   fcrepo_wrapper
   hydra-role-management
-  hyrax (= 1.0.0)
+  hyrax (= 1.0.1)
   jbuilder (~> 2.0)
   jquery-rails
   mysql2 (>= 0.3.13, < 0.5)
@@ -708,7 +705,6 @@ DEPENDENCIES
   sqlite3
   turbolinks
   uglifier (>= 1.3.0)
-  xray-rails
 
 BUNDLED WITH
    1.14.6

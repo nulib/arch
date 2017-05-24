@@ -30,7 +30,7 @@ gem 'sinatra', '>= 2.0.0', :require => nil
 # Use Unicorn as the app server
 # gem 'unicorn'
 
-gem 'hyrax', '1.0.0'
+gem 'hyrax', '1.0.1'
 
 # Admin users enabled by hydra-role-management
 gem 'hydra-role-management'
@@ -72,7 +72,6 @@ group :development do
   gem 'capistrano-passenger'
   gem 'capistrano-sidekiq'
   gem 'rb-readline'
-  gem 'xray-rails'
 end
 
 group :staging, :production do
