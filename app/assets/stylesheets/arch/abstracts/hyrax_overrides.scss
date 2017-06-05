@@ -1,0 +1,39 @@
+body {
+  margin-bottom: 0;
+}
+
+#content-wrapper {
+  padding: 20px 0 30px;
+  header {
+    background-color: white;
+  }
+  a {
+    font-family: $AkkuratProBold;
+  }
+}
+
+#sidebar {
+  .panel-footer {
+    .btn {
+      display: block;
+      width: 100%;
+      &:first-of-type {
+        margin-bottom: .5rem;
+      }
+    }
+  }
+}
+
+.alert {
+  margin: 20px 0;
+  background-color: $nu-purple-10;
+  border-color: $nu-purple-10;
+  color: inherit;
+}
+
+.heading-tile .glyphicon,
+.heading-tile .help-icon,
+.heading-tile .glyphicon-chevron-right-helper .chevron,
+.glyphicon-chevron-right-helper .heading-tile .chevron {
+  background: $nu-purple-120;
+}
