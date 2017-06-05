@@ -17,18 +17,15 @@
   *= require select2
  */
 
-// NU styles
-@import "nul-template/main";
-@import "nul-template-overrides/main";
+// NU branding styles
+@import "nuwebcomm/styles";
+@import "nuwebcomm/nuwebcomm_overrides";
+@import "arch/abstracts/bootstrap_variables";
 
 // Hyrax / Bootstrap styles
-@import "bootstrap-overrides/variables";
 @import "hyrax";
-@import "hyrax-overrides/main";
-@import "bootstrap-overrides/main";
+@import "arch/abstracts/hyrax_overrides";
+@import "arch/abstracts/bootstrap_overrides";
 
-// Arch styles
+// NU Arch theme styles
 @import "arch/main";
-
-// (NU Style template specifies this goes last)
-@import "nul-template/base/buttons";
