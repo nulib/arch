@@ -10,12 +10,23 @@ h3 {
 }
 
 .alert-dismissable {
-    .close {
-      opacity: 1;
-    }
+  .close {
+    opacity: 1;
+  }
 }
 
 .btn {
   font-family: $AkkuratProBold;
   text-transform: uppercase;
+}
+
+// Panels
+.panel-success > .panel-heading,
+.facet_limit-active > .panel-heading {
+  background-color: $nu-purple-60;
+  border: none;
+}
+
+.facet-values li .selected {
+  color: inherit;
 }
