@@ -17,6 +17,9 @@
   *= require select2
  */
 
+// NU Arch variables
+@import "arch/abstracts/variables";
+
 // NU branding styles
 @import "nuwebcomm/styles";
 @import "nuwebcomm/nuwebcomm_overrides";
@@ -24,6 +27,7 @@
 
 // Hyrax / Bootstrap styles
 @import "hyrax";
+@import "arch/abstracts/blacklight_overrides";
 @import "arch/abstracts/hyrax_overrides";
 @import "arch/abstracts/bootstrap_overrides";
 

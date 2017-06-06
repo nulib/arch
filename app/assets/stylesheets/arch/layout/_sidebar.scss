@@ -1,5 +1,6 @@
 #sidebar {
   ul {
     @include ul-unstyled;
+    margin-bottom: 0;
   }
 }
