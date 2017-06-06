@@ -1,11 +1,13 @@
 @import
   // 1. Abstracts - Configurations, helpers, mixins, etc.
+  'abstracts/variables',
   'abstracts/mixins',
 
   // 2. Vendors
 
   // 3. Base stuff
   'base/base',
+  'base/typography',
 
   // 4. Layout-related sections
   'layout/layout',
