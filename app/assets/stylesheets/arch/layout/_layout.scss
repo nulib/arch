@@ -5,10 +5,11 @@
   #page {
     max-width: 1440px;
     margin: 0 auto;
+    padding-top: 0;
   }
 }
-.standard-page {
-  #page {
-    max-width: 1120px;
-  }
+
+// Main Content section
+#page {
+  padding: 2rem 0;
 }
