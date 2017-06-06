@@ -1,6 +1,5 @@
 @import
   // 1. Abstracts - Configurations, helpers, mixins, etc.
-  'abstracts/variables',
   'abstracts/mixins',
 
   // 2. Vendors
@@ -10,13 +9,19 @@
   'base/typography',
 
   // 4. Layout-related sections
+  'layout/forms',
   'layout/layout',
   'layout/sidebar',
 
   // 5. Components
+  'components/alerts',
+  'components/buttons',
+  'components/facets',
   'components/lists',
   'components/nav',
+  'components/panels',
   'components/save_widget',
+  'components/search_results',
   'components/tabs',
 
   // 6. Page-specific styles

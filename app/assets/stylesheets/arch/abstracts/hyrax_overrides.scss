@@ -37,3 +37,15 @@ body {
 .glyphicon-chevron-right-helper .heading-tile .chevron {
   background: $nu-purple-120;
 }
+
+
+div.facets {
+  h3 {
+    font-size: $panelTitleSize;
+  }
+}
+
+.add,
+.remove {
+  width: inherit;
+}
