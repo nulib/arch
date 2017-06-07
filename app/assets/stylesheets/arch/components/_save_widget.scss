@@ -1,0 +1,7 @@
+#savewidget {
+  fieldset {
+    ul {
+      @include ul-unstyled;
+    }
+  }
+}

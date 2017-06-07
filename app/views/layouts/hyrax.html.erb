@@ -4,7 +4,8 @@
     <%= render partial: 'layouts/head_tag_content' %>
     <%= content_for(:head) %>
   </head>
-  <body class="<%= content_for?(:body_class) ? yield(:body_class) : 'standard-page' %>">
+
+  <body class="<%= content_for?(:body_class) ? yield(:body_class) : '' %>">
     <a href="#skip_to_content" class="sr-only">Skip to Content</a>
     <%= render '/masthead' %>
     <%= content_for(:navbar) %>
@@ -22,38 +23,38 @@
         <% else %>
           <div class="contain-1120">
             <div class="row">
-              <% if content_for?(:sidebar) %>
-                <!-- Sidebar page -->
-                <div class="col-xs-12 col-sm-9 col-sm-push-3 main-content">
-                  <%= render_breadcrumbs builder: Hyrax::BootstrapBreadcrumbsBuilder %>
-                  <% if content_for?(:page_header) %>
-                    <div class="row">
-                      <div class="col-xs-12 main-header">
-                        <%= yield(:page_header) %>
+                <% if content_for?(:sidebar) %>
+                  <!-- Sidebar page -->
+                  <div class="col-xs-12 col-sm-9 col-sm-push-3 main-content">
+                    <%= render_breadcrumbs builder: Hyrax::BootstrapBreadcrumbsBuilder %>
+                    <% if content_for?(:page_header) %>
+                      <div class="row">
+                        <div class="col-xs-12 main-header">
+                          <%= yield(:page_header) %>
+                        </div>
                       </div>
-                    </div>
-                  <% end %>
-                  <%= content_for?(:content) ? yield(:content) : yield %>
-                </div>
-                <div id="sidebar" class="col-xs-12 col-sm-3 col-sm-pull-9 sidebar">
-                  <%= yield :sidebar %>
-                </div>
-              <% else %>
-                <!-- One column page -->
-                <div class="col-xs-12">
-                  <%= render_breadcrumbs builder: Hyrax::BootstrapBreadcrumbsBuilder %>
-                  <% if content_for?(:page_header) %>
-                    <div class="row">
-                      <div class="col-xs-12 main-header">
-                        <%= yield(:page_header) %>
+                    <% end %>
+                    <%= content_for?(:content) ? yield(:content) : yield %>
+                  </div>
+                  <div id="sidebar" class="col-xs-12 col-sm-3 col-sm-pull-9 sidebar">
+                    <%= yield :sidebar %>
+                  </div>
+                <% else %>
+                  <!-- One column page -->
+                  <div class="col-xs-12">
+                    <%= render_breadcrumbs builder: Hyrax::BootstrapBreadcrumbsBuilder %>
+                    <% if content_for?(:page_header) %>
+                      <div class="row">
+                        <div class="col-xs-12 main-header">
+                          <%= yield(:page_header) %>
+                        </div>
                       </div>
-                    </div>
-                  <% end %>
-                  <%= content_for?(:content) ? yield(:content) : yield %>
-                </div>
-              <% end %>
+                    <% end %>
+                    <%= content_for?(:content) ? yield(:content) : yield %>
+                  </div>
+                <% end %>
+              </div>
             </div>
-          </div>
         <% end %>
       </main>
     </div><!-- /#page -->

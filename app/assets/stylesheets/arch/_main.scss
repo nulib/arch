@@ -1,2 +1,30 @@
-@import "core";
-@import "layout";
+@import
+  // 1. Abstracts - Configurations, helpers, mixins, etc.
+  'abstracts/mixins',
+
+  // 2. Vendors
+
+  // 3. Base stuff
+  'base/base',
+  'base/typography',
+
+  // 4. Layout-related sections
+  'layout/forms',
+  'layout/layout',
+  'layout/sidebar',
+
+  // 5. Components
+  'components/alerts',
+  'components/buttons',
+  'components/facets',
+  'components/lists',
+  'components/nav',
+  'components/panels',
+  'components/save_widget',
+  'components/search_results',
+  'components/tabs',
+
+  // 6. Page-specific styles
+  'pages/home-page';
+
+// 7. Themes

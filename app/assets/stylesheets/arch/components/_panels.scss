@@ -1,0 +1,18 @@
+.panel-title {
+  font-size: $panelTitleSize;
+}
+
+.panel-heading {
+  &.collapse-toggle {
+    &.collapsed {
+      .panel-title {
+        &:after {
+          color: inherit;
+        }
+      }
+    }
+  }
+  &.top-panel-heading {
+    padding-left: 0;
+  }
+}
