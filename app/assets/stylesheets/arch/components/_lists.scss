@@ -1,0 +1,11 @@
+ul {
+  &.breadcrumb {
+    @include ul-unstyled;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  &.listing {
+    @include ul-unstyled;
+  }
+}

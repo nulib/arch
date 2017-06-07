@@ -1,0 +1,24 @@
+form {
+  &.edit_generic_work {
+    ul.listing {
+      li:only-of-type {
+        .input-group-btn {
+          background: none;
+        }
+      }
+    }
+    .input-group-btn {
+      background: $nu-purple;
+
+      .btn {
+        &.remove {
+          color: $white;
+        }
+      }
+    }
+  }
+}
+
+.form-control:focus {
+  box-shadow: none;
+}
