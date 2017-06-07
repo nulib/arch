@@ -16,3 +16,12 @@
     padding-left: 0;
   }
 }
+
+.panel-footer {
+  // Buttons to display full width of their container
+  .btn {
+    display: block;
+    margin-bottom: .5rem;
+    width: 100%;
+  }
+}
