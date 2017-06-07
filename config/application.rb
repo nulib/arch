@@ -8,6 +8,7 @@ Bundler.require(*Rails.groups)
 
 module Nufia7
   class Application < Rails::Application
+    config.active_job.queue_adapter = :inline
 
     config.generators do |g|
       g.test_framework :rspec, :spec => true
