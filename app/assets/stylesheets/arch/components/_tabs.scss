@@ -5,6 +5,7 @@ ul.nav-tabs {
       border: 0;
       color: $nu-purple-60 !important;
       margin: 0 0.5rem 0 0;
+      transition: all .2s ease;
       &:hover {
         background: $nu-purple;
         color: $white !important;
