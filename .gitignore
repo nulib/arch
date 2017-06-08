@@ -16,6 +16,7 @@
 
 # Ignore public uploads directory
 /public/uploads
+/public/*
 
 # Ignore some config files
 config/database.yml
