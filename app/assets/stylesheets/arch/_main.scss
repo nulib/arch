@@ -17,6 +17,8 @@
   'components/alerts',
   'components/buttons',
   'components/facets',
+  'components/icons',
+  'components/inputs',
   'components/lists',
   'components/nav',
   'components/panels',
@@ -25,6 +27,11 @@
   'components/tabs',
 
   // 6. Page-specific styles
-  'pages/home-page';
+  'pages/admin-settings',
+  'pages/administrative-set',
+  'pages/create-collection',
+  'pages/generic-works',
+  'pages/home-page',
+  'pages/profile';
 
 // 7. Themes

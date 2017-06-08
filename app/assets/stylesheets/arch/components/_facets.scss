@@ -72,21 +72,18 @@
   }
 }
 @media (max-width: 768px) {
-  .standard-page {
-    .content {
-      #sidebar {
-        h2 {
-          background: $light-grey;
-          border-radius: 0;
-          font-size: 1.3rem;
-        }
+  .content {
+    #sidebar {
+      h2 {
+        border-radius: 0;
+        font-size: 1.3rem;
       }
     }
   }
   #facets,
   #facets-workflow {
     background: $white;
-    padding-bottom: 1rem;
+    padding-bottom: 0;
     .facets-toggle {
       margin: 0;
       outline: 0;
@@ -99,6 +96,7 @@
   .facets {
     #facet-panel-collapse,
     #facet-panel-workflow-collapse {
+      margin-bottom: 0;
       width: 100%;
       h3 {
         font-size: 1rem;

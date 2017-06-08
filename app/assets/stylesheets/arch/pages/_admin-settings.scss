@@ -1,0 +1,23 @@
+// On/Off button group in Settings page under Administration
+td.toggle {
+  .btn-group {
+    text-align: center;
+    width: 100px;
+  }
+  input[type="submit"] {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    min-width: 40px;
+    width: 40px;
+    &:not(.active) {
+      background-color: $nu-purple-60;
+    }
+    &.active {
+      background: $nu-purple;
+      &:hover {
+        background: $nu-purple;
+      }
+    }
+  }
+}

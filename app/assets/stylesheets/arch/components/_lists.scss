@@ -4,8 +4,10 @@ ul {
     padding-left: 1rem;
     padding-right: 1rem;
   }
-  
   &.listing {
+    @include ul-unstyled;
+  }
+  &.pagination {
     @include ul-unstyled;
   }
 }
