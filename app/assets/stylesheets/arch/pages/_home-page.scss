@@ -3,20 +3,25 @@ div#announcement {
 }
 .landing-page {
   section {
-    @media (max-width: 767px) {
+    &#featured_container {
       margin-bottom: 0;
     }
-    &#featured_container {
+    @media (max-width: 767px) {
       margin-bottom: 0;
     }
   }
   .content {
     margin-bottom: 5rem;
+    .section-top {
+      margin-bottom: 0;
+    }
     @media (max-width: 767px) {
       margin-bottom: 0;
     }
-    .section-top {
-      margin-bottom: 0;
+  }
+  .hero {
+    .hero-image.in-page {
+      height: 420px;
     }
   }
 }
