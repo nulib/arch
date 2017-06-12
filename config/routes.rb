@@ -37,5 +37,5 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => '/sidekiq'
   end
 
-  get 'rights' => 'pages#show', id: 'rights_page'
+  get 'rights' => 'hyrax/pages#show', id: 'rights_page'
 end
