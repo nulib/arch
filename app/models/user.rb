@@ -36,8 +36,8 @@ class User < ApplicationRecord
         self.department = attrs[:department].first
       else
         self.display_name = attrs[:displayname].first
-        # nuPosition1 is formmatted: title$$department$$address$$$mailcode
-        self.department = attrs[:nuPosition1].first.split("$$").second
+        # nuPosition1 is formatted: title$$department$$address$$$mailcode
+        self.department = attrs[:nuPosition1].first.to_s.split("$$").second
       end
     end
   end
