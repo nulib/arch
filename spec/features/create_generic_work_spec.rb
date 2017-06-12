@@ -26,7 +26,7 @@ RSpec.feature 'Create a GenericWork', js: false do
       # choose "payload_concern", option: "GenericWork"
       # click_button "Create work"
 
-      expect(page).to have_content 'Add New Generic Work'
+      expect(page).to have_content 'Add New Work'
     end
   end
 end
