@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 4.2'
+gem 'rails', '~> 5.0.1'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -22,7 +22,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'sidekiq'
-gem 'sinatra', :require => nil
+gem 'sinatra', '>= 2.0.0', :require => nil
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -30,7 +30,7 @@ gem 'sinatra', :require => nil
 # Use Unicorn as the app server
 # gem 'unicorn'
 
-gem 'sufia', '~> 7.0'
+gem 'hyrax', git: 'https://github.com/samvera/hyrax.git' , ref: '2b5d8b57dd958b446d27246b3c424cd662556ba3'
 
 # Admin users enabled by hydra-role-management
 gem 'hydra-role-management'
@@ -48,12 +48,13 @@ gem 'devise-guests', '~> 0.3'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'sqlite3'
+  gem 'byebug'
+  gem 'capybara', '~> 2.8'
   gem 'fcrepo_wrapper'
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 3.6'
+  gem 'sqlite3'
 end
 
 group :development do
@@ -71,7 +72,6 @@ group :development do
   gem 'capistrano-passenger'
   gem 'capistrano-sidekiq'
   gem 'rb-readline'
-
 end
 
 group :staging, :production do

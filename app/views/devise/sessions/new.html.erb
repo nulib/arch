@@ -3,7 +3,7 @@
 <%= form_for resource, as: resource_name, url: session_path(resource_name), html: { class: 'col-
 md-3' } do |f| %>
   <div class="form-group">
-    <%= f.label :username %><br />
+    <label for="user_username">Northwestern Net ID:</label>
     <%= f.text_field :username, autofocus: true, class: 'form-control' %>
   </div>
 

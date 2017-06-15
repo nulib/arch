@@ -1,0 +1,13 @@
+// Add new works by batch
+#fileupload {
+  .fileupload-buttonbar {
+    // TODO: Revisit this later
+    // This sets the 'Add Folder' button to visibility: hidden,
+    // as it causes edge-case display issues in Windows 7 / Chrome 56 and possibly others
+    span.fileinput-button {
+      &:nth-child(2) {
+        visibility: hidden;
+      }
+    }
+  }
+}

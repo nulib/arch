@@ -1,0 +1,34 @@
+form {
+  // Input group button styling, for example on Add/Edit Generic Works area
+  .form-group.multi_value {
+    ul.listing {
+      li:only-of-type {
+        input {
+          border-radius: 0;
+        }
+        .input-group-btn {
+          visibility: hidden;
+        }
+      }
+    }
+    .input-group-btn {
+      background: $nu-purple;
+      .btn {
+        color: $white;
+        &.remove {
+        }
+      }
+    }
+  }
+}
+
+// Remove bootstrap's shadowing
+.form-control:focus {
+  box-shadow: none;
+}
+
+.form-actions {
+  .btn {
+    margin-bottom: 3px; 
+  }
+}

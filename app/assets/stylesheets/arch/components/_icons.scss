@@ -1,0 +1,9 @@
+// The folder icon is a little wider so adjust here
+.glyphicon-folder-open {
+  margin-right: 5px;
+}
+
+// The default background image was black, which doesn't show up on NU purple background
+.view-icon-masonry {
+  background-image: url('icon-masonry-white.png');
+}

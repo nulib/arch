@@ -1,0 +1,9 @@
+<% hide_sidebar = !user_signed_in? || (user_signed_in? && !has_facet_values?) %>
+
+<div id="sidebar" class="<%= hide_sidebar ? 'hidden' : 'col-md-3 col-sm-4'%>">
+  <%= render 'search_sidebar' %>
+</div>
+
+<div id="content" class="<%= hide_sidebar ? 'col-sm-12' : 'col-md-9 col-sm-8' %>">
+    <%= render 'search_results' %>
+</div>
