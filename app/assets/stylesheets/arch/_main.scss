@@ -16,6 +16,7 @@
   // 5. Components
   'components/alerts',
   'components/buttons',
+  'components/dropdown-toggle',
   'components/facets',
   'components/file_upload',
   'components/icons',
@@ -26,10 +27,12 @@
   'components/save_widget',
   'components/search_results',
   'components/tabs',
+  'components/toggle',
 
   // 6. Page-specific styles
   'pages/admin-settings',
   'pages/administrative-set',
+  'pages/collections',
   'pages/create-collection',
   'pages/generic-works',
   'pages/home-page',

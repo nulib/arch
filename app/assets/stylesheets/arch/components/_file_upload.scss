@@ -10,4 +10,11 @@
       }
     }
   }
+  .fileinput-button {
+    background-color: $nu-purple;
+    border: 0;
+    &:active {
+      background-color: $nu-purple-60;
+    }
+  }
 }

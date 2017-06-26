@@ -73,13 +73,7 @@
 #sortAndPerPage {
   margin-top: 20px;
   .btn-group {
-    &.open {
-      button {
-        background: $nu-purple-60;
-      }
-    }
     .dropdown-toggle {
-      color: $white;
       .caret {
         color: $white;
       }
