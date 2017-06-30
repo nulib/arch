@@ -42,6 +42,7 @@ dump.rdb
 # Ignore sqlite db
 db/development.sqlite3
 db/test.sqlite3
+db/*.sqlite3-journal
 
 .DS_Store
 .ruby-version
