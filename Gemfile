@@ -30,7 +30,7 @@ gem 'sinatra', '>= 2.0.0', :require => nil
 # Use Unicorn as the app server
 # gem 'unicorn'
 
-gem 'hyrax', git: 'https://github.com/samvera/hyrax.git' , ref: '2b5d8b57dd958b446d27246b3c424cd662556ba3'
+gem 'hyrax', '~> 1.0', '>= 1.0.2'
 
 # Admin users enabled by hydra-role-management
 gem 'hydra-role-management'
