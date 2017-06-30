@@ -4,6 +4,7 @@
   background: $nu-purple;
   @include nu-button();
   &:active {
+    background-color: $nu-purple-60;
     &:focus {
       background-color: $nu-purple-60;
       border-color: $nu-purple-60;
@@ -79,6 +80,16 @@ ul.dropdown-menu {
   width: 100%;
   .btn {
     width: 100%;
+  }
+}
+
+// "Add Another" buttons
+.multi_value {
+  .btn {
+    &.add,
+    &.remove {
+      text-decoration: none;
+    }
   }
 }
 

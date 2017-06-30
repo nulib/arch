@@ -4,4 +4,27 @@
     font-family: $AkkuratProBold;
     font-size: inherit;
   }
+  h2 {
+    font-size: 24px;
+  }
+  table {
+    th {
+      background: $light-grey;
+      border-color: $light-grey;
+      .attribute-label {
+        color: $rich-black-50;
+      }
+    }
+    td {
+      border: 1px solid $light-grey;
+    }
+  }
+  ol.catalog {
+    > li {
+      padding-left: 2rem;
+    }
+    .row {
+      display: inline-block;
+    }
+  }
 }

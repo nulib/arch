@@ -6,6 +6,7 @@
 /**********
  * Colors *
  **********/
+$brand-danger: $red;
 $brand-primary: $nu-purple;
 
 /***************
@@ -25,7 +26,7 @@ $font-size-h2: 34px;
 $font-size-h3: 26px;
 $font-size-h4: 21px;
 $headings-color: $nu-purple;
-$headings-font-family: $CamptonBook;
+//$headings-font-family: $CamptonBook;
 
 /**************
  * Components *
@@ -42,22 +43,23 @@ $btn-border-radius-small: 0;
 $btn-default-bg: $nu-purple;
 $btn-primary-bg: $nu-purple;
 
-/**
- * Forms
- */
+/*********
+ * Forms *
+ *********/
 $input-border-radius: 0;
 $input-border-focus: $nu-purple;
+$legend-color: $rich-black-50;
 
 /**************************
  * Form states and alerts *
  **************************/
  $state-success-bg: $dark-green;
  $state-success-text: $white;
- $state-warning-bg: $blood-orange;
- $state-warning-text: $white;
+ $state-warning-bg: $light-grey;
+ $state-warning-text: $nu-purple;
  $state-info-bg: $light-grey;
  $state-info-text: $nu-purple;
- $state-danger-bg: $blood-orange;
+ $state-danger-bg: $red;
  $state-danger-text: $white;
 
 /**********
