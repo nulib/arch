@@ -1,0 +1,16 @@
+form.login-form {
+  @media (min-width: 768px) {
+    input[type="text"],
+    input[type="password"] {
+      width: 220px;
+    }
+  }
+  label {
+    font-weight: normal;
+  }
+  &.form-horizontal {
+    .control-label {
+      text-align: left;
+    }
+  }
+}
