@@ -9,14 +9,10 @@
   }
   table {
     th {
-      background: $light-grey;
-      border-color: $light-grey;
+      width: 160px;
       .attribute-label {
         color: $rich-black-50;
       }
-    }
-    td {
-      border: 1px solid $light-grey;
     }
   }
   ol.catalog {
