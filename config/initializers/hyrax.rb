@@ -180,6 +180,17 @@ Hyrax.config do |config|
   # Location where binaries are exported
   # config.binaries_directory = "tmp/binaries"
 
+  # Use the database-backed minter class
+  config.noid_minter_class = Class.new(ActiveFedora::Noid::Minter::Db) do
+    def next_id
+      result = super
+      while result =~ /^3b59/
+        result = super
+      end
+      result
+    end
+  end
+
   # If browse-everything has been configured, load the configs.  Otherwise, set to nil.
   begin
     if defined? BrowseEverything
