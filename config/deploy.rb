@@ -40,6 +40,7 @@ set :sidekiq_role, :app
 set :sidekiq_config, -> { File.join(shared_path, 'config', 'sidekiq.yml') }
 set :pty,  false # for Capistrano 3.x
 set :sidekiq_monit_use_sudo, false
+set :passenger_restart_with_touch, true
 
 
 namespace :deploy do
