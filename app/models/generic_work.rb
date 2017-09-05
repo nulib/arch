@@ -8,4 +8,10 @@ class GenericWork < ActiveFedora::Base
   validates :title, presence: { message: 'Your work must have a title.' }
 
   self.human_readable_type = 'Work'
+
+  after_save do
+    if self.identifier.empty?
+      DoiMintingService.mint_identifier_for(self)
+    end
+  end
 end
