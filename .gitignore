@@ -46,6 +46,7 @@ db/*.sqlite3-journal
 
 .DS_Store
 .ruby-version
+fits.log
 
 # Ignore fonts
 *.woff
