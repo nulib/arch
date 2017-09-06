@@ -81,7 +81,7 @@ class DoiMintingService
     end
 
     def url
-      polymorphic_url(work, host: 'localhost:3333')
+      polymorphic_url(work, host: Rails.application.secrets.host || 'localhost:3333')
     end
 
     def mint_identifier
