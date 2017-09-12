@@ -42,6 +42,7 @@ gem 'devise_ldap_authenticatable', '~> 0.8.5'
 gem 'solr_wrapper', '>= 0.3'
 #end
 
+gem 'browse-everything', github: 'samvera/browse-everything', branch: 'master'
 gem 'rsolr', '~> 1.0'
 gem 'devise'
 gem 'devise-guests', '~> 0.3'

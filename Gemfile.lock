@@ -1,3 +1,23 @@
+GIT
+  remote: git://github.com/samvera/browse-everything.git
+  revision: 38b49c223d5ba95e4d87a27724a22417e3a6d65c
+  branch: master
+  specs:
+    browse-everything (0.14.1)
+      addressable (~> 2.5)
+      aws-sdk
+      bootstrap-sass
+      dropbox-sdk (>= 1.6.2)
+      font-awesome-rails
+      google-api-client (~> 0.9)
+      google_drive
+      httparty
+      rails (>= 3.1)
+      ruby-box
+      sass-rails
+      signet
+      skydrive
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -544,20 +564,6 @@ GEM
       sass (>= 3.3.4)
     bootstrap_form (2.7.0)
     breadcrumbs_on_rails (3.0.1)
-    browse-everything (0.14.1)
-      addressable (~> 2.5)
-      aws-sdk
-      bootstrap-sass
-      dropbox-sdk (>= 1.6.2)
-      font-awesome-rails
-      google-api-client (~> 0.9)
-      google_drive
-      httparty
-      rails (>= 3.1)
-      ruby-box
-      sass-rails
-      signet
-      skydrive
     builder (3.2.3)
     byebug (9.0.6)
     cancancan (1.17.0)
@@ -1189,6 +1195,7 @@ PLATFORMS
 DEPENDENCIES
   better_errors
   binding_of_caller
+  browse-everything!
   byebug
   capistrano (~> 3.1)
   capistrano-bundler
