@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-lock '3.8.1'
+lock '3.9'
 
 set :application, 'institutional_repository'
 set :repo_url, 'git@github.com:/nulib/institutional-repository.git'
@@ -40,9 +40,8 @@ set :sidekiq_role, :app
 set :sidekiq_config, -> { File.join(shared_path, 'config', 'sidekiq.yml') }
 set :pty,  false # for Capistrano 3.x
 set :sidekiq_monit_use_sudo, false
-
-# deprecated way of restarting Passenger but will work for now
 set :passenger_restart_with_touch, true
+
 
 namespace :deploy do
 

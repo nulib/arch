@@ -28,7 +28,6 @@ set :rails_env, 'staging'
 
 #bundle install only staging gems
 set :bundle_without, %w{development test production}.join(' ')
-set :bundle_with, %w{default staging}.join(' ')
 
 
 
@@ -56,10 +55,10 @@ set :bundle_with, %w{default staging}.join(' ')
 #    auth_methods: %w(password)
 #  }
 
-#set :ssh_options, { 
-#  forward_agent: true, 
-#  paranoid: true, 
-#  keys: "~/.ssh/id_rsa" 
+#set :ssh_options, {
+#  forward_agent: true,
+#  paranoid: true,
+#  keys: "~/.ssh/id_rsa"
 #}
 
 #
