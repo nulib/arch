@@ -17,7 +17,7 @@ describe SolrDocument do
     let(:date_created) { '2017-05-14' }
     let(:system_created) { '2017-05-14T12:34:56Z' }
     let(:date_modified) { '2017-05-15T12:34:56Z' }
-    let(:doi) { '10.5072/FK2GM88084' }
+    let(:identifier) { '10.5072/FK2GM88084' }
     let(:document_hash) do
       {
         date_created_tesim: date_created,
@@ -25,7 +25,7 @@ describe SolrDocument do
         system_create_dtsi: system_created,
         language_tesim: ['eng'],
         title_tesim: ['Work Title'],
-        doi_tesim: doi
+        identifier_tesim: identifier
       }
     end
 
@@ -36,8 +36,8 @@ describe SolrDocument do
     end
 
     describe '#doi' do
-      it 'returns the doi' do
-        expect(subject.doi).to eq(['10.5072/FK2GM88084'])
+      it 'returns the identifier/doi' do
+        expect(subject.identifier).to eq('10.5072/FK2GM88084')
       end
     end
   end

@@ -7,5 +7,5 @@ RSpec.describe GenericWork do
   it { is_expected.to respond_to(:depositor) }
   it { is_expected.to respond_to(:creator) }
   it { is_expected.to respond_to(:description) }
-  it { is_expected.to respond_to(:doi) }
+  it { is_expected.to respond_to(:identifier) }
 end
