@@ -14,10 +14,10 @@ class DoiMintingService
 
   def run
     return unless identifier_server_reachable?
-    if work.identifier.present?
+    if work.doi.present?
       update_metadata
     else
-      mint_identifier
+      mint_doi
     end
   end
 
@@ -25,11 +25,11 @@ class DoiMintingService
 
   def update_metadata
     return if minter_user == 'apitest'
-    minter.modify(work.identifier, metadata)
+    minter.modify(work.doi, metadata)
   end
 
-  def mint_identifier
-    work.identifier = minter.mint(metadata).id
+  def mint_doi
+    work.doi = minter.mint(metadata).id
     work.save
   end
 
