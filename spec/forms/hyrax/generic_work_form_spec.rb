@@ -9,9 +9,15 @@ RSpec.describe Hyrax::GenericWorkForm do
   let(:form)    { described_class.new(work, ability, request) }
 
   describe '::terms' do
-    subject { form.terms }
-    it do
-      is_expected.to include(:title, :creator, :keyword, :rights)
+    subject(:terms) { form.terms }
+
+    it 'contains fields that users should are allowed to edit' do
+      expect(terms).to include(:title, :creator, :keyword, :rights)
+    end
+
+    it 'does not contain fields that users should not be allowed to edit' do
+      # doi is created automatically after save.
+      expect(terms).not_to include(:doi)
     end
   end
 end

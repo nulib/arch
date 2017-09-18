@@ -3,6 +3,6 @@
 module Hyrax
   class GenericWorkForm < Hyrax::Forms::WorkForm
     self.model_class = ::GenericWork
-    self.terms += [:resource_type, :doi]
+    self.terms += [:resource_type]
   end
 end
