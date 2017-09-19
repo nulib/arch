@@ -26,6 +26,6 @@ class SolrDocument
   use_extension( Hydra::ContentNegotiation )
 
   def doi
-    fetch(Solrizer.solr_name('doi', :stored_searchable), [])
+    fetch(Solrizer.solr_name('doi', :stored_searchable))
   end
 end
