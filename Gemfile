@@ -57,6 +57,7 @@ group :development, :test do
   gem 'capybara', '~> 2.8'
   gem 'fcrepo_wrapper'
   gem 'rspec-rails', '~> 3.6'
+  gem 'rspec-its'
   gem 'sqlite3'
 end
 
@@ -75,6 +76,7 @@ group :development do
   gem 'capistrano-passenger'
   gem 'capistrano-sidekiq'
   gem 'rb-readline'
+  gem 'xray-rails'
 end
 
 group :staging, :production do
