@@ -16,7 +16,21 @@ describe GenericWorkPresenter do
 
   subject { described_class.new(solr_document, ability, request) }
 
-  its(:title) { is_expected.to eq(["work title"]) }
-  its(:creator) { is_expected.to eq(["Creator 1"]) }
-  its(:doi) { is_expected.to eq(["test doi"]) }
+  describe '#title' do
+    it 'returns the title' do
+      expect(subject.title).to eq(["work title"])
+    end
+  end
+
+  describe '#creator' do
+    it 'returns the creator' do
+      expect(subject.creator).to eq(["Creator 1"])
+    end
+  end
+
+  describe '#doi' do
+    it 'returns the doi' do
+      expect(subject.doi).to eq(["test doi"])
+    end
+  end
 end
