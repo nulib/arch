@@ -14,7 +14,7 @@ class GenericWork < ActiveFedora::Base
   end
 
   after_save do
-    if self.identifier.empty?
+    if self.doi.nil?
       DoiMintingService.mint_identifier_for(self)
     end
   end
