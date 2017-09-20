@@ -79,9 +79,35 @@ class DoiMintingService
     work.date_created.join('; ')
   end
 
+  # We need to map the available options in the resource_types.yml file to what ezid
+  # expects. This is what Chris Diaz and I came up with as a first pass.
+  def ezid_map
+    {
+      'Audio' =>          'Sound',
+      'Book' =>           'Text',
+      'Dataset' =>        'Dataset',
+      'Dissertation' =>   'Text',
+      'Image' =>          'Image',
+      'Article' =>        'Text',
+      'Masters Thesis' => 'Text',
+      'Part of Book' =>   'Text',
+      'Poster' =>         'Text',
+      'Project' =>        'Other',
+      'Report' =>         'Text',
+      'Research Paper' => 'Text',
+      'Video' =>          'Audiovisual',
+      'Other' =>          'Other'
+    }
+  end
+
+
   def resource_type
     return 'Other' if work.resource_type.empty?
-    work.resource_type.join('; ')
+    # Switch out the hyrax types for ezid approved ones.
+    types = work.resource_type.map {|x| ezid_map.fetch(x, x) }
+    # EZID can only accomodate a single resource type for a DOI, but hyrax can support many
+    # so as a workaround we'll just send the first one
+    types.first
   end
 
   def url
