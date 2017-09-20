@@ -16,9 +16,9 @@ terms:
   - id: Part of Book
     term: Book Chapter
   - id: Poster
-    term: Poster                              - text
+    term: Poster
   - id: Project
-    term: Project                              - other
+    term: Project
   - id: Report
     term: Report
   - id: Research Paper
