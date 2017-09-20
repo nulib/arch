@@ -8,4 +8,14 @@ class GenericWork < ActiveFedora::Base
   validates :title, presence: { message: 'Your work must have a title.' }
 
   self.human_readable_type = 'Work'
+
+  property :doi, predicate: ::RDF::Vocab::DataCite.doi, multiple: false do |index|
+    index.as :stored_searchable
+  end
+
+  after_save do
+    if self.doi.nil?
+      DoiMintingService.mint_identifier_for(self)
+    end
+  end
 end
