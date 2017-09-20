@@ -104,7 +104,7 @@ class DoiMintingService
   def resource_type
     return 'Other' if work.resource_type.empty?
     # Switch out the hyrax types for ezid approved ones.
-    types = work.resource_type.map {|x| ezid_map.fetch(x, x) }
+    types = work.resource_type.map {|x| ezid_map.fetch(x) }
     # EZID can only accomodate a single resource type for a DOI, but hyrax can support many
     # so as a workaround we'll just send the first one
     types.first
