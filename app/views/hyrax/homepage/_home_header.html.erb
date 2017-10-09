@@ -1,24 +1,25 @@
 <section class="hero">
 	<!-- note: no section top -->
-	<div class="hero-image in-page" style="background: url(<%= asset_path 'northwestern-arch-hero-1440x420.jpg' %>) no-repeat center / cover">
-		<h3>Research Repository</h3>
+	<div class="hero-image in-page" style="background:url(<%= asset_path 'Cover1.jpg' %>) no-repeat center / cover;">
+		<h3>Share Your Scholarship</h3>
+		<p>Research and Data Repository</p>
 		<ul class="center-list">
 			<li>
         <% if @presenter.display_share_button? %>
             <% if signed_in? %>
               <% if create_work_presenter.many? %>
                 <%= link_to '#', class: "button", data: { behavior: 'select-work', target: '#worktypes-to-create', 'create-type' => 'single' } do %>
-                  <%= t('hyrax.share_button') %>
+                  <%= t('hyrax.buttons.get_started') %>
                 <% end %>
               <% else # simple link to the first work type %>
                 <%= link_to new_polymorphic_path([main_app, create_work_presenter.first_model]),
                   class: 'button' do %>
-                  <%= t('hyrax.share_button') %>
+                  <%= t('hyrax.buttons.get_started') %>
                 <% end %>
               <% end %>
             <% else %>
               <%= link_to hyrax.dashboard_index_path, class: "button" do %>
-                <%= t('hyrax.share_button') %>
+                <%= t('hyrax.buttons.get_started') %>
               <% end %>
             <% end %>
         <% end %>
