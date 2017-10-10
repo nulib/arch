@@ -1,6 +1,0 @@
-<%# overriding view from Hyrax in order to pass :filename param for Box downloads %>
-<video controls="controls" class="video-js vjs-default-skin" data-setup="{}" preload="auto">
-  <source src="<%= hyrax.download_path(file_set, file: 'webm', filename: file_set.label)) %>" type="video/webm" />
-  <source src="<%= hyrax.download_path(file_set, file: 'mp4', filename: file_set.label)) %>" type="video/mp4" />
-  Your browser does not support the video tag.
-</video>
