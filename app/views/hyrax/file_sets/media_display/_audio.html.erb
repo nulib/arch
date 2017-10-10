@@ -1,6 +1,0 @@
-  <%# overriding view from Hyrax in order to pass :filename param for Box downloads %>
-  <audio controls="controls" class="audiojs" preload="auto">
-    <source src="<%= hyrax.download_path(file_set, file: 'ogg', filename: file_set.label)) %>" type="audio/ogg" />
-    <source src="<%= hyrax.download_path(file_set, file: 'mp3', filename: file_set.label)) %>" type="audio/mpeg" />
-    Your browser does not support the audio tag.
-  </audio>
