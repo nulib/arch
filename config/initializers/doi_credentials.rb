@@ -9,12 +9,12 @@
 
 Ezid::Client.configure do |conf|
   if Rails.env.production? || Rails.env.staging?
-    conf.default_shoulder = ENV['EZID_DEFAULT_SHOULDER']
-    conf.user = ENV['EZID_USER']
-    conf.password = ENV['EZID_PASSWORD']
-    conf.host = ENV['EZID_HOST']
-    conf.port = ENV['EZID_PORT']
-    conf.use_ssl = ENV['EZID_USE_SSL']
+    conf.default_shoulder = 'doi:10.21985/N2'
+    conf.user = 'nu-lib'
+    conf.password = '?Sh0tJ.R.R'
+    conf.host = 'ezid.lib.purdue.edu'
+    conf.port = 443
+    conf.use_ssl = true
   else
     conf.default_shoulder = 'doi:10.5072/FK2'
     conf.user = 'apitest'
