@@ -22,6 +22,8 @@
 en:
   hello: "Hello world"
   hyrax:
+    buttons:
+      get_started: "Get Started"
     product_name: "Repository | institutional"
     institution_name_full: "Northwestern University"
     institution_name: "NU"
