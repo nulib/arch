@@ -32,6 +32,7 @@ config/solr.yml
 config/browse_everything_providers.yml
 config/sidekiq.yml
 config/nufia-c31655401151.p12
+config/doi_credentials.yml
 
 # Ignore fedora data
 fcrepo4-data
