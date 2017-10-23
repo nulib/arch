@@ -36,7 +36,8 @@
                   role: 'menuitem'
                 ) %>
           </li>
-          <li>
+          <!-- Batch Create is not working as of 10/23/2017. See issue #388. -->
+          <li class="hidden">
             <%= link_to(
                   t("hyrax.toolbar.works.batch"),
                   '#',
@@ -55,7 +56,8 @@
                 role: 'menuitem'
               ) %>
           </li>
-          <li><%= link_to t("hyrax.toolbar.works.batch"),
+          <!-- Batch Create is not working as of 10/23/2017. See issue #388. -->
+          <li class="hidden"><%= link_to t("hyrax.toolbar.works.batch"),
                           hyrax.new_batch_upload_path(payload_concern: create_work_presenter.first_model) %>
           </li>
         <% end %>

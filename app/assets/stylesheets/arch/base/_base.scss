@@ -5,3 +5,7 @@ html {
 ul.list-unstyled {
   @include ul-unstyled;
 }
+
+.hidden {
+  display: none !important;
+}
