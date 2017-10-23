@@ -5,7 +5,8 @@
       <%= render 'work_title', presenter: @presenter %>
     </header>
 
-    <span class="state state-<%= @presenter.workflow.state %>"><%= @presenter.workflow.state_label %></span>
+    <!-- Hide workflow states until styled a la visibility state. See isse #291.
+    <span class="state state-<%= @presenter.workflow.state %>"><%= @presenter.workflow.state_label %></span>-->
   </div>
   <div class="col-sm-8">
     <%= render 'work_description', presenter: @presenter %>
@@ -19,7 +20,7 @@
     <%= render 'metadata', presenter: @presenter %>
   </div>
   <div class="col-sm-4">
-    <%= render "show_actions", presenter: @presenter %>
+    <!-- Hide Analytics button until it is working. See issue #299. <%= render "show_actions", presenter: @presenter %>-->
     <%= t('.last_modified', value: @presenter.date_modified) %>
     <%= render 'representative_media', presenter: @presenter %>
     <%= render 'social_media' %>

@@ -55,9 +55,10 @@
                 role: 'menuitem'
               ) %>
           </li>
+          <!-- Batch Create is not working as of 10/23/2017. See issue #388.
           <li><%= link_to t("hyrax.toolbar.works.batch"),
                           hyrax.new_batch_upload_path(payload_concern: create_work_presenter.first_model) %>
-          </li>
+          </li> -->
         <% end %>
     </li>
   <% end %>
