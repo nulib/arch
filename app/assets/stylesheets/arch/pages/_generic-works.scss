@@ -2,3 +2,19 @@
 #extended-terms {
   padding-top: 2rem;
 }
+
+// Crud buttons on work page
+.show-actions {
+  padding-left: 0;
+  padding-right: 0;
+
+  .btn {
+    margin-bottom: 4px;
+  }
+}
+
+.generic_work {
+  .tabular li {
+    background: none;
+  }
+}
