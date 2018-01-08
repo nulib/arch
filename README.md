@@ -1,5 +1,8 @@
+# Arch
+Arch is our institutional repository and is a lightly modified Hyrax head.
 
-(based on Hyrax 1.0.0.rc2)
+## Software Architecture 
+Right now we are hosting Arch locally and it has it's own instance of Fedora 4. It's using our shared, local Solr instance however. We have plans in the future to migrate it to AWS. 
 
 ## Developer Dependencies
 
@@ -9,7 +12,7 @@ These should match closely with the [Hyrax requirements](https://github.com/proj
       * Set your global ruby environment by running: `rbenv global 2.3.0`
       * In your user's .bash_profile, include this line at the bottom: eval "$(rbenv init -)"
       * Open a new terminal window and run: `gem install bundler`
-  * JDK (http://www.oracle.com/technetwork/java/javase/downloads/)
+  * JDK (for fedora and solr) (http://www.oracle.com/technetwork/java/javase/downloads/)
     * Optional - use jenv to manage your Java environment (http://www.jenv.be)
     * jenv does not install JDK versions, so install your JDKs separately.
     * View all your installed JDKs; run: `/usr/libexec/java_home -V`
