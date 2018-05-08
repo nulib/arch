@@ -54,6 +54,6 @@ Rails.application.configure do
 
   config.active_job.queue_adapter = :inline
 
-  config.cache_classes = !!Sidekiq.server?
-  config.eager_load = !!Sidekiq.server?
+  config.cache_classes = false
+  config.eager_load = false
 end

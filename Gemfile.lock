@@ -602,11 +602,16 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
+    config (1.7.0)
+      activesupport (>= 3.0)
+      deep_merge (~> 1.2.1)
+      dry-validation (>= 0.10.4)
     connection_pool (2.2.1)
     daemons (1.2.4)
     debug_inspector (0.0.3)
     declarative (0.0.10)
     declarative-option (0.1.0)
+    deep_merge (1.2.1)
     deprecation (1.0.0)
       activesupport
     devise (4.2.1)
@@ -1212,6 +1217,7 @@ DEPENDENCIES
   capistrano-sidekiq
   capybara (~> 2.8)
   coffee-rails (~> 4.1.0)
+  config
   devise
   devise-guests (~> 0.3)
   devise_ldap_authenticatable (~> 0.8.5)
