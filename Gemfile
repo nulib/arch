@@ -47,7 +47,9 @@ gem 'config'
 gem 'rsolr', '~> 1.0'
 gem 'devise'
 gem 'devise-guests', '~> 0.3'
-gem 'docker-stack'
+gem 'omniauth-openam'
+# Use Puma as the app server
+gem 'puma', '~> 3.7'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -58,23 +60,10 @@ group :development, :test do
   gem 'capybara', '~> 2.8'
   gem 'fcrepo_wrapper'
   gem 'rspec-rails', '~> 3.6'
+  gem 'docker-stack'
 end
 
 group :development do
-  # Access an IRB console on exception pages or by using <%= console %> in views
-  # gem 'web-console', '~> 2.0'
-
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-
-  # Use Capistrano for deployment
-  gem 'capistrano', '~> 3.1'
-  gem 'capistrano-rails', '~> 1.1'
-  gem 'capistrano-rbenv'
-  gem 'capistrano-bundler'
-  gem 'capistrano-passenger'
-  gem 'capistrano-sidekiq'
+  gem 'pry-byebug'
   gem 'rb-readline'
 end
-
-
