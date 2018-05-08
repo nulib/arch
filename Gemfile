@@ -40,23 +40,23 @@ gem 'hydra-role-management'
 # Added for NUfia
 gem 'devise_ldap_authenticatable', '~> 0.8.5'
 
-#group :development, :test do
-gem 'solr_wrapper', '>= 0.3'
-#end
-
+# Lock pg to < 1 until we upgrade rails past 5.1.5
+# https://github.com/rails/rails/issues/31673#issuecomment-365126536
+gem 'pg', '~> 0.21'
 gem 'rsolr', '~> 1.0'
 gem 'devise'
 gem 'devise-guests', '~> 0.3'
+gem 'docker-stack'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'better_errors'
+  gem 'solr_wrapper', '>= 0.3'
   gem 'binding_of_caller'
   gem 'byebug'
   gem 'capybara', '~> 2.8'
   gem 'fcrepo_wrapper'
   gem 'rspec-rails', '~> 3.6'
-  gem 'sqlite3'
 end
 
 group :development do
@@ -76,7 +76,4 @@ group :development do
   gem 'rb-readline'
 end
 
-group :staging, :production do
-  # Use mysql as the database for Active Record
-  gem 'mysql2', '>= 0.3.13', '< 0.5'
-end
+
