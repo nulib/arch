@@ -67,8 +67,6 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
-    airbrussh (1.3.0)
-      sshkit (>= 1.6.1, != 1.7.0)
     almond-rails (0.1.0)
       rails (>= 4.2, < 6)
     arel (7.1.4)
@@ -562,25 +560,6 @@ GEM
     builder (3.2.3)
     byebug (9.0.6)
     cancancan (1.17.0)
-    capistrano (3.9.0)
-      airbrussh (>= 1.0.0)
-      i18n
-      rake (>= 10.0.0)
-      sshkit (>= 1.9.0)
-    capistrano-bundler (1.2.0)
-      capistrano (~> 3.1)
-      sshkit (~> 1.2)
-    capistrano-passenger (0.2.0)
-      capistrano (~> 3.0)
-    capistrano-rails (1.3.0)
-      capistrano (~> 3.1)
-      capistrano-bundler (~> 1.1)
-    capistrano-rbenv (2.1.1)
-      capistrano (~> 3.1)
-      sshkit (~> 1.3)
-    capistrano-sidekiq (0.20.0)
-      capistrano (>= 3.9.0)
-      sidekiq (>= 3.4)
     capybara (2.14.0)
       addressable
       mime-types (>= 1.16)
@@ -607,6 +586,7 @@ GEM
       deep_merge (~> 1.2.1)
       dry-validation (>= 0.10.4)
     connection_pool (2.2.1)
+    crass (1.0.4)
     daemons (1.2.4)
     debug_inspector (0.0.3)
     declarative (0.0.10)
@@ -614,10 +594,10 @@ GEM
     deep_merge (1.2.1)
     deprecation (1.0.0)
       activesupport
-    devise (4.2.1)
+    devise (4.4.3)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
-      railties (>= 4.1.0, < 5.1)
+      railties (>= 4.1.0, < 6.0)
       responders
       warden (~> 1.2.3)
     devise-guests (0.6.0)
@@ -819,7 +799,8 @@ GEM
       signet
       tinymce-rails (~> 4.1)
       tinymce-rails-imageupload (~> 4.0.17.beta)
-    i18n (0.8.6)
+    i18n (0.9.5)
+      concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
     inflecto (0.0.2)
     jbuilder (2.6.4)
@@ -904,7 +885,8 @@ GEM
     logging (2.2.2)
       little-plugger (~> 1.1)
       multi_json (~> 1.10)
-    loofah (2.0.3)
+    loofah (2.2.2)
+      crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.6.6)
       mime-types (>= 1.16, < 4)
@@ -918,8 +900,8 @@ GEM
     mime-types-data (3.2016.0521)
     mimemagic (0.3.2)
     mini_magick (4.8.0)
-    mini_portile2 (2.2.0)
-    minitest (5.10.3)
+    mini_portile2 (2.3.0)
+    minitest (5.11.3)
     multi_json (1.12.2)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
@@ -928,13 +910,10 @@ GEM
       redic
     net-http-persistent (2.9.4)
     net-ldap (0.11)
-    net-scp (1.2.1)
-      net-ssh (>= 2.6.5)
-    net-ssh (4.1.0)
     nio4r (2.1.0)
     noid (0.9.0)
-    nokogiri (1.8.0)
-      mini_portile2 (~> 2.2.0)
+    nokogiri (1.8.2)
+      mini_portile2 (~> 2.3.0)
     oauth (0.5.3)
     oauth2 (1.4.0)
       faraday (>= 0.8, < 0.13)
@@ -947,6 +926,12 @@ GEM
       activesupport
       nokogiri (>= 1.4.2)
       solrizer (~> 3.3)
+    omniauth (1.8.1)
+      hashie (>= 3.4.6, < 3.6.0)
+      rack (>= 1.6.2, < 3)
+    omniauth-openam (1.1.0)
+      faraday
+      omniauth (~> 1.0)
     openseadragon (0.4.0)
       rails (> 3.2.0)
     orm_adapter (0.5.0)
@@ -954,7 +939,14 @@ GEM
     pg (0.21.0)
     posix-spawn (0.3.13)
     power_converter (0.1.2)
+    pry (0.11.0)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+    pry-byebug (3.4.3)
+      byebug (>= 9.0, < 9.1)
+      pry (~> 0.10)
     public_suffix (3.0.0)
+    puma (3.11.4)
     qa (1.2.0)
       activerecord-import
       deprecation
@@ -962,7 +954,7 @@ GEM
       nokogiri (~> 1.6)
       rails (>= 4.2.0, < 6.0)
       rdf
-    rack (2.0.3)
+    rack (2.0.5)
     rack-protection (2.0.0)
       rack
     rack-test (0.6.3)
@@ -982,8 +974,8 @@ GEM
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
-    rails-html-sanitizer (1.0.3)
-      loofah (~> 2.0)
+    rails-html-sanitizer (1.0.4)
+      loofah (~> 2.2, >= 2.2.2)
     rails_autolink (1.1.6)
       rails (> 3.1)
     railties (5.0.6)
@@ -992,7 +984,7 @@ GEM
       method_source
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    rake (12.1.0)
+    rake (12.3.1)
     rb-fsevent (0.10.2)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
@@ -1153,8 +1145,6 @@ GEM
     sparql-client (2.1.0)
       net-http-persistent (~> 2.9)
       rdf (~> 2.0)
-    spring (2.0.1)
-      activesupport (>= 4.2)
     sprockets (3.7.1)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -1166,9 +1156,6 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sshkit (1.14.0)
-      net-scp (>= 1.1.2)
-      net-ssh (>= 2.8.0)
     stomp (1.4.4)
     sxp (1.0.0)
       rdf (~> 2.0)
@@ -1188,7 +1175,7 @@ GEM
       actionpack (>= 3.1)
       jquery-rails
       railties (>= 3.1)
-    tzinfo (1.2.3)
+    tzinfo (1.2.5)
       thread_safe (~> 0.1)
     uber (0.1.0)
     uglifier (3.2.0)
@@ -1209,12 +1196,6 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   byebug
-  capistrano (~> 3.1)
-  capistrano-bundler
-  capistrano-passenger
-  capistrano-rails (~> 1.1)
-  capistrano-rbenv
-  capistrano-sidekiq
   capybara (~> 2.8)
   coffee-rails (~> 4.1.0)
   config
@@ -1228,7 +1209,10 @@ DEPENDENCIES
   hyrax (~> 1.0, >= 1.0.2)
   jbuilder (~> 2.0)
   jquery-rails
+  omniauth-openam
   pg (~> 0.21)
+  pry-byebug
+  puma (~> 3.7)
   rails (~> 5.0.1)
   rb-readline
   rsolr (~> 1.0)
@@ -1238,7 +1222,6 @@ DEPENDENCIES
   sidekiq
   sinatra (>= 2.0.0)
   solr_wrapper (>= 0.3)
-  spring
   turbolinks
   uglifier (>= 1.3.0)
 
