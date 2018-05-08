@@ -43,6 +43,7 @@ gem 'devise_ldap_authenticatable', '~> 0.8.5'
 # Lock pg to < 1 until we upgrade rails past 5.1.5
 # https://github.com/rails/rails/issues/31673#issuecomment-365126536
 gem 'pg', '~> 0.21'
+gem 'config'
 gem 'rsolr', '~> 1.0'
 gem 'devise'
 gem 'devise-guests', '~> 0.3'
