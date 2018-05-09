@@ -1,3 +1,12 @@
+GIT
+  remote: git://github.com/nulib/active-elastic-job.git
+  revision: 091d87d0151a68b99fb815a099089990cb3e532b
+  branch: latest-aws-sdk
+  specs:
+    active_elastic_job (2.0.1)
+      aws-sdk-sqs (~> 1)
+      rails (>= 4.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -1193,6 +1202,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_elastic_job!
+  aws-sdk (~> 3.0)
   better_errors
   binding_of_caller
   byebug

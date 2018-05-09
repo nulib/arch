@@ -33,5 +33,13 @@ module Nufia7
     # using tinymce-rails-imageupload, so revert to the :copy method
     # https://github.com/spohlenz/tinymce-rails/issues/183
     config.tinymce.install = :copy
+
+    config.before_initialize do
+      if defined? ActiveElasticJob
+        Rails.application.configure do
+          config.active_elastic_job.secret_key_base = Rails.application.secrets[:secret_key_base]
+        end
+      end
+    end
   end
 end
