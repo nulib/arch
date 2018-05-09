@@ -67,9 +67,16 @@ group :aws, :test do
   gem 'active_elastic_job', github: 'nulib/active-elastic-job', branch: 'latest-aws-sdk'
 end
 
+group :aws do
+  gem 'aws-sdk', '~> 3'
+  gem 'aws-sdk-rails'
+  gem 'carrierwave-aws'
+  gem 'cloudfront-signer'
+  gem 'redis-rails'
+  gem 'zk'
+end
+
 group :development do
   gem 'pry-byebug'
   gem 'rb-readline'
 end
-
-gem 'aws-sdk', '~> 3.0'
