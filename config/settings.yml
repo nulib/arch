@@ -2,7 +2,7 @@ active_job: {}
 analytics: {}
 arch:
   contact_email: digitalscholarship@northwestern.edu
-  derivatives_path: /tmp/derivates/
+  derivatives_path: /tmp/derivatives/
   fits_path: /usr/local/bin/fits
   google_analytics_id: UA-797260-32
   minter_state: /tmp/minter-state

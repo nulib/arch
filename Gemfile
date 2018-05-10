@@ -32,6 +32,7 @@ gem 'ezid-client'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
+gem 'hydra-derivatives', git: 'https://github.com/nulib/hydra-derivatives.git', branch: 'vips'
 gem 'hyrax', '~> 1.0', '>= 1.0.2'
 
 # Admin users enabled by hydra-role-management
@@ -43,6 +44,8 @@ gem 'devise_ldap_authenticatable', '~> 0.8.5'
 # Lock pg to < 1 until we upgrade rails past 5.1.5
 # https://github.com/rails/rails/issues/31673#issuecomment-365126536
 gem 'pg', '~> 0.21'
+gem 'sqlite3'
+
 gem 'config'
 gem 'rsolr', '~> 1.0'
 gem 'devise'
@@ -50,6 +53,8 @@ gem 'devise-guests', '~> 0.3'
 gem 'omniauth-openam'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
+
+gem 'docker-stack'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -60,11 +65,10 @@ group :development, :test do
   gem 'capybara', '~> 2.8'
   gem 'fcrepo_wrapper'
   gem 'rspec-rails', '~> 3.6'
-  gem 'docker-stack'
 end
 
 group :aws, :test do
-  gem 'active_elastic_job', github: 'nulib/active-elastic-job', branch: 'latest-aws-sdk'
+  gem 'active_elastic_job', git: 'https://github.com/nulib/active-elastic-job.git', branch: 'latest-aws-sdk'
 end
 
 group :aws do
