@@ -19,20 +19,8 @@
 /public/*
 
 # Ignore some config files
-config/database.yml
-config/secrets.yml
 config/analytics.yml
-config/blacklight.yml
-config/fedora.yml
-config/ldap.yml
-config/redis.yml
-config/role_map.yml
-config/resque-pool.yml
-config/solr.yml
-config/browse_everything_providers.yml
-config/sidekiq.yml
 config/nufia-c31655401151.p12
-config/doi_credentials.yml
 
 # Ignore fedora data
 fcrepo4-data

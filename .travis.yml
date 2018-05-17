@@ -1,0 +1,27 @@
+language: ruby
+sudo: false
+
+cache: bundler
+
+services:
+  - docker
+
+before_install:
+  - 'gem update --system'
+  - 'gem update bundler'
+
+env:
+  global:
+    - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
+  matrix:
+    - TEST_SUITE=rspec
+
+script:
+  - 'bundle exec rake arch:ci:$TEST_SUITE'
+
+jdk:
+  - oraclejdk8
+
+rvm:
+  - 2.4.4
+
