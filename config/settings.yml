@@ -17,5 +17,11 @@ doi_credentials:
   host: 'example.org'
   port: 443
   use_ssl: true
+browse_everything:
+  box:
+    client_id:
+    client_secret:
+  file_system:
+    home:
 fedora: {}
 solr: {}
