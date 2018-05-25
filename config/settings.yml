@@ -18,4 +18,21 @@ doi_credentials:
   port: 443
   use_ssl: true
 fedora: {}
-solr: {}
+solr:
+  configset: arch
+  configset_source_path: <%= File.join(Rails.root, 'solr', 'conf') %>
+  collection_options:
+    async:
+    auto_add_replicas:
+    collection:
+      config_name: arch
+    create_node_set:
+    max_shards_per_node:
+    num_shards: 1
+    replication_factor:
+    router:
+      name:
+      field:
+    rule:
+    shards:
+    snitch:
