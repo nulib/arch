@@ -24,6 +24,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'sidekiq'
 gem 'sinatra', '>= 2.0.0', :require => nil
 gem 'ezid-client'
+gem 'yaml_db'
 
 
 # Use ActiveModel has_secure_password
