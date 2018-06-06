@@ -112,7 +112,11 @@ Hyrax.config do |config|
   # These must be lambdas that return a Pathname. Can be configured separately
   #  config.upload_path = ->() { Rails.root + 'tmp' + 'uploads' }
   #  config.cache_path = ->() { Rails.root + 'tmp' + 'uploads' + 'cache' }
-
+  if Settings.arch.working_path
+    config.upload_path = ->() { Pathname(Settings.arch.working_path).join('uploads') }
+    config.cache_path = ->() { Pathname(Settings.arch.working_path).join('uploads', 'cache') }
+  end
+  
   # Location on local file system where derivatives will be stored
   # If you use a multi-server architecture, this MUST be a shared volume
   config.derivatives_path = Settings.arch.derivatives_path
