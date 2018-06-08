@@ -14,7 +14,7 @@ Hyrax.config do |config|
   # config.default_active_workflow_name = 'default'
 
   # Email recipient of messages sent via the contact form
-  config.contact_email = Rails.application.secrets.contact_email
+  config.contact_email = Settings.arch.contact_email
 
   # Text prefacing the subject entered in the contact form
   config.subject_prefix = "Arch (#{Rails.env}) Contact Form:"
@@ -32,7 +32,7 @@ Hyrax.config do |config|
     config.analytics = true
 
   # Google Analytics tracking ID to gather usage statistics
-    config.google_analytics_id = Rails.application.secrets.google_analytics_id
+    config.google_analytics_id = Settings.arch.google_analytics_id
 
   # Date you wish to start collecting Google Analytic statistics for
   # Leaving it blank will set the start date to when ever the file was uploaded by
@@ -64,13 +64,13 @@ Hyrax.config do |config|
   # config.noid_minter_class = ActiveFedora::Noid::Minter::Db
 
   # Store identifier minter's state in a file for later replayability
-  config.minter_statefile = Rails.application.secrets.minter_state
+  config.minter_statefile = Settings.arch.minter_state
 
   # Prefix for Redis keys
   # config.redis_namespace = "hyrax"
 
   # Path to the file characterization tool
-  config.fits_path = Rails.application.secrets.fits_path
+  config.fits_path = Settings.arch.fits_path
 
   # Path to the file derivatives creation tool
   # config.libreoffice_path = "soffice"
@@ -112,10 +112,14 @@ Hyrax.config do |config|
   # These must be lambdas that return a Pathname. Can be configured separately
   #  config.upload_path = ->() { Rails.root + 'tmp' + 'uploads' }
   #  config.cache_path = ->() { Rails.root + 'tmp' + 'uploads' + 'cache' }
-
+  if Settings.arch.working_path
+    config.upload_path = ->() { Pathname(Settings.arch.working_path).join('uploads') }
+    config.cache_path = ->() { Pathname(Settings.arch.working_path).join('uploads', 'cache') }
+  end
+  
   # Location on local file system where derivatives will be stored
   # If you use a multi-server architecture, this MUST be a shared volume
-  config.derivatives_path = Rails.application.secrets.derivatives_path
+  config.derivatives_path = Settings.arch.derivatives_path
 
   # Should schema.org microdata be displayed?
   # config.display_microdata = true
@@ -127,7 +131,7 @@ Hyrax.config do |config|
   # Location on local file system where uploaded files will be staged
   # prior to being ingested into the repository or having derivatives generated.
   # If you use a multi-server architecture, this MUST be a shared volume.
-  # config.working_path = Rails.root.join( 'tmp', 'uploads')
+  config.working_path = Settings.arch.working_path || Rails.root.join( 'tmp', 'uploads')
 
   # Should the media display partial render a download link?
   # config.display_media_download_link = true
@@ -147,13 +151,13 @@ Hyrax.config do |config|
   # config.model_to_create = ->(_attributes) { Hyrax.primary_work_type.model_name.name }
 
   # Path to the ffmpeg tool
-  # config.ffmpeg_path = 'ffmpeg'
+  config.ffmpeg_path = Settings.arch.ffmpeg_path
 
   # Max length of FITS messages to display in UI
   # config.fits_message_length = 5
 
   # ActiveJob queue to handle ingest-like jobs
-  # config.ingest_queue_name = :default
+  config.ingest_queue_name = Settings&.aws&.queues&.ingest || :default
 
   ## Attributes for the lock manager which ensures a single process/thread is mutating a ore:Aggregation at once.
   # How many times to retry to acquire the lock before raising UnableToAcquireLockError

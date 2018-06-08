@@ -1,27 +1,12 @@
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
-  # ==> LDAP Configuration
-  config.ldap_logger = true
-  config.ldap_create_user = true
-  # config.ldap_update_password = true
-  # config.ldap_config = "#{Rails.root}/config/ldap.yml"
-  # config.ldap_check_group_membership = false
-  # config.ldap_check_group_membership_without_admin = false
-  # config.ldap_check_attributes = false
-  config.ldap_use_admin_to_bind = true
-  # config.ldap_ad_group_check = false
-
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = 'ebe8fd7c3468830dc30d3a4bab642dad7a308268e75480d89a7f94d5ccca00f12261ae417ea8c9c37d6ca27f5620e7609b29fa0edb63e733be9239115c672f13'
-  #
-  # MAKE SURE secret_key_base is set up correctly
-  #
-  # config.secret_key = ENV['DEVISE_SECRET_KEY'] if Rails.env.production?
+  # config.secret_key = 'f94757b36703a1ed3836cb360b55ea31f7fab6c65b31758c3222a4a4e09d6ac6ed7c6c5749dabb2ff2c92c23a8bfa3bcdd715dc631a93979337fd2170e77cb62'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -49,7 +34,6 @@ Devise.setup do |config|
   # session. If you need permissions, you should implement that in a before filter.
   # You can also supply a hash where the value is a boolean determining whether
   # or not authentication should be aborted when the value is not present.
-  # config.authentication_keys = [:email]
   config.authentication_keys = [:username]
 
   # Configure parameters from the request object used for authentication. Each entry
@@ -106,6 +90,12 @@ Devise.setup do |config|
   # from the server. You can disable this option at your own risk.
   # config.clean_up_csrf_token_on_authentication = true
 
+  # When false, Devise will not attempt to reload routes on eager load.
+  # This can reduce the time taken to boot the app but if your application
+  # requires the Devise mappings to be loaded during boot time the application
+  # won't boot properly.
+  # config.reload_routes = true
+
   # ==> Configuration for :database_authenticatable
   # For bcrypt, this is the cost for hashing the password and defaults to 11. If
   # using other algorithms, it sets how many times you want the password to be hashed.
@@ -118,9 +108,12 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 11
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = '7f531b13f684c64bf726bb88ed3a6b421fa5c5a47475971068d8398c3f25c73b8faedf99de4e54c482745748d184addf69b5dfbbbd138b9daa1298fc55337a8d'
+  # config.pepper = '96c99cc8cf4fdf01f6018a806ee80c6efbac17ef63f6cf9d897ffc04ad4c630ea12d7a523107a3e6698285c9eb0ee24120b2478608549e309a548a8621fcaf73'
 
-  # Send a notification email when the user's password is changed
+  # Send a notification to the original email when the user's email is changed.
+  # config.send_email_changed_notification = false
+
+  # Send a notification email when the user's password is changed.
   # config.send_password_change_notification = false
 
   # ==> Configuration for :confirmable
