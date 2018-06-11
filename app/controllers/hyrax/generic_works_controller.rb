@@ -8,5 +8,7 @@ module Hyrax
     include Hyrax::BreadcrumbsForWorks
     self.curation_concern_type = ::GenericWork
     self.show_presenter = GenericWorkPresenter
+
+    def download_all; end
   end
 end

@@ -7,11 +7,13 @@ RSpec.describe Hyrax::GenericWorksController do
 
   describe '#curation_concern_type' do
     subject { described_class.curation_concern_type }
+
     it { is_expected.to eq(::GenericWork) }
   end
 
   describe 'show presenter' do
     subject { described_class.show_presenter }
+
     it { is_expected.to eq(GenericWorkPresenter) }
   end
 end
