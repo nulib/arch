@@ -1,7 +1,5 @@
 active_job:
   queue_adapter: inline
 aws:
-  buckets:
-    upload: arch-uploads
   queues:
     default: arch-queue
