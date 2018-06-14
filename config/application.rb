@@ -8,9 +8,8 @@ Bundler.require(*Rails.groups)
 
 module Nufia7
   class Application < Rails::Application
-
     config.generators do |g|
-      g.test_framework :rspec, :spec => true
+      g.test_framework :rspec, spec: true
     end
 
     # Settings in config/environments/* take precedence over those specified here.
@@ -27,7 +26,7 @@ module Nufia7
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
-    config.assets.paths << Rails.root.join("app", "assets", "fonts")
+    config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
 
     # The compile method (default in tinymce-rails 4.5.2) doesn't work when also
     # using tinymce-rails-imageupload, so revert to the :copy method
