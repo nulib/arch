@@ -5,6 +5,6 @@ node {
   docker.withRegistry('', 'docker-hub-credentials') {
     docker.image("nulib/arch:${tag_name}").push()
   }
-  sh "docker tag \$(docker image ls -q --filter 'label=edu.northwestern.library.role=support' --filter 'label=edu.northwestern.library.app=DONUT' | head -1) nulib/arch-build:${tag_name}"
+  sh "docker tag \$(docker image ls -q --filter 'label=edu.northwestern.library.role=support' --filter 'label=edu.northwestern.library.app=Arch' | head -1) nulib/arch-build:${tag_name}"
   sh "docker image prune -f"
 }
