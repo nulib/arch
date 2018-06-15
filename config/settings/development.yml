@@ -6,3 +6,4 @@ active_job:
 aws:
   queues:
     default: arch-queue
+

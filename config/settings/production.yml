@@ -9,3 +9,10 @@ arch:
   minter_state: /var/arch-working/minter-state
   host: https://arch.library.northwestern.edu
   working_path: /var/arch-working
+doi_credentials:
+  default_shoulder: ''
+  user: ''
+  password: ''
+  host: ''
+  port: 443
+  use_ssl: true
