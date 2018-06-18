@@ -110,6 +110,6 @@ class DoiMintingService
     end
 
     def url
-      polymorphic_url(work, host: Settings.arch.host || 'localhost:3333')
+      polymorphic_url(work, host: Settings.arch.host)
     end
 end
