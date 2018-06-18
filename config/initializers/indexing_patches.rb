@@ -31,6 +31,6 @@ ActiveFedora::Indexing.module_eval do
 
     def printable_chars(val)
       return val.collect { |e| printable_chars(e) } if val.respond_to?(:each)
-      val.to_s.gsub(/[^[:print:]\s]/,'')
+      val.to_s.gsub(/[^[:print:]\s]/, '')
     end
 end
