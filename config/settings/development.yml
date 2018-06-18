@@ -6,3 +6,10 @@ active_job:
 aws:
   queues:
     default: arch-queue
+doi_credentials:
+  default_shoulder: 'doi:10.5072/FK2'
+  user: 'apitest'
+  password: 'apitest'
+  host: 'ezid.lib.purdue.edu'
+  port: 443
+  use_ssl: true

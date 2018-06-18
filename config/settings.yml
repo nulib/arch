@@ -10,13 +10,6 @@ arch:
 aws:
   buckets: {}
   queues: {}
-doi_credentials:
-  default_shoulder: 'test'
-  user: 'apitest'
-  password: 'apitest'
-  host: 'example.org'
-  port: 443
-  use_ssl: true
 browse_everything:
   box:
     client_id:
