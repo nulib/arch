@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170515160517) do
+ActiveRecord::Schema.define(version: 20180614181606) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,19 @@ ActiveRecord::Schema.define(version: 20170515160517) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.index ["file_set_id", "file_id"], name: "by_file_set_id_and_file_id", using: :btree
+  end
+
+  create_table "cloud_storage_archives", force: :cascade do |t|
+    t.string   "work_id",                                null: false
+    t.string   "status",         default: "in_progress"
+    t.string   "checksum",                               null: false
+    t.text     "error_info"
+    t.integer  "progress"
+    t.integer  "progress_total"
+    t.integer  "byte_size"
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.index ["work_id"], name: "index_cloud_storage_archives_on_work_id", unique: true, using: :btree
   end
 
   create_table "content_blocks", force: :cascade do |t|

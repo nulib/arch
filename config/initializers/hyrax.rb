@@ -27,16 +27,16 @@ Hyrax.config do |config|
 
   # Enable displaying usage statistics in the UI
   # Defaults to false
-  if Rails.env.production? or Rails.env.staging?
-  # Requires a Google Analytics id and OAuth2 keyfile.  See README for more info
+  if Rails.env.production? || Rails.env.staging?
+    # Requires a Google Analytics id and OAuth2 keyfile.  See README for more info
     config.analytics = true
 
-  # Google Analytics tracking ID to gather usage statistics
+    # Google Analytics tracking ID to gather usage statistics
     config.google_analytics_id = Settings.arch.google_analytics_id
 
-  # Date you wish to start collecting Google Analytic statistics for
-  # Leaving it blank will set the start date to when ever the file was uploaded by
-  # NOTE: if you have always sent analytics to GA for downloads and page views leave this commented out
+    # Date you wish to start collecting Google Analytic statistics for
+    # Leaving it blank will set the start date to when ever the file was uploaded by
+    # NOTE: if you have always sent analytics to GA for downloads and page views leave this commented out
     config.analytic_start_date = ''
   end
 
@@ -116,7 +116,7 @@ Hyrax.config do |config|
     config.upload_path = ->() { Pathname(Settings.arch.working_path).join('uploads') }
     config.cache_path = ->() { Pathname(Settings.arch.working_path).join('uploads', 'cache') }
   end
-  
+
   # Location on local file system where derivatives will be stored
   # If you use a multi-server architecture, this MUST be a shared volume
   config.derivatives_path = Settings.arch.derivatives_path
@@ -131,7 +131,7 @@ Hyrax.config do |config|
   # Location on local file system where uploaded files will be staged
   # prior to being ingested into the repository or having derivatives generated.
   # If you use a multi-server architecture, this MUST be a shared volume.
-  config.working_path = Settings.arch.working_path || Rails.root.join( 'tmp', 'uploads')
+  config.working_path = Settings.arch.working_path || Rails.root.join('tmp', 'uploads')
 
   # Should the media display partial render a download link?
   # config.display_media_download_link = true
@@ -188,9 +188,7 @@ Hyrax.config do |config|
   config.noid_minter_class = Class.new(ActiveFedora::Noid::Minter::Db) do
     def next_id
       result = super
-      while result =~ /^3b59/
-        result = super
-      end
+      result = super while result =~ /^3b59/
       result
     end
   end
@@ -200,14 +198,14 @@ Hyrax.config do |config|
     if defined? BrowseEverything
       config.browse_everything = BrowseEverything.config
     else
-      Rails.logger.warn "BrowseEverything is not installed"
+      Rails.logger.warn 'BrowseEverything is not installed'
     end
   rescue Errno::ENOENT
     config.browse_everything = nil
   end
 end
 
-Date::DATE_FORMATS[:standard] = "%m/%d/%Y"
+Date::DATE_FORMATS[:standard] = '%m/%d/%Y'
 
 Qa::Authorities::Local.register_subauthority('subjects', 'Qa::Authorities::Local::TableBasedAuthority')
 Qa::Authorities::Local.register_subauthority('languages', 'Qa::Authorities::Local::TableBasedAuthority')

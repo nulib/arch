@@ -1,2 +1,8 @@
+localstack:
+  sqs: false
+  port_offset: 200
 active_job:
   queue_adapter: inline
+aws:
+  buckets:
+    archives: test-archives
