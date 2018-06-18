@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170515160517) do
+ActiveRecord::Schema.define(version: 20180618163008) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bookmarks", force: :cascade do |t|
+    t.integer  "user_id",       null: false
+    t.string   "user_type"
+    t.string   "document_id"
+    t.string   "document_type"
+    t.string   "title"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["document_id"], name: "index_bookmarks_on_document_id", using: :btree
+    t.index ["user_id"], name: "index_bookmarks_on_user_id", using: :btree
+  end
 
   create_table "checksum_audit_logs", force: :cascade do |t|
     t.string   "file_set_id"
@@ -272,12 +284,12 @@ ActiveRecord::Schema.define(version: 20170515160517) do
   end
 
   create_table "single_use_links", force: :cascade do |t|
-    t.string   "downloadKey"
+    t.string   "download_key"
     t.string   "path"
-    t.string   "itemId"
+    t.string   "item_id"
     t.datetime "expires"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "sipity_agents", force: :cascade do |t|
