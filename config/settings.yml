@@ -16,6 +16,7 @@ browse_everything:
     client_secret:
   file_system:
     home:
+doi_credentials: {}
 fedora: {}
 solr:
   configset: arch
