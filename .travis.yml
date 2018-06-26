@@ -9,12 +9,17 @@ services:
 before_install:
   - 'gem update --system'
   - 'gem update bundler'
+  - sudo apt-get update
+  - sudo apt-get install -y imagemagick libexif12 libexpat1 libgif4 libglib2.0-0 libgsf-1-114 libjpeg62 libpng12-0 libpoppler-glib8 libpq5 libreoffice-core librsvg2-2 libsqlite3-0 libtiff5
+  - wget https://s3.amazonaws.com/nul-repo-deploy/vips_8.6.3-1_amd64.deb
+  - sudo dpkg -i vips_8.6.3-1_amd64.deb
 
 env:
   global:
     - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
   matrix:
     - TEST_SUITE=rspec
+    - TEST_SUITE=rubocop
 
 script:
   - 'bundle exec rake arch:ci:$TEST_SUITE'
@@ -24,4 +29,3 @@ jdk:
 
 rvm:
   - 2.4.4
-
