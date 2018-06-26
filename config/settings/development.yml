@@ -1,5 +1,18 @@
+localstack:
+  sqs: false
+  port_offset: 100
 active_job:
   queue_adapter: inline
 aws:
+  endpoint: http://localhost:9001
+  buckets:
+    archives: dev-archives
   queues:
     default: arch-queue
+doi_credentials:
+  default_shoulder: 'doi:10.5072/FK2'
+  user: 'apitest'
+  password: 'apitest'
+  host: 'ezid.lib.purdue.edu'
+  port: 443
+  use_ssl: true
