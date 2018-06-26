@@ -4,6 +4,7 @@ localstack:
 active_job:
   queue_adapter: inline
 aws:
+  endpoint: http://localhost:9002
   buckets:
     archives: test-archives
 doi_credentials:

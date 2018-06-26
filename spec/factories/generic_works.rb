@@ -20,7 +20,8 @@ FactoryBot.define do
         fileset = FactoryBot.create(:file_set,
                                     user: evaluator.user,
                                     title: ["#{File.basename(evaluator.image_path)}_#{i + 1}_#{evaluator.title.first}"],
-                                    label: File.basename(evaluator.image_path))
+                                    label: File.basename(evaluator.image_path),
+                                    visibility: Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC)
         work.ordered_members << fileset
         work.representative = fileset
         work.thumbnail = fileset
