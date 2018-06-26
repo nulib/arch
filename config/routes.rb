@@ -44,4 +44,6 @@ Rails.application.routes.draw do
   end
 
   get 'rights' => 'hyrax/pages#show', id: 'rights_page'
+
+  get '/concern/generic_works/:id/zip', to: 'cloud_storage_archives#zip', as: :download_all
 end
