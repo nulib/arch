@@ -25,7 +25,7 @@
     <%= t('.last_modified', value: @presenter.date_modified) %>
     <%= render 'representative_media', presenter: @presenter %>
     <% if (@presenter.public_member_presenters.any?) %>
-      <%= link_to("Download All Files (.zip)".html_safe, '', data: { 'download-deriv-type': 'zip', 'download-whole-work-deriv': @presenter.id}, class: 'btn btn-default') %>
+      <div class="show-actions"><%= link_to("Download All Files (.zip)".html_safe, '', data: { 'download-deriv-type': 'zip', 'download-whole-work-deriv': @presenter.id}, class: 'btn btn-default') %></div>
     <% end %>
     <%= render 'social_media' %>
     <%= render 'citations', presenter: @presenter %>
