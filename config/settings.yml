@@ -18,6 +18,7 @@ browse_everything:
     home:
 doi_credentials: {}
 fedora: {}
+system_user: repository@northwestern.edu
 solr:
   configset: arch
   configset_source_path: <%= File.join(Rails.root, 'solr', 'conf') %>
