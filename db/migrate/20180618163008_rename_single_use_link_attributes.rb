@@ -1,6 +1,10 @@
 class RenameSingleUseLinkAttributes < ActiveRecord::Migration[5.0]
   def change
-    rename_column :single_use_links, :downloadKey, :download_key
-    rename_column :single_use_links, :itemId, :item_id
+    existing = SingleUseLink.column_names
+    to_change = ['downloadKey', 'itemId']
+    to_change.each do |col|
+      col.downcase! if existing.include?(col.downcase)
+      rename_column :single_use_links, col.to_sym, col.underscore.to_sym
+    end
   end
 end
