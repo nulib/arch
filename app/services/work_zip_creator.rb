@@ -1,3 +1,5 @@
+require 'zip'
+
 class WorkZipCreator
   class_attribute :working_dir
   self.working_dir = Pathname.new(Dir.tmpdir).join('nulib_zip_create')
