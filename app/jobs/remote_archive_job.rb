@@ -1,6 +1,4 @@
 class RemoteArchiveJob < ApplicationJob
-  queue_as :default
-
   def perform(archive)
     working_dir = WorkZipCreator.working_dir
     FileUtils.mkdir_p(working_dir)
