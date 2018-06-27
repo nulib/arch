@@ -21,6 +21,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'ezid-client'
+gem 'rubyzip', '>= 1.0.0', require: 'zip'
 gem 'sidekiq'
 gem 'sinatra', '>= 2.0.0', require: nil
 gem 'yaml_db'
