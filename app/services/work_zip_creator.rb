@@ -34,7 +34,7 @@ class WorkZipCreator
 
       work_presenter.public_member_presenters.each_with_index do |file_set_presenter, index|
         file_set = FileSet.find(file_set_presenter.id)
-        filename = "#{format '%03d', index + 1}-#{work_id}-#{file_set.id}-#{file_set.label}"
+        filename = "#{format '%03d', index + 1}-#{file_set.label}"
 
         url = file_set.original_file.uri.value
         output = Pathname.new(working_dir).join(filename)
