@@ -33,7 +33,15 @@ class CloudStorageArchive < ApplicationRecord
   protected
 
     def resource_locator
-      @resource_locator ||= S3File.new(self, Settings.aws.buckets.archives)
+      @resource_locator ||= S3File.new(self, Settings.aws.buckets.archives, download_name)
+    end
+
+    def download_name
+      "#{first_three_words(work_presenter.title)}_#{work_presenter.id}.zip"
+    end
+
+    def first_three_words(title)
+      title.first.gsub(/[']/, '').gsub(/([[:space:]]|[[:punct:]])+/, ' ').split.slice(0..2).join('_').downcase[0..25]
     end
 
     class FindOrCreator
@@ -102,9 +110,10 @@ class CloudStorageArchive < ApplicationRecord
     class S3File
       attr_reader :bucket, :model
 
-      def initialize(model, bucket_name)
-        @model = model
-        @bucket = Aws::S3::Bucket.new(bucket_name)
+      def initialize(model, bucket_name, download_name = 'download.zip')
+        @model         = model
+        @bucket        = Aws::S3::Bucket.new(bucket_name)
+        @download_name = download_name
       end
 
       def file_exists?
@@ -115,7 +124,7 @@ class CloudStorageArchive < ApplicationRecord
         @url ||= bucket.object(key_path).presigned_url(:get,
                                                        expires_in: 7.days.to_i,
                                                        response_content_type: 'application/zip',
-                                                       response_content_disposition: encoding_safe_content_disposition('test.zip'))
+                                                       response_content_disposition: encoding_safe_content_disposition(@download_name))
       end
 
       def write_from_path(path)
