@@ -18,15 +18,11 @@ Metrics/ClassLength:
 
 Metrics/BlockLength:
   Exclude:
+    - 'spec/**/*'
     - 'app/controllers/catalog_controller.rb'
     - 'config/routes.rb'
     - 'config/initializers/hyrax.rb'
     - 'config/initializers/simple_form_bootstrap.rb'
-    - 'spec/models/solr_document_spec.rb'
-    - 'spec/presenters/generic_work_presenter_spec.rb'
-    - 'spec/factories/generic_works.rb'
-    - 'spec/models/cloud_storage_archive_spec.rb'
-    - 'spec/services/work_zip_creator_spec.rb'
 
 Metrics/MethodLength:
   Exclude:
