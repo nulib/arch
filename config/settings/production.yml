@@ -1,5 +1,3 @@
-active_job:
-  queue_adapter: active_elastic_job
 arch:
   derivatives_path: /var/arch-derivatives
   ffmpeg_path: /usr/local/bin/ffmpeg

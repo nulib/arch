@@ -46,3 +46,7 @@ div.facets {
 .remove {
   width: inherit;
 }
+
+strong.error.text-danger {
+  color: $brand-danger;
+}
