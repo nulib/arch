@@ -1,0 +1,138 @@
+---
+version: '3.4'
+volumes:
+  fedora:
+  solr:
+  db:
+  localstack:
+  minio:
+services:
+  arch:
+    depends_on:
+      - db
+      - fedora
+      - localstack
+      - minio
+      - redis
+      - solr
+    image: nulib/arch:test
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    ports:
+      - 127.0.0.1:3000:3000
+    volumes:
+      - ./tmp/container/working:/var/arch-working
+      - ./tmp/container/derivatives:/var/arch-derivatives
+      - ./bin/local_boot_container:/home/app/current/bin/boot_container
+      - ./log:/home/app/current/log
+    environment:
+      DATABASE_URL: postgresql://docker:d0ck3r@db:5432/docker_dev?pool=50
+      FEDORA_URL: http://fedora:8080/rest/nuf
+      RAILS_SERVE_STATIC_FILES: 'true'
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      SECRET_KEY_BASE: 25d21888254f33586cae2bf49882e5f331ec4f14294a8fe4f4370d41c85c2371
+      SOLR_URL: http://solr:8983/solr/development-core
+      SETTINGS__ACTIVE_JOB__QUEUE_ADAPTER: inline
+      SETTINGS__AWS__BUCKETS__ARCHIVES: dev-archives
+      SETTINGS__AWS__BUCKETS__DROPBOX: dev-dropbox
+      SETTINGS__AWS__ENDPOINT: http://minio:9000
+      SETTINGS__AWS__QUEUES__DEFAULT: arch-queue
+      SETTINGS__DERIVATIVES_PATH: /var/arch-derivatives
+      SETTINGS__DOI_CREDENTIALS__DEFAULT_SHOULDER: 'doi:10.5072/FK2'
+      SETTINGS__DOI_CREDENTIALS__HOST: 'ezid.lib.purdue.edu'
+      SETTINGS__DOI_CREDENTIALS__PASSWORD: 'apitest'
+      SETTINGS__DOI_CREDENTIALS__PORT: 443
+      SETTINGS__DOI_CREDENTIALS__USER: 'apitest'
+      SETTINGS__DOI_CREDENTIALS__USE_SSL: 'true'
+      SETTINGS__FFMPEG__PATH: /usr/local/bin/ffmpeg
+      SETTINGS__FITS__PATH: /usr/local/fits/fits.sh
+      SETTINGS__GEONAMES_USERNAME: nul_rdc
+      SETTINGS__LOCALSTACK__PORT_OFFSET: 100
+      SETTINGS__LOCALSTACK__SQS: 'false'
+      SETTINGS__NAME: arch
+      SETTINGS__SOLR__URL: http://solr:8983/solr/development-core
+      SETTINGS__WORKER: 'false'
+      SETTINGS__WORKING_PATH: /var/arch-working/work
+  fedora:
+    image: nulib/fcrepo4
+    volumes:
+    - fedora:/data
+    ports:
+    - 8984:8080
+  solr:
+    image: solr:7.2-alpine
+    ports:
+    - 8983:8983
+    volumes:
+    - solr:/opt/solr/server/solr/mycores
+    - ./solr:/solr_config
+    entrypoint:
+    - docker-entrypoint.sh
+    - solr-precreate
+    - development-core
+    - "/solr_config/conf"
+    healthcheck:
+      test:
+      - CMD
+      - wget
+      - "-O"
+      - "/dev/null"
+      - http://localhost:8983/solr/
+      interval: 30s
+      timeout: 5s
+      retries: 3
+  redis:
+    image: redis:alpine
+    ports:
+    - 6380:6379
+    healthcheck:
+      test:
+      - CMD
+      - redis-cli
+      - ping
+      interval: 30s
+      timeout: 5s
+      retries: 3
+  db:
+    image: healthcheck/postgres:alpine
+    volumes:
+    - db:/data
+    environment:
+    - PGDATA=/data
+    - POSTGRES_USER=docker
+    - POSTGRES_PASSWORD=d0ck3r
+    ports:
+    - 5433:5432
+  minio:
+    image: minio/minio
+    volumes:
+      - minio:/data
+    ports:
+      - "9001:9000"
+    environment:
+      MINIO_ACCESS_KEY: minio
+      MINIO_SECRET_KEY: minio123
+    command:
+      - minio
+      - server
+      - /data
+  localstack:
+    image: localstack/localstack
+    ports:
+    - 4772:4572
+    volumes:
+    - localstack:/data
+    environment:
+      SERVICES: s3
+      DATA_DIR: "/data"
+    healthcheck:
+      test:
+      - CMD
+      - curl
+      - "-f"
+      - http://localhost:4572/
+      interval: 30s
+      timeout: 5s
+      retries: 3
