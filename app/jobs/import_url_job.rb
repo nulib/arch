@@ -11,7 +11,7 @@ class ImportUrlJob < ApplicationJob
   attr_reader :file_set, :operation
 
   before_enqueue do |job|
-    operation = job.arguments.last
+    operation = job.arguments[1]
     operation.pending_job(job)
   end
 
