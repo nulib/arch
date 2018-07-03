@@ -8,7 +8,7 @@ describe GenericWorkPresenter do
       work.id = 'work-id'
       work.creator = ['Creator 1']
       work.title = ['work title']
-      work.doi = 'test doi'
+      work.doi = 'doi:test_doi'
     end
   end
 
@@ -30,7 +30,7 @@ describe GenericWorkPresenter do
 
   describe '#doi' do
     it 'returns the doi' do
-      expect(subject.doi).to eq(['test doi'])
+      expect(subject.doi).to eq('https://doi.org/test_doi')
     end
   end
 end
