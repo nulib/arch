@@ -5,6 +5,7 @@ class GenericWork < ActiveFedora::Base
   include ::Hyrax::BasicMetadata
   # Change this to restrict which works can be added as a child.
   # self.valid_child_concerns = []
+
   validates :title, presence: { message: 'Your work must have a title.' }
 
   self.human_readable_type = 'Work'
@@ -15,5 +16,9 @@ class GenericWork < ActiveFedora::Base
 
   after_save do
     DoiMintingService.mint_identifier_for(self) if doi.nil?
+  end
+
+  before_destroy do
+    DoiMintingService.tombstone_identifier_for(self) if doi
   end
 end
