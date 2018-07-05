@@ -33,4 +33,11 @@ describe GenericWorkPresenter do
       expect(subject.doi).to eq('https://doi.org/test_doi')
     end
   end
+
+  describe 'when doi is empty' do
+    it 'returns nil (and not an error)' do
+      work.doi = nil
+      expect(subject.doi).to be_nil
+    end
+  end
 end
