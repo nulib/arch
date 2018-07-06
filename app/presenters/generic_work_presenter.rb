@@ -1,6 +1,6 @@
 class GenericWorkPresenter < Hyrax::WorkShowPresenter
   def doi
-    "https://doi.org/#{solr_document.doi.first.split(':').last}"
+    "https://doi.org/#{solr_document.doi.first.split(':').last}" unless solr_document.doi.empty?
   end
 
   def public_member_presenters
