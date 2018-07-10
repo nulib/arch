@@ -8,6 +8,10 @@ class DoiMintingService
     DoiMintingService.new(work).run
   end
 
+  def self.tombstone_identifier_for(work)
+    DoiMintingService.new(work).tombstone
+  end
+
   def initialize(obj)
     @work = obj
   end
@@ -21,7 +25,18 @@ class DoiMintingService
     end
   end
 
+  def tombstone
+    return unless identifier_server_reachable?
+    tombstone_identifier if work.doi.present?
+  end
+
   private
+
+    def tombstone_identifier
+      identifier = minter.find(work.doi)
+      identifier.status = Ezid::Status::UNAVAILABLE
+      identifier.save
+    end
 
     def update_metadata
       return if minter_user == 'apitest'

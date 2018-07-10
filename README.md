@@ -1,8 +1,8 @@
 # Arch
-Arch is our institutional repository and is a lightly modified Hyrax head.
+Arch is our institutional repository and is a modified Hyrax head.
 
-## Software Architecture 
-Right now we are hosting Arch locally and it has it's own instance of Fedora 4. It's using our shared, local Solr instance however. We have plans in the future to migrate it to AWS. 
+## Software Architecture
+Right now we are hosting Arch on AWS. It's using NUL's shared Fedora 4 instance and has it's own solr core on our shared Solr instance.
 
 ## Developer Dependencies
 
@@ -16,12 +16,12 @@ These should match closely with the [Hyrax requirements](https://github.com/proj
   * Imagemagick `brew install imagemagick --with-ghostscript --with-openjpeg`
   * ffmpeg `brew install ffmpeg --with-fdk-aac --with-libvpx --with-libvorbis`
   * fits `brew install fits`
+  * vips `brew install vips`
 
 ## Developer Installation
 
   * Clone this repository `git clone git@github.com:nulib/institutional-repository.git`
   * From inside the project directory run `bundle install`
-  * Replace the `config/*.yml.example` configuration files with actual config values and rename to `.yml`
   * Start the docker stack with `bundle exec rake docker:dev:up`
   * From inside the project directory run `bundle exec rake db:setup`
 
@@ -33,10 +33,11 @@ These should match closely with the [Hyrax requirements](https://github.com/proj
   * Back in the browser, navigate to the newly visible `Administration` link on the top navbar
   * Click `Administrative Sets` on the left hand navigation menu
   * Create a new admin set, feel free to name it whatever you want, and click save
-  * After saving your new set, click the `Workflow` 
+  * After saving your new set, click the `Workflow`
   * Select the `Default Workflow` and click save
-  
+
   Now you can use the application normally
 
  ## Deploying
-  * Deploy with capistrano, specifying the environment, ex: `cap staging deploy`
+  * Submit a PR in github to the environment's deploy branch that you're targeting
+    For example, to deploy to staging submit a PR to `deploy/staging`

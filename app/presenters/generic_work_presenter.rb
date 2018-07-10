@@ -1,5 +1,7 @@
 class GenericWorkPresenter < Hyrax::WorkShowPresenter
-  delegate :doi, to: :solr_document
+  def doi
+    "https://doi.org/#{solr_document.doi.first.split(':').last}" unless solr_document.doi.empty?
+  end
 
   def public_member_presenters
     @public_member_presenters ||= file_set_presenters.find_all do |m|
