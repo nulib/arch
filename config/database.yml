@@ -1,3 +1,16 @@
+<%
+def test_settings
+  if url = ENV['DATABASE_URL']
+    ActiveRecord::ConnectionAdapters::ConnectionSpecification::ConnectionUrlResolver.new(url).to_hash
+  else
+    {
+      'host' => 'localhost',
+      'port' => Docker::Stack.env.development? ? 5433 : 5434
+    }
+  end
+end
+%>
+
 default: &default
   adapter: postgresql
   host: localhost
@@ -13,7 +26,8 @@ development:
 
 test:
   <<: *default
-  port: <%= Docker::Stack.env.development? ? 5433 : 5434 %>
+  host: <%= test_settings['host'] %>
+  port: <%= test_settings['port'] %>
   database: docker_test
 
 production:

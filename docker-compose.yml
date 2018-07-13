@@ -27,6 +27,7 @@ services:
       - ./bin/local_boot_container:/home/app/current/bin/boot_container
       - ./log:/home/app/current/log
     environment:
+      RAILS_ENV: development
       DATABASE_URL: postgresql://docker:d0ck3r@db:5432/docker_dev?pool=50
       FEDORA_URL: http://fedora:8080/rest/nuf
       RAILS_SERVE_STATIC_FILES: 'true'
