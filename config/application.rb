@@ -33,6 +33,19 @@ module Nufia7
     # https://github.com/spohlenz/tinymce-rails/issues/183
     config.tinymce.install = :copy
 
+    if ENV['REDIS_HOST']
+      redis_host = ENV['REDIS_HOST']
+      redis_port = ENV['REDIS_PORT'] || 6379
+
+      config.cache_store = :redis_store, {
+        host: redis_host,
+        port: redis_port,
+        db: 0,
+        namespace: "_#{Rails.application.class.parent_name.downcase}_cache",
+        expires_in: 30.days
+      }
+    end
+
     config.before_initialize do
       if defined? ActiveElasticJob
         Rails.application.configure do
