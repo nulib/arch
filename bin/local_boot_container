@@ -1,0 +1,10 @@
+#!/bin/bash
+
+chown -R 1000:1000 /var/arch*
+bundle exec rake db:create db:migrate
+bundle exec rails runner 'Settings.aws.buckets.to_h.values.each { |bucket| bucket = Aws::S3::Bucket.new(bucket); bucket.create unless bucket.exists? }'
+if [[ $RAILS_ENV == "test" ]]; then
+  bundle exec rubocop && bundle exec rspec -cf doc spec
+else
+  exec bundle exec puma -C config/puma_container.rb
+fi
