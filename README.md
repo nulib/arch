@@ -17,13 +17,14 @@ These should match closely with the [Hyrax requirements](https://github.com/proj
   * ffmpeg `brew install ffmpeg --with-fdk-aac --with-libvpx --with-libvorbis`
   * fits `brew install fits`
   * vips `brew install vips`
+  * Install [`devstack`](https://github.com/nulib/devstack) according to the instructions in the README
 
 ## Developer Installation
 
   * Clone this repository `git clone git@github.com:nulib/institutional-repository.git`
   * From inside the project directory run `bundle install`
-  * Start the docker stack with `bundle exec rake docker:dev:up`
-  * From inside the project directory run `bundle exec rake db:setup`
+  * Start the docker stack with `devstack up arch`
+  * From inside the project directory run `bundle exec rake db:setup zookeeper:upload zookeeper:create`
 
 ## Initially running the application
 
