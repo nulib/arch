@@ -9,12 +9,12 @@ default: &default
 development:
   <<: *default
   port: 5433
-  database: docker_dev
+  database: arch_dev
 
 test:
   <<: *default
   port: <%= Docker::Stack.env.development? ? 5433 : 5434 %>
-  database: docker_test
+  database: arch_test
 
 production:
   adapter: sqlite3

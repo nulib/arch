@@ -18,6 +18,8 @@ unless Rails.env.production?
       Rails.env = 'test'
       Docker::Stack::Controller.new(cleanup: true).with_containers do
         Rake::Task['db:setup'].invoke
+        Rake::Task['zookeeper:upload'].invoke
+        Rake::Task['zookeeper:create'].invoke
 
         task = get_named_task(ENV['SPEC_TASK']) ||
                get_named_task('spec') ||
