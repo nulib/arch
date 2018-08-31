@@ -56,6 +56,8 @@ gem 'puma', '~> 3.7'
 
 gem 'docker-stack'
 
+gem 'zk'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'better_errors'
@@ -80,7 +82,6 @@ group :aws do
   gem 'carrierwave-aws'
   gem 'cloudfront-signer'
   gem 'redis-rails'
-  gem 'zk'
 end
 
 group :development do
