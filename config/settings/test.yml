@@ -14,3 +14,6 @@ doi_credentials:
   host: 'ezid.lib.purdue.edu'
   port: 443
   use_ssl: true
+solrcloud: true
+zookeeper:
+  connection_str: "localhost:9985/configs"

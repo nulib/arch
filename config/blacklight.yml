@@ -1,13 +1,12 @@
 development:
   adapter: solr
-  url: <%= ENV['SOLR_URL'] || "http://127.0.0.1:#{ENV.fetch('SOLR_DEVELOPMENT_PORT', 8983)}/solr/development-core" %>
+  url: <%= ENV['SOLR_URL'] || "http://127.0.0.1:#{ENV.fetch('SOLR_DEVELOPMENT_PORT', 8983)}/solr/arch-development" %>
 test: &test
   adapter: solr
-  url: http://localhost:<%= ENV['SOLR_TEST_PORT'] || 8985 %>/solr/test-core
+  url: http://localhost:<%= ENV['SOLR_TEST_PORT'] || 8985 %>/solr/arch-test
 staging:
   adapter: solr
   url: <%= ENV['SOLR_URL'] || "http://127.0.0.1:8983/solr/blacklight-core" %>
 production:
   adapter: solr
   url: <%= ENV['SOLR_URL'] || "http://127.0.0.1:8983/solr/blacklight-core" %>
-
