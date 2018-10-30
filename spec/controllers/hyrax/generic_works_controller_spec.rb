@@ -14,6 +14,6 @@ RSpec.describe Hyrax::GenericWorksController do
   describe 'show presenter' do
     subject { described_class.show_presenter }
 
-    it { is_expected.to eq(GenericWorkPresenter) }
+    it { is_expected.to eq(Hyrax::GenericWorkPresenter) }
   end
 end

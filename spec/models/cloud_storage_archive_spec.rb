@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe CloudStorageArchive do
   let(:work) { FactoryBot.create(:work) }
-  let(:sample_file_path) { (Rails.root + 'spec/fixtures/coffee.jpg').to_s }
+  let(:sample_file_path) { "#{file_fixture_path}/coffee.jpg" }
   let(:bucket) { Aws::S3::Bucket.new(Settings.aws.buckets.archives) }
 
   context 'uploads files to S3' do

@@ -60,7 +60,7 @@ class WorkZipCreator
     def work_presenter
       @work_presenter ||= begin
         solr_doc = SolrDocument.find(work_id) # CloudStorageArchive
-        GenericWorkPresenter.new(solr_doc, Ability.new(nil))
+        Hyrax::GenericWorkPresenter.new(solr_doc, Ability.new(nil))
       end
     end
 

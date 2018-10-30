@@ -24,6 +24,7 @@ Metrics/BlockLength:
     - 'config/routes.rb'
     - 'config/initializers/hyrax.rb'
     - 'config/initializers/simple_form_bootstrap.rb'
+    - 'lib/tasks/arch.rake'
 
 Metrics/MethodLength:
   Exclude:
