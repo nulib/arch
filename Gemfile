@@ -33,7 +33,7 @@ gem 'yaml_db'
 # gem 'unicorn'
 
 gem 'hydra-derivatives', git: 'https://github.com/nulib/hydra-derivatives.git', branch: 'vips'
-gem 'hyrax', '~> 1.0', '>= 1.0.2'
+gem 'hyrax', '2.3.3'
 
 # Admin users enabled by hydra-role-management
 gem 'hydra-role-management'
@@ -64,12 +64,12 @@ group :development, :test do
   gem 'binding_of_caller'
   gem 'byebug'
   gem 'capybara', '~> 2.8'
-  gem 'factory_bot_rails'
   gem 'fcrepo_wrapper'
   gem 'rspec-rails', '~> 3.6'
   gem 'rubocop', '~> 0.49.1', require: false
   gem 'rubocop-rspec', require: false
   gem 'solr_wrapper', '>= 0.3'
+  gem 'webmock'
 end
 
 group :aws, :test do
@@ -84,7 +84,13 @@ group :aws do
   gem 'redis-rails'
 end
 
-group :development do
+group :development, :test do
   gem 'pry-byebug'
+  gem 'pry-rails'
   gem 'rb-readline'
+end
+
+group :test do
+  gem 'database_cleaner'
+  gem 'factory_bot_rails'
 end

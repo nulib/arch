@@ -20,7 +20,7 @@ class CloudStorageArchive < ApplicationRecord
   end
 
   def work_presenter
-    @work_presenter ||= GenericWorkPresenter.new(
+    @work_presenter ||= Hyrax::GenericWorkPresenter.new(
       SolrDocument.find(work_id),
       Ability.new(nil)
     )
@@ -72,7 +72,7 @@ class CloudStorageArchive < ApplicationRecord
       end
 
       def work_presenter
-        @work_presenter ||= GenericWorkPresenter.new(
+        @work_presenter ||= Hyrax::GenericWorkPresenter.new(
           SolrDocument.find(work_id),
           Ability.new(nil)
         )
