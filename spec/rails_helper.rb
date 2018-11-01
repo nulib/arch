@@ -67,4 +67,6 @@ RSpec.configure do |config|
     Rake::Task.define_task(:environment)
     Rake::Task['s3:teardown'].invoke
   end
+
+  config.include Devise::Test::ControllerHelpers, type: :controller
 end
