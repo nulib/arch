@@ -50,7 +50,7 @@ gem 'config'
 gem 'devise'
 gem 'devise-guests', '~> 0.3'
 gem 'omniauth-openam'
-gem 'rsolr', '~> 1.0'
+gem 'rsolr', '~> 2.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 
