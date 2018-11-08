@@ -11,7 +11,7 @@ FactoryBot.define do
 
     transient do
       user { FactoryBot.create(:user) }
-      image_path { Rails.root + 'spec/fixtures/coffee.jpg' }
+      image_path { Rails.root + 'spec/fixtures/files/coffee.jpg' }
       num_images { 1 }
     end
 
@@ -21,13 +21,11 @@ FactoryBot.define do
                                     user: evaluator.user,
                                     title: ["#{File.basename(evaluator.image_path)}_#{i + 1}_#{evaluator.title.first}"],
                                     label: File.basename(evaluator.image_path),
-                                    visibility: Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC)
+                                    visibility: Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC,
+                                    content: File.open(evaluator.image_path))
         work.ordered_members << fileset
         work.representative = fileset
         work.thumbnail = fileset
-
-        # Try to attach a real image
-        IngestFileJob.perform_now(fileset, evaluator.image_path.to_s, evaluator.user)
       end
     end
 

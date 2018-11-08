@@ -16,7 +16,7 @@ class CloudStorageArchivesController < ApplicationController
     end
 
     def presenter
-      @presenter ||= GenericWorkPresenter.new(
+      @presenter ||= Hyrax::GenericWorkPresenter.new(
         SolrDocument.find(work_id),
         Ability.new(current_user)
       )

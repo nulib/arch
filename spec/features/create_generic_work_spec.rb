@@ -6,27 +6,18 @@ include Warden::Test::Helpers
 # NOTE: If you generated more than one work, you have to set "js: true"
 RSpec.feature 'Create a GenericWork', js: false do
   context 'a logged in user' do
-    let(:user_attributes) do
-      { username: 'test_netid' }
-    end
-    let(:user) do
-      User.new(user_attributes) { |u| u.save(validate: false) }
-    end
+    let(:depositor) { FactoryBot.create(:user) }
 
     before do
+      Rails.application.env_config['devise.mapping'] = Devise.mappings[:user]
+      Rails.application.env_config['omniauth.auth'] = OmniAuth.config.mock_auth[:default]
       AdminSet.find_or_create_default_admin_set_id
-      login_as user
+      login_as depositor
     end
 
     scenario do
-      visit '/dashboard'
-      click_link 'Upload'
-
-      # If you generate more than one work uncomment these lines
-      # choose "payload_concern", option: "GenericWork"
-      # click_button "Create work"
-
-      expect(page).to have_content 'Add New Work'
+      visit '/dashboard/my/works'
+      expect(page).to have_content(/add new work/i)
     end
   end
 end
