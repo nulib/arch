@@ -12,7 +12,7 @@ RSpec.describe Hyrax::GenericWorkForm do
     subject(:terms) { form.terms }
 
     it 'contains fields that users should are allowed to edit' do
-      expect(terms).to include(:title, :creator, :keyword, :rights)
+      expect(terms).to include(:title, :creator, :keyword, :rights_statement)
     end
 
     it 'does not contain fields that users should not be allowed to edit' do
