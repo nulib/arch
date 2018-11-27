@@ -23,8 +23,6 @@
             <%= t('hyrax.visibility.authenticated.note_html', institution: institution_name) %>
           </label>
         </li>
-        <!-- Embargo hidden 9/13/2017 as it doesn't work in Hyrax 1.x -->
-        <!--
         <li class="radio">
           <label>
             <%= f.radio_button :visibility, Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_EMBARGO, data: { 'target': '#collapseEmbargo' } %>
@@ -39,7 +37,6 @@
             </div>
           </label>
         </li>
-        -->
         <li class="radio">
           <label>
             <%= f.radio_button :visibility, Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_LEASE, data: { 'target': '#collapseLease' } %>
