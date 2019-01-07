@@ -8,17 +8,17 @@
         <% if @presenter.display_share_button? %>
             <% if signed_in? %>
               <% if create_work_presenter.many? %>
-                <%= link_to '#', class: "button", data: { behavior: 'select-work', target: '#worktypes-to-create', 'create-type' => 'single' } do %>
+                <%= link_to '#', class: "nu-button button", data: { behavior: 'select-work', target: '#worktypes-to-create', 'create-type' => 'single' } do %>
                   <%= t('hyrax.buttons.get_started') %>
                 <% end %>
               <% else # simple link to the first work type %>
                 <%= link_to new_polymorphic_path([main_app, create_work_presenter.first_model]),
-                  class: 'button' do %>
+                  class: 'nu-button button' do %>
                   <%= t('hyrax.buttons.get_started') %>
                 <% end %>
               <% end %>
             <% else %>
-              <%= link_to hyrax.dashboard_path, class: "button" do %>
+              <%= link_to hyrax.dashboard_path, class: "nu-button button" do %>
                 <%= t('hyrax.buttons.get_started') %>
               <% end %>
             <% end %>

@@ -1,13 +1,12 @@
 // buttons
-
-.content a.button,
-.content-full a.button,
-.content p.button a,
-.content-full p.button a,
-.hero a.button,
-#top-nav ul li a.button,
-.tl-slideshow a.button,
-input[type='submit'] {
+.content a.button.nu-button,
+.content-full a.button.nu-button,
+.content p.button.nu-button a,
+.content-full p.button.nu-button a,
+.hero a.button.nu-button,
+#top-nav ul li a.button.nu-button,
+.tl-slideshow a.button.nu-button,
+input[type='submit'].nu-button {
   font: 16px $AkkuratProBold;
   color: $white;
   background: $nu-purple;
