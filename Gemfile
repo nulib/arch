@@ -70,6 +70,7 @@ group :development, :test do
   gem 'rubocop-rspec', require: false
   gem 'solr_wrapper', '>= 0.3'
   gem 'webmock'
+  gem 'xray-rails'
 end
 
 group :aws, :test do
