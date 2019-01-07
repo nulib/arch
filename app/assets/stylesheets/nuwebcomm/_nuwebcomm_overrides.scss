@@ -1,4 +1,8 @@
 
+// Homepage 3 photos across.  Override a bootstrap p style
+.landing-page .photo-feature-3-across .photo-feature p {
+  margin: 1em 0;
+}
 
 footer {
   a {
@@ -25,14 +29,14 @@ footer {
   ul > li {
     i {
       &:first-of-type {
-        padding-right: .5rem;
+        padding-right: 0.5rem;
       }
     }
   }
 }
 
 #search {
-	width: 420px / 1120px * 100%;
+  width: 420px / 1120px * 100%;
 }
 
 @media screen and (max-width: 768px) {
@@ -41,7 +45,7 @@ footer {
     > li {
       // Adds padding between sub navigation groups
       &.mobile-sub-nav-header {
-        padding-top: .5rem;
+        padding-top: 0.5rem;
       }
     }
   }
