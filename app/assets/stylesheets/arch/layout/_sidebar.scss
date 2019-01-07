@@ -1,9 +1,6 @@
-#sidebar {
-  ul {
-    @include ul-unstyled;
-    margin-bottom: 0;
-  }
-  @media (max-width: 768px) {
-    padding-bottom: 0;
+.sidebar {
+  .nav > li > a:hover,
+  .nav > li > a:focus {
+    background-color: #999;
   }
 }
