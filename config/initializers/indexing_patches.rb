@@ -22,7 +22,7 @@ ActiveFedora::Indexing.module_eval do
   def to_solr(_solr_doc = {}, _opts = {})
     indexing_service.generate_solr_document.tap do |doc|
       doc.each_pair do |k, v|
-        doc[k] = printable_chars(v) if k.match?(/_(te|s)[sim]+$/)
+        doc[k] = printable_chars(v) if k.to_s.match?(/_(te|s)[sim]+$/)
       end
     end
   end
