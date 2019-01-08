@@ -8,14 +8,17 @@
   <body class="<%= content_for?(:body_class) ? yield(:body_class) : '' %>">
     <a href="#skip_to_content" class="sr-only">Skip to Content</a>
     <%= render '/masthead' %>
-    <div class="contain-1120">
-        <%= render partial: '/flash_msg' %>
-    </div>
+
     <%= content_for(:precontainer_content) %>
     <!-- Main content -->
     <div id="page" role="main">
       <main id="main-content" class="content">
         <a name="skip_to_content"></a>
+
+        <div class="contain-1120">
+          <%= render partial: '/flash_msg' %>
+        </div>
+
         <% if content_for?(:is_home) %>
           <!-- Home page -->
           <%= content_for?(:content) ? yield(:content) : yield %>
