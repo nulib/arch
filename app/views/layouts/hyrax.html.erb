@@ -8,7 +8,6 @@
   <body class="<%= content_for?(:body_class) ? yield(:body_class) : '' %>">
     <a href="#skip_to_content" class="sr-only">Skip to Content</a>
     <%= render '/masthead' %>
-    <%= content_for(:navbar) %>
     <div class="contain-1120">
         <%= render partial: '/flash_msg' %>
     </div>
