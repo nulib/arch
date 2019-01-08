@@ -15,10 +15,10 @@
         <div id="parent-unit"><a href="#">Parent Unit Name</a></div>
       </div>
       <div id="global-links" aria-label="global links navigation">
-        <ul id="user_utility_links" class="nav navbar-nav navbar-right">
+        <ul id="user_utility_links" class="">
           <%= render 'shared/locale_picker' if available_translations.size > 1 %>
           <% if user_signed_in? %>
-            <li class="dropdown">
+            <li class="">
               <%= link_to hyrax.dashboard_profile_path(current_user), role: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: true, expanded: false} do %>
                 <span class="sr-only"><%= t("hyrax.toolbar.profile.sr_action") %></span>
                 <span class="hidden-xs">&nbsp;<%= current_user.name %></span>
@@ -26,10 +26,8 @@
                 <span class="fa fa-user"></span>
                 <span class="caret"></span>
               <% end %>
-              <ul class="dropdown-menu dropdown-menu-right" role="menu">
+              <ul class="" role="menu">
                 <li><%= link_to t("hyrax.toolbar.dashboard.menu"), hyrax.dashboard_path %></li>
-
-                <li class="divider"></li>
                 <li><%= link_to t("hyrax.toolbar.profile.logout"), main_app.destroy_user_session_path %></li>
               </ul>
             </li><!-- /.btn-group -->
@@ -41,20 +39,6 @@
             </li>
           <% end %>
         </ul>
-        <!--
-        <ul>
-          <li><a href="#">Global Link 1</a></li>
-          <li><a href="#">Global Link 2</a></li>
-          <li class="resources">
-            Global Dropdown <span class="dropdown-arrow"></span>
-            <ul>
-              <li><a href="#">Global Drop Link 1</a></li>
-              <li><a href="#">Global Drop Link 2</a></li>
-              <li><a href="#">Global Drop Link 3</a></li>
-            </ul>
-          </li>
-        </ul>
-        -->
       </div>
     </div>
   </div>
