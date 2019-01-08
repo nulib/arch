@@ -56,6 +56,12 @@ footer {
   width: 420px / 1120px * 100%;
 }
 
+// To keep global links dropdowns from showing through
+#main-content {
+  background: #fff;
+  font-size: 14px;
+}
+
 @media screen and (max-width: 768px) {
   #mobile-nav-bottom ul {
     color: $white;
