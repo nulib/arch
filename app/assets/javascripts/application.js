@@ -19,4 +19,4 @@
 
 //= require_directory .
 //= require hyrax
-//= require 'nu-template/scripts'
+//= require 'nu-template/overrides/scripts'

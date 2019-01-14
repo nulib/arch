@@ -33,10 +33,33 @@ footer {
       }
     }
   }
+
+  #left {
+    #northwestern {
+      a {
+        margin-top: 17.6px;
+      }
+    }
+  }
+}
+#bottom-bar {
+  padding: 36px 0;
+
+  #site-name {
+    h1 {
+      margin: 0;
+    }
+  }
 }
 
 #search {
   width: 420px / 1120px * 100%;
+}
+
+// To keep global links dropdowns from showing through
+#main-content {
+  background: #fff;
+  font-size: 14px;
 }
 
 @media screen and (max-width: 768px) {

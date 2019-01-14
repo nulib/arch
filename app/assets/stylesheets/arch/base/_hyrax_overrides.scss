@@ -10,3 +10,10 @@ li.attribute.status {
   padding: 0;
   color: $rich-black-80;
 }
+
+/* The following overrides are for the top, global links bar */
+@media (min-width: 768px) {
+  .navbar-nav > li {
+    float: none;
+  }
+}
