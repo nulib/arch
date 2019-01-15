@@ -16,7 +16,6 @@
       </div>
       <div id="global-links" aria-label="global links navigation">
         <ul id="user_utility_links">
-          <%= render 'shared/locale_picker' if available_translations.size > 1 %>
           <% if user_signed_in? %>
             <li class="">
               <%= link_to hyrax.dashboard_profile_path(current_user), role: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: true, expanded: false} do %>
@@ -74,7 +73,6 @@
       <div id="mobile-nav-bottom">
         <!-- from #global-links -->
         <ul id="mobile-nav-bottom-left">
-          <%= render 'shared/locale_picker' if available_translations.size > 1 %>
           <% if user_signed_in? %>
             <li>
               <%= link_to hyrax.dashboard_profile_path(current_user), aria: { haspopup: true, expanded: false} do %>
