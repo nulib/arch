@@ -42,6 +42,7 @@
       </div>
     </div>
   </div>
+  <!-- Alternative placement for quick link navigation 
   <div id="quick-links" aria-label="quick links navigation">
     <ul>
       <li><%= link_to t('Browse'), main_app.search_catalog_path %></li>
@@ -50,6 +51,7 @@
       <li><%= link_to t(:'hyrax.controls.contact'), hyrax.contact_path %></li>
     </ul>
   </div>
+  -->
   <div id="bottom-bar" class="contain-1120">
     <div id="site-name">
       <h1><a href="/">LIBRARIES | ARCH</a></h1>
@@ -118,3 +120,14 @@
     </div>
   </div>
 </header>
+
+<nav id="top-nav" class="narrow-dropdown" aria-label="main navigation menu">
+    <div class="contain-1120">
+        <ul>
+          <li><%= link_to t('Browse'), main_app.search_catalog_path %></li>
+          <li><%= link_to t(:'hyrax.controls.about'), hyrax.about_path %></li>
+          <li><%= link_to t(:'hyrax.controls.help'), hyrax.help_path %></li>
+          <li><%= link_to t(:'hyrax.controls.contact'), hyrax.contact_path %></li>
+        </ul>
+    </div>
+</nav>
