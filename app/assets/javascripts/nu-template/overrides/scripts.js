@@ -165,6 +165,7 @@ $(document).ready(function() {
     });
   $('tr:nth-child(odd)').addClass('stripe');
 
+  /*
   // tabs (single instance)
   function switchTab(target) {
     $('#tab-content>div').hide();
@@ -185,7 +186,9 @@ $(document).ready(function() {
     // select first on page load
     switchTab($('#tab1'));
   }
+  */
 
+  /*
   // multiple sets of tabs (classes instead of id's)
   function switchTab2(target) {
     target
@@ -211,6 +214,7 @@ $(document).ready(function() {
     // select first in each set when page loads
     switchTab2($(this));
   });
+  */
 
   // photo feature flip image on hover
   $('.photo-feature')
