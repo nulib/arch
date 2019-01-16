@@ -17,3 +17,19 @@ li.attribute.status {
     float: none;
   }
 }
+
+// CSS way to hide items from Work show page
+.work-type {
+  // Hide citations
+  .citations {
+    display: none;
+  }
+  // Workflow state
+  span.state {
+    display: none;
+  }
+  // Analytics
+  .show-actions #stats {
+    display: none;
+  }
+}
