@@ -24,6 +24,7 @@ en:
   hyrax:
     buttons:
       get_started: "Get Started"
+      submit_a_work: "Submit a work"
     product_name: "Repository | institutional"
     institution_name_full: "Northwestern University"
     institution_name: "NU"
