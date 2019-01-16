@@ -37,3 +37,37 @@ li.attribute.status {
 h4, h5 {
   font-family: $AkkuratProRegular;
 }
+
+#content {
+  a {
+    color: $nu-purple;
+
+    &:hover {
+      color: $nu-purple;
+    }
+
+    .glyphicon {
+      color: $white;
+    }
+  }
+}
+
+#savewidget a {
+  color: $nu-purple;
+}
+
+// Buttons
+.btn-link {
+  color: $nu-purple;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $nu-purple-30;
+  }
+}
+
+// Blacklight
+#sort-dropdown .dropdown-toggle, #per_page-dropdown .dropdown-toggle {
+  color: $nu-purple;
+}
