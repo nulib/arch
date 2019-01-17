@@ -1,20 +1,3 @@
-<li>
-    <% if signed_in? %>
-      <% if create_work_presenter.many? %>
-        <%= link_to '#', data: { behavior: 'select-work', target: '#worktypes-to-create', 'create-type' => 'single' } do %>
-          <%= t('hyrax.buttons.submit_a_work') %>
-        <% end %>
-      <% else # simple link to the first work type %>
-        <%= link_to new_polymorphic_path([main_app, create_work_presenter.first_model]) do %>
-          <%= t('hyrax.buttons.submit_a_work') %>
-        <% end %>
-      <% end %>
-    <% else %>
-      <%= link_to hyrax.dashboard_path do %>
-        <%= t('hyrax.buttons.submit_a_work') %>
-      <% end %>
-    <% end %>
-</li>
 <li><%= link_to t('Browse'), main_app.search_catalog_path %></li>
 <li><%= link_to t(:'hyrax.controls.about'), hyrax.about_path %></li>
 <li><%= link_to t(:'hyrax.controls.help'), hyrax.help_path %></li>

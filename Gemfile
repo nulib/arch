@@ -33,7 +33,7 @@ gem 'yaml_db'
 # gem 'unicorn'
 
 gem 'hydra-derivatives', git: 'https://github.com/nulib/hydra-derivatives.git', branch: 'vips'
-gem 'hyrax', '2.3.3'
+gem 'hyrax', github: 'nulib/hyrax', branch: '2.4.1-plus-be'
 
 # Admin users enabled by hydra-role-management
 gem 'hydra-role-management'
