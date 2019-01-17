@@ -7,14 +7,16 @@
 			<li>
         <% if @presenter.display_share_button? %>
             <% if signed_in? %>
-              <% if create_work_presenter.many? %>
-                <%= link_to '#', class: "nu-button button", data: { behavior: 'select-work', target: '#worktypes-to-create', 'create-type' => 'single' } do %>
-                  <%= t('hyrax.buttons.get_started') %>
+              <% if @presenter.create_many_work_types? %>
+                <%= link_to '#',
+                  class: "btn btn-primary btn-lg",
+                  data: { behavior: 'select-work', target: '#worktypes-to-create', 'create-type' => 'single' } do %>
+                  <i class="glyphicon glyphicon-upload" aria-hidden="true"></i> <%= t('hyrax.share_button') %>
                 <% end %>
               <% else # simple link to the first work type %>
-                <%= link_to new_polymorphic_path([main_app, create_work_presenter.first_model]),
-                  class: 'nu-button button' do %>
-                  <%= t('hyrax.buttons.get_started') %>
+                <%= link_to new_polymorphic_path([main_app, @presenter.first_work_type]),
+                      class: 'btn btn-primary btn-lg' do %>
+                  <i class="glyphicon glyphicon-upload" aria-hidden="true"></i> <%= t('hyrax.share_button') %>
                 <% end %>
               <% end %>
             <% else %>
