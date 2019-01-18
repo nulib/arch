@@ -9,18 +9,18 @@
             <% if signed_in? %>
               <% if @presenter.create_many_work_types? %>
                 <%= link_to '#',
-                  class: "btn btn-primary btn-lg",
+                  class: "nu-button button",
                   data: { behavior: 'select-work', target: '#worktypes-to-create', 'create-type' => 'single' } do %>
-                  <i class="glyphicon glyphicon-upload" aria-hidden="true"></i> <%= t('hyrax.share_button') %>
+                  <%= t('hyrax.share_button') %>
                 <% end %>
               <% else # simple link to the first work type %>
                 <%= link_to new_polymorphic_path([main_app, @presenter.first_work_type]),
-                      class: 'btn btn-primary btn-lg' do %>
-                  <i class="glyphicon glyphicon-upload" aria-hidden="true"></i> <%= t('hyrax.share_button') %>
+                      class: 'nu-button button' do %>
+                  <%= t('hyrax.share_button') %>
                 <% end %>
               <% end %>
             <% else %>
-              <%= link_to hyrax.dashboard_path, class: "nu-button button" do %>
+              <%= link_to hyrax.my_works_path, class: "nu-button button" do %>
                 <%= t('hyrax.buttons.get_started') %>
               <% end %>
             <% end %>
