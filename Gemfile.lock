@@ -1370,6 +1370,8 @@ GEM
     rdf-xsd (3.0.1)
       rdf (~> 3.0)
     rdoc (4.3.0)
+    recaptcha (4.13.1)
+      json
     redic (1.5.1)
       hiredis
     redis (4.1.0)
@@ -1602,6 +1604,7 @@ DEPENDENCIES
   puma (~> 3.7)
   rails (~> 5.1.6)
   rb-readline
+  recaptcha
   redis-rails
   rsolr (~> 2.0)
   rspec-rails (~> 3.6)
