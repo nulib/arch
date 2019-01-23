@@ -1,3 +1,5 @@
+require 'solrizer/field_mapper'
+
 # Use n-triples for indexing to prevent Fedora from blocking while assembling the RDF response
 ActiveFedora::Fedora.class_eval do
   def ntriples_connection
