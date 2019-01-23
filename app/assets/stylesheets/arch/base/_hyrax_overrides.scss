@@ -1,0 +1,73 @@
+/*
+ * Override: Reset li.attribute.status to the same state as other li.attribute elements
+ *
+ * Reason: Hyrax automatically applies "attribute" and attribute-name classes to each attribute
+ * line item, resulting in the Status attribute inheriting the .status padding and color styles
+ * in https://github.com/samvera/hyrax/blob/master/app/assets/stylesheets/hyrax/_file_sets.scss
+ */
+
+li.attribute.status {
+  padding: 0;
+  color: $rich-black-80;
+}
+
+/* The following overrides are for the top, global links bar */
+@media (min-width: 768px) {
+  .navbar-nav > li {
+    float: none;
+  }
+}
+
+// CSS way to hide items from Work show page
+.work-type {
+  // Hide citations
+  .citations {
+    display: none;
+  }
+  // Workflow state
+  span.state {
+    display: none;
+  }
+  // Analytics
+  .show-actions #stats {
+    display: none;
+  }
+}
+
+h4, h5 {
+  font-family: $AkkuratProRegular;
+}
+
+#content {
+  a {
+    color: $nu-purple;
+
+    &:hover {
+      color: $nu-purple;
+    }
+
+    .glyphicon {
+      color: $white;
+    }
+  }
+}
+
+#savewidget a {
+  color: $nu-purple;
+}
+
+// Buttons
+.btn-link {
+  color: $nu-purple;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $nu-purple-30;
+  }
+}
+
+// Blacklight
+#sort-dropdown .dropdown-toggle, #per_page-dropdown .dropdown-toggle {
+  color: $nu-purple;
+}

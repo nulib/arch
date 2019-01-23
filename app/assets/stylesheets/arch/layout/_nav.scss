@@ -1,0 +1,17 @@
+// Make sure all page content nav tabs stay default coloring
+#content-wrapper {
+  .nav > li > a:hover,
+  .nav > li > a:focus {
+    background-color: transparent;
+  }
+}
+
+#language-dropdown-menu {
+  @media screen and (max-width: 768px) {
+    .dropdown-header {
+      font-size: 12px;
+      line-height: 2rem;
+      text-transform: uppercase;
+    }
+  }
+}

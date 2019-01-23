@@ -57,7 +57,7 @@ LABEL edu.northwestern.library.app=Arch \
 RUN useradd -m -U app && \
     su -s /bin/bash -c "mkdir -p /home/app/current/vendor/gems" app
 
-ENV RUNTIME_DEPS="imagemagick libexif12 libexpat1 libgif4 glib-2.0 libgsf-1-114 libjpeg62-turbo libpng12-0 libpoppler-glib8 libpq5 libreoffice-core librsvg2-2 libsqlite3-0 libtiff5 locales nodejs openjdk-7-jre tzdata yarn" \
+ENV RUNTIME_DEPS="imagemagick libexif12 libexpat1 libgif4 glib-2.0 libgsf-1-114 libjpeg62-turbo libpng12-0 libpoppler-glib8 libpq5 libreoffice librsvg2-2 libsqlite3-0 libtiff5 locales nodejs openjdk-7-jre postgresql-client tzdata yarn" \
     DEBIAN_FRONTEND="noninteractive" \
     RAILS_ENV="production" \
     LANG="en_US.UTF-8" \
@@ -100,8 +100,7 @@ COPY --chown=app:staff --from=base /usr/local/bundle /usr/local/bundle
 COPY --chown=app:app --from=base /home/app/current/vendor/gems/ /home/app/current/vendor/gems/
 COPY --chown=app:app . /home/app/current/
 
-RUN mkdir /var/log/puma && chown root:app /var/log/puma && chmod 0775 /var/log/puma && \
-    mkdir /var/run/puma && chown root:app /var/run/puma && chmod 0775 /var/run/puma
+RUN mkdir /var/run/puma && chown root:app /var/run/puma && chmod 0775 /var/run/puma
 
 USER app
 WORKDIR /home/app/current

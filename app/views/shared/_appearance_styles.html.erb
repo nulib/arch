@@ -1,0 +1,71 @@
+<% # Dynamic styles added by the admin in the appearances page %>
+<style>
+<% appearance = Hyrax::Forms::Admin::Appearance.new %>
+
+<% # Custom NU hard coding %>
+<%
+nu_purple = '#4e2a84'
+nu_purple30 = '#b6acd1'
+%>
+
+a {
+  color: <%= nu_purple %>;
+}
+a:hover {
+  color: <%= nu_purple %>;
+}
+.navbar-inverse .navbar-link { color: <%= appearance.footer_link_color %>; }
+
+.navbar-inverse { background-color: <%= appearance.header_background_color %>; }
+
+.navbar-inverse .navbar-nav > .open > a,
+.navbar-inverse .navbar-nav > .open > a:hover,
+.navbar-inverse .navbar-nav > .open > a:focus { background-color: <%= appearance.header_background_color %>; }
+
+.navbar-inverse .navbar-nav > li > a,
+.navbar-inverse .navbar-text,
+.navbar-inverse .navbar-brand { color: <%= appearance.header_text_color %>; }
+
+.btn-primary {
+  background-color: <%= nu_purple %>;
+  border-color: <%= nu_purple %>;
+}
+
+.btn-primary:focus,
+.btn-primary.focus {
+  background-color: <%= nu_purple30 %>;
+  border-color: <%= nu_purple30 %>;
+}
+
+.btn-primary:hover {
+  background-color: <%= nu_purple30 %>;
+  border-color: <%= nu_purple30 %>;
+}
+
+.btn-primary:active,
+.btn-primary.active {
+  background-color: <%= nu_purple30 %>;
+  border-color: <%= nu_purple30 %>;
+}
+
+.btn-primary:active:hover,
+.btn-primary:active:focus,
+.btn-primary:active.focus,
+.btn-primary.active:hover,
+.btn-primary.active:focus,
+.btn-primary.active.focus{
+  background-color: <%= nu_purple30 %>;
+  border-color: <%= nu_purple30 %>;
+}
+
+.btn-primary.disabled:hover,
+.btn-primary.disabled:focus,
+.btn-primary.disabled.focus,
+.btn-primary[disabled]:hover,
+.btn-primary[disabled]:focus,
+.btn-primary[disabled].focus {
+  background-color: <%= nu_purple30 %>;
+  border-color: <%= nu_purple30 %>;
+}
+
+</style>

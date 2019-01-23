@@ -1,8 +1,8 @@
 # Arch
-Arch is our institutional repository and is a lightly modified Hyrax head.
+Arch is our institutional repository and is a Hyrax 2 application.
 
-## Software Architecture 
-Right now we are hosting Arch locally and it has it's own instance of Fedora 4. It's using our shared, local Solr instance however. We have plans in the future to migrate it to AWS. 
+## Software Architecture
+Arch is hosted on AWS. It's using NUL's shared Fedora 4 instance and has it's own Solr core on a shared Solr instance.
 
 ## Developer Dependencies
 
@@ -16,27 +16,25 @@ These should match closely with the [Hyrax requirements](https://github.com/proj
   * Imagemagick `brew install imagemagick --with-ghostscript --with-openjpeg`
   * ffmpeg `brew install ffmpeg --with-fdk-aac --with-libvpx --with-libvorbis`
   * fits `brew install fits`
+  * vips `brew install vips`
+  * Install [`devstack`](https://github.com/nulib/devstack) according to the instructions in the README
+  * Follow the [Authentication Setup for Dev Environment](https://github.com/nulib/donut/wiki/Authentication-setup-for-dev-environment) instructions 
 
 ## Developer Installation
 
   * Clone this repository `git clone git@github.com:nulib/institutional-repository.git`
   * From inside the project directory run `bundle install`
-  * Replace the `config/*.yml.example` configuration files with actual config values and rename to `.yml`
-  * Start the docker stack with `bundle exec rake docker:dev:up`
-  * From inside the project directory run `bundle exec rake db:setup`
+  * Start the docker stack with `devstack up arch`
+  * From inside the project directory run `bundle exec rake arch:seed`
+     * You can include the optional arguments to create an admin user (such as yourself). Ex: `bundle exec rake arch:seed ADMIN_USER=your_netid ADMIN_EMAIL=your_email@northwestern.edu`
+  * In a separate tab, start the rails server `bundle exec rails server`
 
-## Initially running the application
+  ## Running the tests
 
-  * Start the Rails app `rails s`
-  * In your browser, log in using your netid
-  * Back in terminal, run the rake task `bundle exec rake add_admin_role` to make your user an admin
-  * Back in the browser, navigate to the newly visible `Administration` link on the top navbar
-  * Click `Administrative Sets` on the left hand navigation menu
-  * Create a new admin set, feel free to name it whatever you want, and click save
-  * After saving your new set, click the `Workflow` 
-  * Select the `Default Workflow` and click save
-  
-  Now you can use the application normally
+   * Start the test stack `devstack -t up arch`
+   * Run the seed task for the test environmenbt: `bundle exec rake arch:seed RAILS_ENV=test`
+   * Run the test suite: `bundle exec rspec`
 
  ## Deploying
-  * Deploy with capistrano, specifying the environment, ex: `cap staging deploy`
+  * Submit a PR in github to the environment's deploy branch that you're targeting
+    For example, to deploy to staging submit a PR to `deploy/staging`

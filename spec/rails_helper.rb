@@ -1,11 +1,13 @@
-# This file is copied to spec/ when you run 'rails generate rspec:install'
-require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 # Prevent database truncation if the environment is production
-abort("The Rails environment is running in production mode!") if Rails.env.production?
+abort('The Rails environment is running in production mode!') if Rails.env.production?
+require 'spec_helper'
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
+require 'rake'
+
+require 'webmock/rspec'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -20,6 +22,10 @@ require 'rspec/rails'
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
+
+require Rails.root.join('spec', 'support', 'database_cleaner.rb')
+Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
+
 # Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 # Checks for pending migration and applies them before tests are run.
@@ -29,11 +35,12 @@ ActiveRecord::Migration.maintain_test_schema!
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  config.file_fixture_path = "#{::Rails.root}/spec/fixtures/files"
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
-  config.use_transactional_fixtures = true
+  config.use_transactional_fixtures = false
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
@@ -54,4 +61,36 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+  config.include FactoryBot::Syntax::Methods
+  config.include Warden::Test::Helpers, type: :feature
+  config.include Warden::Test::Helpers, type: :request
+  config.include Features::SessionHelpers, type: :feature
+
+  config.before(:each, type: :feature) do
+    OmniAuth.config.test_mode = true
+    OmniAuth.config.mock_auth[:default] = OmniAuth::AuthHash.new('provider' => 'default',
+                                                                 'uid' => '1234',
+                                                                 'info' => { 'name' => 'Example User', 'email' => 'test@example.com' })
+    Warden.test_mode!
+  end
+
+  config.before(:suite) do
+    WebMock.allow_net_connect!
+    Hyrax::CollectionType.find_or_create_default_collection_type
+    Hyrax::CollectionType.find_or_create_admin_set_type
+    Rake.application.rake_require 'tasks/s3_tasks'
+    Rake::Task.define_task(:environment)
+    Rake::Task['s3:setup'].invoke
+  end
+
+  config.after(:suite) do
+    Rake.application.rake_require 'tasks/s3_tasks'
+    Rake::Task.define_task(:environment)
+    Rake::Task['s3:teardown'].invoke
+  end
+
+  config.after(:each, type: :feature) do
+    Warden.test_reset!
+  end
 end

@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   resources :welcome, only: 'index'
   root 'hyrax/homepage#index'
   curation_concerns_basic_routes
-  curation_concerns_embargo_management
+  # curation_concerns_embargo_management
   concern :exportable, Blacklight::Routes::Exportable.new
 
   resources :solr_documents, only: [:show], path: '/catalog', controller: 'catalog' do
@@ -39,9 +39,11 @@ Rails.application.routes.draw do
     end
   end
 
-  authenticate :user, lambda { |u| u.admin? } do
+  authenticate :user, ->(u) { u.admin? } do
     mount Sidekiq::Web => '/sidekiq'
   end
 
   get 'rights' => 'hyrax/pages#show', id: 'rights_page'
+
+  get '/concern/generic_works/:id/zip', to: 'cloud_storage_archives#zip', as: :download_all
 end

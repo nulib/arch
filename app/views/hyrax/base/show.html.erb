@@ -1,40 +1,60 @@
 <% provide :page_title, @presenter.page_title %>
-<div itemscope itemtype="http://schema.org/CreativeWork" class="row">
-  <div class="col-xs-12">
-    <header>
-      <%= render 'work_title', presenter: @presenter %>
-    </header>
 
-    <!-- Hide workflow states until styled a la visibility state. See isse #291. -->
-    <span class="hidden state state-<%= @presenter.workflow.state %>"><%= @presenter.workflow.state_label %></span>
+<%= render 'shared/citations' %>
 
-  </div>
-  <div class="col-sm-8">
-    <%= render 'work_description', presenter: @presenter %>
-
-    <%# Hide Hyrax's "Relationships" table if no relationships exist %>
-    <%# https://github.com/nulib/institutional-repository/issues/300 %>
-    <% if (!@presenter.member_of_collection_presenters.blank?) %>
-      <%= render 'relationships', presenter: @presenter %>
-    <% end %>
-
-    <%= render 'metadata', presenter: @presenter %>
-  </div>
-  <div class="col-sm-4">
-    <%= render "show_actions", presenter: @presenter %>
-    <%= t('.last_modified', value: @presenter.date_modified) %>
-    <%= render 'representative_media', presenter: @presenter %>
-    <%= render 'social_media' %>
-    <%= render 'citations', presenter: @presenter %>
-  </div>
-</div>
-
-<div class="row">
+<div class="row work-type">
   <div class="col-sm-12">
-    <%= render 'items', presenter: @presenter %>
-    <%= render 'workflow_actions_widget', presenter: @presenter %>
+    <%= render 'work_type', presenter: @presenter %>
+  </div>
+  <div itemscope itemtype="http://schema.org/CreativeWork" class="col-xs-12">
+    <%= render 'work_title', presenter: @presenter %>
+    <%= render 'show_actions', presenter: @presenter %>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="row">
+          <%= render 'workflow_actions_widget', presenter: @presenter %>
+          <% if @presenter.iiif_viewer? %>
+            <div class="col-sm-12">
+              <%= render 'representative_media', presenter: @presenter, viewer: true %>
+            </div>
+          <% end %>
+          <div class="col-sm-3 text-center">
+            <%= render 'representative_media', presenter: @presenter, viewer: false unless @presenter.iiif_viewer? %>
+            <% if (@presenter.public_member_presenters.any?) %>
+              <%= link_to("Download All Files (.zip)".html_safe, '', data: { 'download-deriv-type': 'zip', 'download-whole-work-deriv': @presenter.id}) %>
+            <% end %>
+            <%= render 'citations', presenter: @presenter %>
+            <%= render 'social_media' %>
+          </div>
+          <div class="col-sm-9">
+            <%= render 'work_description', presenter: @presenter %>
+            <%= render 'metadata', presenter: @presenter %>
+          </div>
+        </div>
+      </div>
+    </div><!-- /panel -->
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Relationships</h3>
+      </div>
+      <div class="panel-body">
+        <%= render 'relationships', presenter: @presenter %>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Items</h3>
+      </div>
+      <div class="panel-body">
+        <%= render 'items', presenter: @presenter %>
+      </div>
+    </div>
+
     <%# TODO: we may consider adding these partials in the future %>
-    <%#= render 'sharing_with', presenter: @presenter %>
-    <%#= render 'user_activity', presenter: @presenter %>
+    <%# = render 'sharing_with', presenter: @presenter %>
+    <%# = render 'user_activity', presenter: @presenter %>
+
   </div>
 </div>
