@@ -1,4 +1,8 @@
 
+// Homepage 3 photos across.  Override a bootstrap p style
+.landing-page .photo-feature-3-across .photo-feature p {
+  margin: 1em 0;
+}
 
 footer {
   a {
@@ -15,7 +19,6 @@ footer {
 }
 
 #department {
-  width: 700px / 1120px * 100%;
   h1 {
     margin: 0;
     padding: 0;
@@ -26,14 +29,37 @@ footer {
   ul > li {
     i {
       &:first-of-type {
-        padding-right: .5rem;
+        padding-right: 0.5rem;
       }
+    }
+  }
+
+  #left {
+    #northwestern {
+      a {
+        margin-top: 17.6px;
+      }
+    }
+  }
+}
+#bottom-bar {
+  padding: 36px 0;
+
+  #site-name {
+    h1 {
+      margin: 0;
     }
   }
 }
 
 #search {
-	width: 420px / 1120px * 100%;
+  width: 420px / 1120px * 100%;
+}
+
+// To keep global links dropdowns from showing through
+#main-content {
+  background: #fff;
+  font-size: 14px;
 }
 
 @media screen and (max-width: 768px) {
@@ -42,12 +68,8 @@ footer {
     > li {
       // Adds padding between sub navigation groups
       &.mobile-sub-nav-header {
-        padding-top: .5rem;
+        padding-top: 0.5rem;
       }
     }
   }
-}
-
-.landing-page .photo-feature-3-across .photo-feature p.link {
-    margin-top: 1rem;
 }

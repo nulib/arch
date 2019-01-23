@@ -1,13 +1,14 @@
 ---
 version: '3.4'
 volumes:
-  fedora: 
-  solr: 
-  db: 
-  localstack: 
+  fedora:
+  solr:
+  db:
+  localstack:
+  minio:
 services:
   fedora:
-    image: nulib/fcrepo4
+    image: nulib/fcrepo4:4.7.5
     volumes:
     - fedora:/data
     ports:
@@ -16,14 +17,10 @@ services:
     image: solr:7.2-alpine
     ports:
     - 8983:8983
+    - 9983:9983
     volumes:
     - solr:/opt/solr/server/solr/mycores
-    - "../../solr:/solr_config"
-    entrypoint:
-    - docker-entrypoint.sh
-    - solr-precreate
-    - development-core
-    - "/solr_config/conf"
+    command: solr -f -cloud
     healthcheck:
       test:
       - CMD
@@ -56,21 +53,16 @@ services:
     - POSTGRES_PASSWORD=d0ck3r
     ports:
     - 5433:5432
-  localstack:
-    image: localstack/localstack
-    ports:
-    - 4772:4572
+  minio:
+    image: minio/minio
     volumes:
-    - localstack:/data
+      - minio:/data
+    ports:
+      - "9001:9000"
     environment:
-      SERVICES: s3
-      DATA_DIR: "/data"
-    healthcheck:
-      test:
-      - CMD
-      - curl
-      - "-f"
-      - http://localhost:4572/
-      interval: 30s
-      timeout: 5s
-      retries: 3
+      MINIO_ACCESS_KEY: minio
+      MINIO_SECRET_KEY: minio123
+    command:
+      - minio
+      - server
+      - /data

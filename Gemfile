@@ -1,14 +1,13 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.1'
+gem 'rails', '~> 5.1.6'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.1.0'
+gem 'coffee-rails', '~> 4.2.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
@@ -21,11 +20,11 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-gem 'sidekiq'
-gem 'sinatra', '>= 2.0.0', :require => nil
 gem 'ezid-client'
+gem 'rubyzip', '>= 1.0.0', require: 'zip'
+gem 'sidekiq'
+gem 'sinatra', '>= 2.0.0', require: nil
 gem 'yaml_db'
-
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -34,7 +33,7 @@ gem 'yaml_db'
 # gem 'unicorn'
 
 gem 'hydra-derivatives', git: 'https://github.com/nulib/hydra-derivatives.git', branch: 'vips'
-gem 'hyrax', '~> 1.0', '>= 1.0.2'
+gem 'hyrax', github: 'nulib/hyrax', branch: '2.4.1-plus-be'
 
 # Admin users enabled by hydra-role-management
 gem 'hydra-role-management'
@@ -48,24 +47,31 @@ gem 'pg', '~> 0.21'
 gem 'sqlite3'
 
 gem 'config'
-gem 'rsolr', '~> 1.0'
 gem 'devise'
 gem 'devise-guests', '~> 0.3'
 gem 'omniauth-openam'
+gem 'recaptcha'
+gem 'rsolr', '~> 2.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 
 gem 'docker-stack'
 
+gem 'zk'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'better_errors'
-  gem 'solr_wrapper', '>= 0.3'
   gem 'binding_of_caller'
   gem 'byebug'
   gem 'capybara', '~> 2.8'
   gem 'fcrepo_wrapper'
   gem 'rspec-rails', '~> 3.6'
+  gem 'rubocop', '~> 0.49.1', require: false
+  gem 'rubocop-rspec', require: false
+  gem 'solr_wrapper', '>= 0.3'
+  gem 'webmock'
+  gem 'xray-rails'
 end
 
 group :aws, :test do
@@ -78,10 +84,15 @@ group :aws do
   gem 'carrierwave-aws'
   gem 'cloudfront-signer'
   gem 'redis-rails'
-  gem 'zk'
 end
 
-group :development do
+group :development, :test do
   gem 'pry-byebug'
+  gem 'pry-rails'
   gem 'rb-readline'
+end
+
+group :test do
+  gem 'database_cleaner'
+  gem 'factory_bot_rails'
 end

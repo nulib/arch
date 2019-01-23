@@ -1,44 +1,22 @@
 @import
   // 1. Abstracts - Configurations, helpers, mixins, etc.
-  'abstracts/mixins',
 
   // 2. Vendors
 
   // 3. Base stuff
-  'base/base',
-  'base/typography',
+  'base/hyrax_overrides',
 
   // 4. Layout-related sections
-  'layout/forms',
-  'layout/layout',
+  'layout/body',
+  'layout/header',
+  'layout/nav',
   'layout/sidebar',
-  'layout/tables',
 
   // 5. Components
-  'components/alerts',
-  'components/buttons',
-  'components/dropdown-toggle',
-  'components/facets',
-  'components/file_upload',
-  'components/icons',
-  'components/inputs',
-  'components/labels',
-  'components/lists',
-  'components/login-form',
-  'components/mce',
-  'components/nav',
-  'components/panels',
-  'components/save_widget',
-  'components/search_results',
-  'components/tabs',
-  'components/toggle',
+  'components/forms',
 
   // 6. Page-specific styles
-  'pages/admin-settings',
-  'pages/administrative-set',
-  'pages/collections',
-  'pages/create-collection',
-  'pages/generic-works',
+  'pages/edit-work',
   'pages/home-page';
 
-// 7. Themes
+  // 7. Themes

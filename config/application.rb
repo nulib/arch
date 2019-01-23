@@ -8,9 +8,8 @@ Bundler.require(*Rails.groups)
 
 module Nufia7
   class Application < Rails::Application
-
     config.generators do |g|
-      g.test_framework :rspec, :spec => true
+      g.test_framework :rspec, spec: true
     end
 
     # Settings in config/environments/* take precedence over those specified here.
@@ -27,12 +26,25 @@ module Nufia7
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
-    config.assets.paths << Rails.root.join("app", "assets", "fonts")
+    config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
 
     # The compile method (default in tinymce-rails 4.5.2) doesn't work when also
     # using tinymce-rails-imageupload, so revert to the :copy method
     # https://github.com/spohlenz/tinymce-rails/issues/183
     config.tinymce.install = :copy
+
+    if ENV['REDIS_HOST']
+      redis_host = ENV['REDIS_HOST']
+      redis_port = ENV['REDIS_PORT'] || 6379
+
+      config.cache_store = :redis_store, {
+        host: redis_host,
+        port: redis_port,
+        db: 0,
+        namespace: "_#{Rails.application.class.parent_name.downcase}_cache",
+        expires_in: 30.days
+      }
+    end
 
     config.before_initialize do
       if defined? ActiveElasticJob

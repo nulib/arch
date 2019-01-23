@@ -1,11 +1,7 @@
-active_job:
-  queue_adapter: active_elastic_job
 arch:
-  contact_email: digitalscholarship@northwestern.edu
   derivatives_path: /var/arch-derivatives
-  ffmpet_path: /usr/local/bin/ffmpeg
+  ffmpeg_path: /usr/local/bin/ffmpeg
   fits_path: /usr/local/fits/fits.sh
   google_analytics_id: UA-797260-32
   minter_state: /var/arch-working/minter-state
-  host: https://arch.library.northwestern.edu
   working_path: /var/arch-working

@@ -1,3 +1,5 @@
+require 'solrizer'
+
 Hyrax.config do |config|
   # Injected via `rails g hyrax:work GenericWork`
   config.register_curation_concern :generic_work
@@ -27,16 +29,16 @@ Hyrax.config do |config|
 
   # Enable displaying usage statistics in the UI
   # Defaults to false
-  if Rails.env.production? or Rails.env.staging?
-  # Requires a Google Analytics id and OAuth2 keyfile.  See README for more info
+  if Rails.env.production? || Rails.env.staging?
+    # Requires a Google Analytics id and OAuth2 keyfile.  See README for more info
     config.analytics = true
 
-  # Google Analytics tracking ID to gather usage statistics
+    # Google Analytics tracking ID to gather usage statistics
     config.google_analytics_id = Settings.arch.google_analytics_id
 
-  # Date you wish to start collecting Google Analytic statistics for
-  # Leaving it blank will set the start date to when ever the file was uploaded by
-  # NOTE: if you have always sent analytics to GA for downloads and page views leave this commented out
+    # Date you wish to start collecting Google Analytic statistics for
+    # Leaving it blank will set the start date to when ever the file was uploaded by
+    # NOTE: if you have always sent analytics to GA for downloads and page views leave this commented out
     config.analytic_start_date = ''
   end
 
@@ -61,7 +63,7 @@ Hyrax.config do |config|
   # config.noid_template = ".reeddeeddk"
 
   # Use the database-backed minter class
-  # config.noid_minter_class = ActiveFedora::Noid::Minter::Db
+  # config.noid_minter_class = Hyrax::Noid::Minter::Db
 
   # Store identifier minter's state in a file for later replayability
   config.minter_statefile = Settings.arch.minter_state
@@ -100,10 +102,11 @@ Hyrax.config do |config|
   # config.always_display_share_button = true
 
   # The user who runs batch jobs. Update this if you aren't using emails
-  # config.batch_user_key = 'batchuser@example.com'
+  config.batch_user_key = Settings.system_user
 
   # The user who runs audit jobs. Update this if you aren't using emails
-  # config.audit_user_key = 'audituser@example.com'
+  config.audit_user_key = Settings.system_user
+
   #
   # The banner image. Should be 5000px wide by 1000px tall
   # config.banner_image = 'https://cloud.githubusercontent.com/assets/92044/18370978/88ecac20-75f6-11e6-8399-6536640ef695.jpg'
@@ -116,7 +119,7 @@ Hyrax.config do |config|
     config.upload_path = ->() { Pathname(Settings.arch.working_path).join('uploads') }
     config.cache_path = ->() { Pathname(Settings.arch.working_path).join('uploads', 'cache') }
   end
-  
+
   # Location on local file system where derivatives will be stored
   # If you use a multi-server architecture, this MUST be a shared volume
   config.derivatives_path = Settings.arch.derivatives_path
@@ -131,7 +134,7 @@ Hyrax.config do |config|
   # Location on local file system where uploaded files will be staged
   # prior to being ingested into the repository or having derivatives generated.
   # If you use a multi-server architecture, this MUST be a shared volume.
-  config.working_path = Settings.arch.working_path || Rails.root.join( 'tmp', 'uploads')
+  config.working_path = Settings.arch.working_path || Rails.root.join('tmp', 'uploads')
 
   # Should the media display partial render a download link?
   # config.display_media_download_link = true
@@ -170,8 +173,13 @@ Hyrax.config do |config|
   # config.lock_time_to_live = 60_000
 
   ## Do not alter unless you understand how ActiveFedora handles URI/ID translation
-  # config.translate_id_to_uri = ActiveFedora::Noid.config.translate_id_to_uri
-  # config.translate_uri_to_id = ActiveFedora::Noid.config.translate_uri_to_id
+  # config.translate_id_to_uri = lambda do |uri|
+  #                                baseparts = 2 + [(Noid::Rails::Config.template.gsub(/\.[rsz]/, '').length.to_f / 2).ceil, 4].min
+  #                                uri.to_s.sub(baseurl, '').split('/', baseparts).last
+  #                              end
+  # config.translate_uri_to_id = lambda do |id|
+  #                                "#{ActiveFedora.fedora.host}#{ActiveFedora.fedora.base_path}/#{Noid::Rails.treeify(id)}"
+  #                              end
 
   ## Fedora import/export tool
   #
@@ -185,12 +193,10 @@ Hyrax.config do |config|
   # config.binaries_directory = "tmp/binaries"
 
   # Use the database-backed minter class
-  config.noid_minter_class = Class.new(ActiveFedora::Noid::Minter::Db) do
+  config.noid_minter_class = Class.new(Noid::Rails::Minter::Db) do
     def next_id
       result = super
-      while result =~ /^3b59/
-        result = super
-      end
+      result = super while result =~ /^3b59/
       result
     end
   end
@@ -200,14 +206,14 @@ Hyrax.config do |config|
     if defined? BrowseEverything
       config.browse_everything = BrowseEverything.config
     else
-      Rails.logger.warn "BrowseEverything is not installed"
+      Rails.logger.warn 'BrowseEverything is not installed'
     end
   rescue Errno::ENOENT
     config.browse_everything = nil
   end
 end
 
-Date::DATE_FORMATS[:standard] = "%m/%d/%Y"
+Date::DATE_FORMATS[:standard] = '%m/%d/%Y'
 
 Qa::Authorities::Local.register_subauthority('subjects', 'Qa::Authorities::Local::TableBasedAuthority')
 Qa::Authorities::Local.register_subauthority('languages', 'Qa::Authorities::Local::TableBasedAuthority')
