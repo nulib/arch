@@ -22,7 +22,7 @@ terms:
       active: false
     - id: http://rightsstatements.org/page/InC/1.0/?language=en
       term: In Copyright
-      active: true
+      active: false
     - id: https://creativecommons.org/licenses/by/4.0/
       term: Creative Commons BY Attribution 4.0 International
       active: true
