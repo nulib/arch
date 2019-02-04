@@ -1197,6 +1197,11 @@ GEM
       shex (~> 0.5, >= 0.5.2)
       sparql (~> 3.0)
       sparql-client (~> 3.0)
+    lograge (0.10.0)
+      actionpack (>= 4)
+      activesupport (>= 4)
+      railties (>= 4)
+      request_store (~> 1.0)
     loofah (2.2.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -1399,6 +1404,8 @@ GEM
       declarative (< 0.1.0)
       declarative-option (< 0.2.0)
       uber (< 0.2.0)
+    request_store (1.4.1)
+      rack (>= 1.4)
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
@@ -1597,6 +1604,7 @@ DEPENDENCIES
   hyrax!
   jbuilder (~> 2.0)
   jquery-rails
+  lograge
   omniauth-openam
   pg (~> 0.21)
   pry-byebug
