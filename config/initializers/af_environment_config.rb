@@ -42,11 +42,11 @@ class EnvironmentConfigurator < ActiveFedora::FileConfigurator
       return nil if hash.nil?
       {}.tap do |result|
         hash.each_pair do |k, v|
-          case v
-          when /^[0-9]+$/         then result[k] = v.to_i
-          when /^[0-9]+\.[0-9]+$/ then result[k] = v.to_f
-          else                         result[k] = v
-          end
+          result[k] = case v
+                      when /^[0-9]+$/         then v.to_i
+                      when /^[0-9]+\.[0-9]+$/ then v.to_f
+                      else v
+                      end
         end
       end
     end
