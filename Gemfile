@@ -86,6 +86,10 @@ group :aws do
   gem 'redis-rails'
 end
 
+group :production do
+  gem 'lograge'
+end
+
 group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
