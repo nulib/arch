@@ -84,11 +84,10 @@ unless Rails.env.production?
             obj.depositor = User.whois(obj.depositor)
           end
           [:read_users, :edit_users, :discover_users].each do |access_method|
-            if obj.respond_to?(access_method)
-              old_value = obj.send(:access_method)
-              new_value = old_value.map { |user| User.whois(user) }.compact
-              obj.send(:"#{access_method}=", new_value) unless new_value == old_value
-            end
+            next unless obj.respond_to?(access_method)
+            old_value = obj.send(:access_method)
+            new_value = old_value.map { |user| User.whois(user) }.compact
+            obj.send(:"#{access_method}=", new_value) unless new_value == old_value
           end
           obj.save
         rescue StandardError => err

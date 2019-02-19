@@ -30,7 +30,7 @@ class User < ApplicationRecord
       find_or_create_by(email: user_key)
     end
 
-    def from_omniauth(auth)
+    def from_omniauth(auth) # rubocop:disable Metrics/AbcSize
       username = auth.uid
       email = auth.info.email
       display_name = auth.extra.raw_info.values_at('givenName', 'sn').flatten.compact.join(' ')
@@ -49,7 +49,7 @@ class User < ApplicationRecord
 
     def whois(str)
       return nil if str.nil?
-      self.find_by('email = :str OR username = :str', str: str)&.user_key
+      find_by('email = :str OR username = :str', str: str)&.user_key
     end
   end
 end
