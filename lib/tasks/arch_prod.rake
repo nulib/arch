@@ -13,7 +13,7 @@ namespace :arch do
   end
 
   desc 'Rekey all user fields'
-  task :fix_user_fields do
+  task fix_user_fields: :environment do
     ActiveFedora::Base.find_each do |obj|
       begin
         obj.depositor = User.whois(obj.depositor) if obj.respond_to?(:depositor)
