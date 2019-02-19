@@ -33,13 +33,15 @@ class User < ApplicationRecord
     def from_omniauth(auth)
       username = auth.uid
       email = auth.info.email
+      display_name = auth.extra.raw_info.values_at('givenName', 'sn').flatten.compact.join(' ')
 
       (User.find_by(username: username) ||
         User.find_by(email: email) ||
-        User.create(username: username, email: email)).tap do |user|
-          if user.username.nil? || user.email.nil?
+        User.create(username: username, email: email, display_name: display_name)).tap do |user|
+          if user.username.nil? || user.email.nil? || user.display_name.nil?
             user.username = username
             user.email = email
+            user.display_name = display_name
             user.save
           end
         end
