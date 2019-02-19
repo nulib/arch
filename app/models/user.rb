@@ -25,22 +25,29 @@ class User < ApplicationRecord
     email
   end
 
-  def self.find_or_create_system_user(user_key)
-    find_or_create_by(email: user_key)
-  end
+  class << self
+    def find_or_create_system_user(user_key)
+      find_or_create_by(email: user_key)
+    end
 
-  def self.from_omniauth(auth)
-    username = auth.uid
-    email = auth.info.email
+    def from_omniauth(auth)
+      username = auth.uid
+      email = auth.info.email
 
-    (User.find_by(username: username) ||
-      User.find_by(email: email) ||
-      User.create(username: username, email: email)).tap do |user|
-        if user.username.nil? || user.email.nil?
-          user.username = username
-          user.email = email
-          user.save
+      (User.find_by(username: username) ||
+        User.find_by(email: email) ||
+        User.create(username: username, email: email)).tap do |user|
+          if user.username.nil? || user.email.nil?
+            user.username = username
+            user.email = email
+            user.save
+          end
         end
-      end
+    end
+
+    def whois(str)
+      return nil if str.nil?
+      self.find_by('email = :str OR username = :str', str: str)&.user_key
+    end
   end
 end
