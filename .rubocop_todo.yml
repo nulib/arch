@@ -11,6 +11,7 @@ Metrics/AbcSize:
   Max: 20
   Exclude:
     - 'app/services/work_zip_creator.rb'
+    - 'app/services/arch/user_service.rb'
 
 Metrics/ClassLength:
   Exclude:
@@ -32,6 +33,7 @@ Metrics/MethodLength:
     - 'app/controllers/catalog_controller.rb'
     - 'app/services/doi_minting_service.rb'
     - 'app/services/work_zip_creator.rb'
+    - 'app/services/arch/user_service.rb'
 
 Rails/FilePath:
   Exclude:
