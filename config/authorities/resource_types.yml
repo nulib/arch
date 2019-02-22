@@ -12,11 +12,11 @@ terms:
   - id: Image
     term: Image
   - id: Article
-    term: Journal Article
+    term: Article
   - id: Masters Thesis
     term: Masters Thesis
   - id: Part of Book
-    term: Book Chapter
+    term: Part of Book
   - id: Poster
     term: Poster
   - id: Presentation
