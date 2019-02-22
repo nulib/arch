@@ -1,11 +1,12 @@
 module Arch
   class UserService
     class << self
-      def rekey_users
+      def rekey_users # rubocop:disable Metrics/CyclomaticComplexity
         ActiveFedora::Base.find_each do |obj|
           begin
             Rails.logger.info("Updating #{obj.id}")
             obj.depositor = User.whois(obj.depositor) if obj.respond_to?(:depositor)
+            obj.proxy_depositor = User.whois(obj.proxy_depositor) if obj.respond_to?(:proxy_depositor) && obj.proxy_depositor.present?
             [:read_users, :edit_users, :discover_users].each do |access_method|
               next unless obj.respond_to?(access_method)
               old_value = obj.send(access_method)
