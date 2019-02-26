@@ -11,4 +11,9 @@ namespace :arch do
   task dump: :environment do
     puts YAML.dump Arch::SeedDataService.dump
   end
+
+  desc 'Rekey all user fields'
+  task fix_user_fields: :environment do
+    Arch::UserService.rekey_users
+  end
 end
