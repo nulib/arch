@@ -7,13 +7,6 @@ aws:
   endpoint: http://localhost:9002
   buckets:
     archives: test-archives
-doi_credentials:
-  default_shoulder: 'doi:10.5072/FK2'
-  user: 'apitest'
-  password: 'apitest'
-  host: 'ezid.lib.purdue.edu'
-  port: 443
-  use_ssl: true
 solrcloud: true
 zookeeper:
   connection_str: "localhost:9985/configs"
