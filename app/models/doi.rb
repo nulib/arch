@@ -2,7 +2,7 @@ class DOI
   attr_reader :document
 
   delegate :client, :server_reachable?, to: :class
-  delegate :id, :attributes, :attributes=, to: :document
+  delegate :attributes, :attributes=, to: :document
 
   TOMBSTONE_URL = 'https://www.datacite.org/invalid.html'.freeze
   UNPERMITTED_ATTRIBUTES = %w[created container metadataVersion published schemaVersion state updated xml].freeze
@@ -32,23 +32,40 @@ class DOI
   end
 
   def initialize(id = nil)
-    @document = Hashie::Mash.new(id: id, type: 'dois')
+    @document = Hashie::Mash.new(id: id.to_s.delete('doi:'), type: 'dois')
     reload
+  end
+
+  def id
+    return nil if document.id.blank?
+    ['doi', document.id].join(':')
   end
 
   def reload
     return if id.nil?
-    load_from(client.get("dois/#{id}"))
+    load_from(client.get("dois/#{document.id}"))
   end
 
   def create
-    attributes.prefix = Settings.doi_credentials.default_shoulder if id.nil?
+    attributes.prefix ||= Settings.doi_credentials.default_shoulder
     load_from(client.post('dois', to_json, content_type: 'application/vnd.api+json'))
   end
 
   def save
     return create if id.nil?
-    load_from(client.put("dois/#{id}", to_json, content_type: 'application/vnd.api+json'))
+    load_from(client.put("dois/#{document.id}", to_json, content_type: 'application/vnd.api+json'))
+  end
+
+  def hide!
+    event('hide')
+  end
+
+  def publish!
+    event('publish')
+  end
+
+  def register!
+    event('register')
   end
 
   def tombstone!
@@ -62,11 +79,17 @@ class DOI
 
   private
 
+    def event(state)
+      attributes.event = state
+      save
+    end
+
     def load_from(response)
       raise Faraday::ClientError, response unless response.success?
       @document = Hashie::Mash.new(JSON.parse(response.body)).data.tap do |result|
         result.delete('relationships')
         result.attributes.reject! { |k, _v| UNPERMITTED_ATTRIBUTES.include?(k) }
       end
+      self
     end
 end

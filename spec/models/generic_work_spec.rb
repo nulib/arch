@@ -10,6 +10,14 @@ RSpec.describe GenericWork do
   it { is_expected.to respond_to(:doi) }
 
   context 'doi minting' do
+    before do
+      stub_request(:get, 'datacite-test.example.org/heartbeat').to_return(status: 200, body: 'OK')
+
+      stub_request(:post, 'datacite-test.example.org/dois')
+        .with(basic_auth: ['arch-test-user', 'arch-test-pass'])
+        .to_return(status: 200, headers: { content_type: 'application/json' }, body: file_fixture('datacite_response.json').read)
+    end
+
     let(:work) do
       described_class.create(title: ['title'])
     end

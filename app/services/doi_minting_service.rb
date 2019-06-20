@@ -25,7 +25,7 @@ class DoiMintingService
   end
 
   def self.tombstone_identifier_for(work)
-    DoiMintingService.new(work).tombstone
+    DoiMintingService.new(work).tombstone!
   end
 
   def initialize(obj)
@@ -36,7 +36,7 @@ class DoiMintingService
   def run
     return unless DOI.configured? && DOI.server_reachable?
     doi.attributes = metadata
-    doi.save.tap do |result|
+    doi.publish!.tap do |result|
       if work.doi.nil?
         work.doi = result.id
         work.save
@@ -87,7 +87,7 @@ class DoiMintingService
     end
 
     def dates_created
-      list_or_unknown(date_created).collect do |v|
+      list_or_unknown(work.date_created).collect do |v|
         { date: v, dateType: 'Created' }
       end
     end

@@ -1,0 +1,25 @@
+{
+  "data": {
+    "id": "10.21985/N2-abcd-1234",
+    "type": "dois",
+    "attributes": {
+      "doi": "10.21985/N2-abcd-1234",
+      "prefix": "10.21985",
+      "suffix": "N2-abcd-1234",
+      "identifiers": null,
+      "creators": [{
+        "name": "Unknown",
+        "nameIdentifiers": [{}]
+      }],
+      "titles": [{
+        "lang": "und",
+        "title": "title"
+      }],
+      "publisher": "Unknown",
+      "publicationYear": "Unknown",
+      "url": "http://www.example.org/path/to/generic/work",
+      "isActive": true,
+      "state": "findable"
+    }
+  }
+}
