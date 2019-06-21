@@ -1,4 +1,16 @@
 class DOI
+  class Error < StandardError
+    attr_reader :response
+
+    def initialize(response)
+      @response = response
+    end
+
+    def to_s
+      "#{response.status} #{response.reason_phrase}\n\t#{response.body}"
+    end
+  end
+
   attr_reader :document
 
   delegate :client, :server_reachable?, to: :class
@@ -46,13 +58,13 @@ class DOI
     load_from(client.get("dois/#{document.id}"))
   end
 
-  def create
+  def register
     attributes.prefix ||= Settings.doi_credentials.default_shoulder
     load_from(client.post('dois', to_json, content_type: 'application/vnd.api+json'))
   end
 
   def save
-    return create if document.id.nil?
+    register if document.id.nil?
     load_from(client.put("dois/#{document.id}", to_json, content_type: 'application/vnd.api+json'))
   end
 
@@ -85,7 +97,7 @@ class DOI
     end
 
     def load_from(response)
-      raise Faraday::ClientError, response unless response.success?
+      raise Error, response unless response.success?
       @document = Hashie::Mash.new(JSON.parse(response.body)).data.tap do |result|
         result.delete('relationships')
         result.attributes.reject! { |k, _v| UNPERMITTED_ATTRIBUTES.include?(k) }
