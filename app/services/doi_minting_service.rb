@@ -52,18 +52,16 @@ class DoiMintingService
   private
 
     def metadata
-      Hashie::Mash.new(id: work.doi,
-                       type: 'dois',
-                       attributes: {
-                         doi: work.doi,
-                         creators: creators,
-                         titles: titles,
-                         publisher: publishers,
-                         dates: [dates_created].flatten,
-                         publicationYear: dates_created.first[:date],
-                         types: resource_type,
-                         url: url
-                       })
+      Hashie::Mash.new(
+        doi: work.doi,
+        creators: creators,
+        titles: titles,
+        publisher: publishers,
+        dates: [dates_created].flatten,
+        publicationYear: dates_created.first[:date],
+        types: resource_type,
+        url: url
+      )
     end
 
     def list_or_unknown(value)
