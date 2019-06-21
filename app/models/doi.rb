@@ -52,7 +52,7 @@ class DOI
   end
 
   def save
-    return create if id.nil?
+    return create if document.id.nil?
     load_from(client.put("dois/#{document.id}", to_json, content_type: 'application/vnd.api+json'))
   end
 
