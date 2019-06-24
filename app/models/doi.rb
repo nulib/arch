@@ -63,22 +63,19 @@ class DOI
     attributes.delete('event')
     load_from(client.post('dois', to_json, content_type: 'application/vnd.api+json'))
   end
+  alias_method :register!, :register
 
   def save
-    register if document.id.blank?
     load_from(client.put("dois/#{document.id}", to_json, content_type: 'application/vnd.api+json'))
   end
 
   def hide!
-    event('hide')
+    document.id.blank? ? register : event('hide')
   end
 
   def publish!
+    register if document.id.blank?
     event('publish')
-  end
-
-  def register!
-    event('register')
   end
 
   def tombstone!
