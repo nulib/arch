@@ -60,11 +60,12 @@ class DOI
 
   def register
     attributes.prefix ||= Settings.doi_credentials.default_shoulder
+    attributes.delete('event')
     load_from(client.post('dois', to_json, content_type: 'application/vnd.api+json'))
   end
 
   def save
-    register if document.id.nil?
+    register if document.id.blank?
     load_from(client.put("dois/#{document.id}", to_json, content_type: 'application/vnd.api+json'))
   end
 
