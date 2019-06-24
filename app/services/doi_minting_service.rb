@@ -25,7 +25,7 @@ class DoiMintingService
   end
 
   def self.tombstone_identifier_for(work)
-    DoiMintingService.new(work).tombstone!
+    DoiMintingService.new(work).tombstone
   end
 
   def initialize(obj)
