@@ -75,8 +75,8 @@ class DoiMintingService
     end
 
     def titles
-      list_or_unknown(work.title).collect do |_v|
-        { title: 'Test Title', lang: 'und' }
+      list_or_unknown(work.title).collect do |v|
+        { title: v, lang: 'und' }
       end
     end
 
