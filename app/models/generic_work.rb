@@ -19,7 +19,7 @@ class GenericWork < ActiveFedora::Base
   end
 
   before_destroy do
-    DoiMintingService.tombstone_identifier_for(self) if doi
+    DoiMintingService.tombstone_identifier_for(self) if doi.present?
   end
 
   include ::Hyrax::BasicMetadata
