@@ -8,12 +8,12 @@ aws:
   buckets:
     archives: test-archives
 doi_credentials:
-  default_shoulder: 'doi:10.5072/FK2'
-  user: 'apitest'
-  password: 'apitest'
-  host: 'ezid.lib.purdue.edu'
-  port: 443
-  use_ssl: true
+  default_shoulder: '10.21985/N2'
+  user: 'arch-test-user'
+  password: 'arch-test-pass'
+  host: 'datacite-test.example.org'
+  port: 80
+  use_ssl: false
 solrcloud: true
 zookeeper:
   connection_str: "localhost:9985/configs"
