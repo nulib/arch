@@ -2,9 +2,9 @@ class DoiMintingService
   include Rails.application.routes.url_helpers
   include ActionDispatch::Routing::PolymorphicRoutes
 
-  attr_reader :work
+  attr_reader :work, :doi
 
-  EZID_MAP = {
+  RESOURCE_TYPE_MAP = {
     'Audio' =>          'Sound',
     'Book' =>           'Text',
     'Dataset' =>        'Dataset',
@@ -30,88 +30,71 @@ class DoiMintingService
 
   def initialize(obj)
     @work = obj
+    @doi = DOI.new(obj.doi)
   end
 
   def run
-    return unless identifier_server_reachable?
-    if work.doi.present?
-      update_metadata
-    else
-      mint_doi
+    return unless DOI.configured? && DOI.server_reachable?
+    doi.attributes = metadata
+    doi.publish!.tap do |result|
+      if work.doi.nil?
+        work.doi = result.id
+        work.save
+      end
     end
   end
 
   def tombstone
-    return unless identifier_server_reachable?
-    tombstone_identifier if work.doi.present?
+    return unless DOI.configured? && DOI.server_reachable?
+    doi.tombstone!
   end
 
   private
 
-    def tombstone_identifier
-      identifier = minter.find(work.doi)
-      identifier.status = Ezid::Status::UNAVAILABLE
-      identifier.save
-    end
-
-    def update_metadata
-      return if minter_user == 'apitest'
-      minter.modify(work.doi, metadata)
-    end
-
-    def mint_doi
-      work.doi = minter.mint(metadata).id
-      work.save
-    end
-
-    def minter_user
-      Ezid::Client.config.user
-    end
-
-    def minter
-      Ezid::Identifier
-    end
-
-    # Any error raised during connection is considered false
-    def identifier_server_reachable?
-      Ezid::Client.new.server_status.up?
-    rescue
-      false
-    end
-
     def metadata
-      {
-        'datacite.creator' => creator,
-        'datacite.title' => title,
-        'datacite.publisher' => publisher,
-        'datacite.publicationyear' => date_created,
-        'datacite.resourcetype' => resource_type,
-        target: url
-      }
+      Hashie::Mash.new(
+        doi: work.doi,
+        creators: creators,
+        titles: titles,
+        publisher: publishers,
+        dates: [dates_created].flatten,
+        publicationYear: dates_created.first[:date],
+        types: resource_type,
+        url: url
+      )
     end
 
-    def creator
-      return 'Unknown' if work.creator.empty?
-      work.creator.join('; ')
+    def list_or_unknown(value)
+      value.empty? ? ['Unknown'] : value
     end
 
-    def title
-      return 'Unknown' if work.title.empty?
-      work.title.join('; ')
+    def creators
+      list_or_unknown(work.creator).collect do |v|
+        { name: v, nameIdentifiers: [{}] }
+      end
     end
 
-    def publisher
-      return 'Unknown' if work.publisher.empty?
-      work.publisher.join('; ')
+    def titles
+      list_or_unknown(work.title).collect do |v|
+        { title: v, lang: 'und' }
+      end
     end
 
-    def date_created
-      return 'Unknown' if work.date_created.empty?
-      work.date_created.join('; ')
+    def publishers
+      list_or_unknown(work.publisher).join('; ')
+    end
+
+    def dates_created
+      list_or_unknown(work.date_created).collect do |v|
+        { date: v, dateType: 'Created' }
+      end
     end
 
     def resource_type
-      EZID_MAP.keys.include?(work.resource_type.first) ? EZID_MAP.fetch(work.resource_type.first) : 'Other'
+      {
+        resourceTypeGeneral: RESOURCE_TYPE_MAP.fetch(work.resource_type.first, 'Other'),
+        resourceType: work.resource_type.first
+      }
     end
 
     def url
