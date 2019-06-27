@@ -63,7 +63,7 @@ class DOI
     attributes.delete('event')
     load_from(client.post('dois', to_json, content_type: 'application/vnd.api+json'))
   end
-  alias_method :register!, :register
+  alias register! register
 
   def save
     load_from(client.put("dois/#{document.id}", to_json, content_type: 'application/vnd.api+json'))

@@ -16,6 +16,10 @@ RSpec.describe GenericWork do
       stub_request(:post, 'datacite-test.example.org/dois')
         .with(basic_auth: ['arch-test-user', 'arch-test-pass'])
         .to_return(status: 200, headers: { content_type: 'application/json' }, body: file_fixture('datacite_response.json').read)
+
+      stub_request(:put, 'datacite-test.example.org/dois/10.21985/N2-abcd-1234')
+        .with(basic_auth: ['arch-test-user', 'arch-test-pass'])
+        .to_return(status: 200, headers: { content_type: 'application/json' }, body: file_fixture('datacite_response.json').read)
     end
 
     let(:work) do
