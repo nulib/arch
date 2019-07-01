@@ -1065,6 +1065,7 @@ GEM
     hashdiff (0.3.8)
     hashie (3.6.0)
     hiredis (0.6.3)
+    honeybadger (4.3.1)
     htmlentities (4.3.4)
     http_logger (0.5.1)
     httpclient (2.8.3)
@@ -1595,6 +1596,7 @@ DEPENDENCIES
   docker-stack
   factory_bot_rails
   fcrepo_wrapper
+  honeybadger (~> 4.0)
   hydra-derivatives!
   hydra-role-management
   hyrax!
