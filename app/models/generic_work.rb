@@ -2,6 +2,8 @@
 #  `rails generate hyrax:work GenericWork`
 class GenericWork < ActiveFedora::Base
   include ::Hyrax::WorkBehavior
+  include MicroserviceMinter
+
   # Change this to restrict which works can be added as a child.
   # self.valid_child_concerns = []
 
