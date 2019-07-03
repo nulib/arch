@@ -22,10 +22,16 @@ class DoiMintingService
 
   def self.mint_identifier_for(work)
     DoiMintingService.new(work).run
+  rescue => err
+    Rails.logger.warn("DOI not assigned for work #{work.id}: #{err.message}")
+    Honeybadger.notify(err)
   end
 
   def self.tombstone_identifier_for(work)
     DoiMintingService.new(work).tombstone
+  rescue => err
+    Rails.logger.warn("DOI #{work.doi} for work #{work.id} not tombstoned: #{err.message}")
+    Honeybadger.notify(err)
   end
 
   def initialize(obj)
