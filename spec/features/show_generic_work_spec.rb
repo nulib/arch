@@ -6,7 +6,7 @@ RSpec.feature 'Display a musical work' do
     GenericWork.new.tap do |work|
       work.creator = ['Creator 1']
       work.title = ['work title']
-      work.doi = 'doi:test_doi'
+      work.doi = 'test_doi'
       work.apply_depositor_metadata('user')
       work.visibility = 'open'
       work.save
@@ -18,7 +18,7 @@ RSpec.feature 'Display a musical work' do
       visit(hyrax_generic_work_path(work.id))
       expect(page).to have_content('Creator 1')
       expect(page).to have_content('work title')
-      expect(page).to have_content('doi:test_doi')
+      expect(page).to have_content('https://doi.org/test_doi')
     end
   end
 end
