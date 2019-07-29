@@ -34,7 +34,7 @@ RSpec.describe Hyrax::GenericWorkPresenter do
 
     describe '#doi' do
       it 'returns the doi' do
-        expect(presenter.doi).to eq('https://doi.org/test_doi')
+        expect(presenter.doi).to eq('test_doi')
       end
     end
   end
