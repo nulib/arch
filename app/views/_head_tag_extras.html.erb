@@ -1,5 +1,5 @@
 <!-- File Override: gem file 'sufia-7.3.0/app/views/_head_tag_extras.erb' -->
-<% if (@presenter.class.method_defined?(:doi_link)) %>
-<meta name="citation_doi" content="<%= @presenter.doi_link %>">
+<% if (@presenter.class.method_defined?(:doi)) %>
+<meta name="citation_doi" content="<%= @presenter.doi %>">
 <% end %>
 <%= favicon_link_tag %>
