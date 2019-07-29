@@ -3,10 +3,6 @@
 module Hyrax
   class GenericWorkPresenter < Hyrax::WorkShowPresenter
     def doi
-      solr_document.doi.first unless solr_document.doi.empty?
-    end
-
-    def doi_link
       "https://doi.org/#{solr_document.doi.first.split(':').last}" unless solr_document.doi.empty?
     end
 
