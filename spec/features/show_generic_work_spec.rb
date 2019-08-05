@@ -6,7 +6,7 @@ RSpec.feature 'Display a musical work' do
     GenericWork.new.tap do |work|
       work.creator = ['Creator 1']
       work.title = ['work title']
-      work.doi = 'doi:test_doi'
+      work.doi = 'test_doi'
       work.apply_depositor_metadata('user')
       work.visibility = 'open'
       work.save
