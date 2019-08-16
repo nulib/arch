@@ -2,6 +2,7 @@
 # Build the support container
 FROM ruby:2.4.4-slim-jessie as base
 LABEL edu.northwestern.library.app=Arch \
+      edu.northwestern.library.stage=build \
       edu.northwestern.library.role=support
 
 ENV BUILD_DEPS="build-essential libpq-dev libsqlite3-dev tzdata locales git curl unzip" \
@@ -51,6 +52,7 @@ RUN bundle install --jobs 20 --retry 5 --with aws:postgres --without development
 # Build the Application container
 FROM ruby:2.4.4-slim-jessie as app
 LABEL edu.northwestern.library.app=Arch \
+      edu.northwestern.library.stage=run \
       edu.northwestern.library.role=app
 
 
