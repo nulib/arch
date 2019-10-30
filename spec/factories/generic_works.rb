@@ -1,13 +1,13 @@
 FactoryBot.define do
   factory :generic_work, aliases: [:work], class: GenericWork do
-    title ['Test title']
-    creator ['Test creator']
-    rights_statement ['http://rightsstatements.org/vocab/NKC/1.0/']
-    description ['Test description']
-    keyword ['Test keyword']
-    visibility Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC
-    date_created ['197x']
-    subject ['Just Northwestern Things']
+    title { ['Test title'] }
+    creator { ['Test creator'] }
+    rights_statement { ['http://rightsstatements.org/vocab/NKC/1.0/'] }
+    description { ['Test description'] }
+    keyword { ['Test keyword'] }
+    visibility { Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC }
+    date_created { ['197x'] }
+    subject { ['Just Northwestern Things'] }
 
     transient do
       user { FactoryBot.create(:user) }
