@@ -1445,7 +1445,7 @@ GEM
     ruby-progressbar (1.10.0)
     ruby-vips (2.0.13)
       ffi (~> 1.9)
-    rubyzip (1.2.2)
+    rubyzip (2.0.0)
     safe_yaml (1.0.4)
     samvera-nesting_indexer (2.0.0)
       dry-equalizer
