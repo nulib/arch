@@ -1,6 +1,6 @@
 #################################
 # Build the support container
-FROM ruby:2.4.4-slim-jessie as base
+FROM ruby:2.6.5-slim-stretch as base
 LABEL edu.northwestern.library.app=Arch \
       edu.northwestern.library.stage=build \
       edu.northwestern.library.role=support
@@ -37,7 +37,11 @@ RUN \
     cd /tmp && \
     curl -O https://s3.amazonaws.com/nul-repo-deploy/fits-${FITS_VERSION}.zip && \
     cd /tmp/stage && \
-    unzip -o /tmp/fits-${FITS_VERSION}.zip
+    unzip -o /tmp/fits-${FITS_VERSION}.zip && \
+    \
+    # Update bundler
+    gem update --system && \
+    gem update bundler
 
 USER app
 WORKDIR /home/app/current
@@ -45,12 +49,13 @@ WORKDIR /home/app/current
 COPY --chown=app:app Gemfile /home/app/current/
 COPY --chown=app:app Gemfile.lock /home/app/current/
 
-RUN bundle install --jobs 20 --retry 5 --with aws:postgres --without development:test --path vendor/gems && \
+RUN chown -R app:app /home/app/current &&  \
+    bundle install --jobs 20 --retry 5 --with aws:postgres --without development:test --path vendor/gems && \
     rm -rf vendor/gems/ruby/*/cache/* vendor/gems/ruby/*/bundler/gems/*/.git
 
 #################################
 # Build the Application container
-FROM ruby:2.4.4-slim-jessie as app
+FROM ruby:2.6.5-slim-stretch as app
 LABEL edu.northwestern.library.app=Arch \
       edu.northwestern.library.stage=run \
       edu.northwestern.library.role=app
@@ -59,13 +64,13 @@ LABEL edu.northwestern.library.app=Arch \
 RUN useradd -m -U app && \
     su -s /bin/bash -c "mkdir -p /home/app/current/vendor/gems" app
 
-ENV RUNTIME_DEPS="imagemagick libexif12 libexpat1 libgif4 glib-2.0 libgsf-1-114 libjpeg62-turbo libpng12-0 libpoppler-glib8 libpq5 libreoffice librsvg2-2 libsqlite3-0 libtiff5 locales nodejs openjdk-7-jre postgresql-client tzdata yarn" \
+ENV RUNTIME_DEPS="imagemagick libexif12 libexpat1 libgif7 glib-2.0 libgsf-1-114 libjpeg62-turbo libpng16-16 libpoppler-glib8 libpq5 libreoffice librsvg2-2 libsqlite3-0 libtiff5 locales nodejs openjdk-8-jre postgresql-client tzdata yarn" \
     DEBIAN_FRONTEND="noninteractive" \
     RAILS_ENV="production" \
     LANG="en_US.UTF-8" \
     FITS_VERSION="1.0.5"
 
-RUN \
+RUN mkdir -p /usr/share/man/man1 /usr/share/man/man7 && \
     apt-get update -qq && \
     apt-get install -y curl gnupg2 --no-install-recommends && \
     # Install NodeJS and Yarn package repos
@@ -95,6 +100,10 @@ RUN cd /tmp && \
     curl -O https://s3.amazonaws.com/nul-repo-deploy/vips_8.6.3-1_amd64.deb && \
     dpkg -i /tmp/vips_8.6.3-1_amd64.deb && \
     rm /tmp/vips_8.6.3-1_amd64.deb
+
+# Update Bundler
+RUN gem update --system && \
+    gem update bundler
 
 COPY --from=base /tmp/stage/bin/* /usr/local/bin/
 COPY --from=base /tmp/stage/fits-${FITS_VERSION} /usr/local/fits
