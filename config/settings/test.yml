@@ -7,13 +7,16 @@ aws:
   endpoint: http://localhost:9002
   buckets:
     archives: test-archives
+    proquest: test-proquest
 doi_credentials:
-  default_shoulder: '10.21985/N2'
-  user: 'arch-test-user'
-  password: 'arch-test-pass'
-  host: 'datacite-test.example.org'
+  default_shoulder: "10.21985/N2"
+  user: "arch-test-user"
+  password: "arch-test-pass"
+  host: "datacite-test.example.org"
   port: 80
   use_ssl: false
 solrcloud: true
 zookeeper:
   connection_str: "localhost:9985/configs"
+proquest:
+  dissertation_depositor: registered
