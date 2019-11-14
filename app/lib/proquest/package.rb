@@ -31,7 +31,7 @@ class Proquest::Package
     end
 
     def unzipped_file_path
-      Pathname.new(temp_package_dir).join(s3_package.key)
+      Pathname.new(temp_package_dir).join(File.basename(s3_package.key))
     end
 
     def unzipped_file_list
