@@ -4,4 +4,5 @@
 log/*
 public/assets
 tmp/*
+Dockerfile
 Jenkinsfile
