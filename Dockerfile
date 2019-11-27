@@ -80,29 +80,27 @@ RUN mkdir -p /usr/share/man/man1 /usr/share/man/man7 && \
     # Install runtime dependencies
     apt-get update -qq && \
     apt-get install -y $RUNTIME_DEPS --no-install-recommends && \
-    # Clean up package cruft
-    apt-get clean -y && \
-    rm -rf /var/lib/apt/lists/* && \
     # Install webpack
     alias nodejs=node && \
-    yarn add webpack
-
-RUN \
+    yarn add webpack && \
     # Set locale
     dpkg-reconfigure -f noninteractive tzdata && \
     sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
     echo 'LANG="en_US.UTF-8"'>/etc/default/locale && \
     dpkg-reconfigure --frontend=noninteractive locales && \
-    update-locale LANG=en_US.UTF-8
-
-# Install VIPS
-RUN cd /tmp && \
-    curl -O https://s3.amazonaws.com/nul-repo-deploy/vips_8.6.3-1_amd64.deb && \
-    dpkg -i /tmp/vips_8.6.3-1_amd64.deb && \
-    rm /tmp/vips_8.6.3-1_amd64.deb
-
-# Update Bundler
-RUN gem update --system && \
+    update-locale LANG=en_US.UTF-8 && \
+    # Install VIPS
+    cd /tmp && \
+    curl -sO https://s3.amazonaws.com/nul-repo-deploy/packages/libvips-tools_8.7.4-1_amd64.deb && \
+    curl -sO https://s3.amazonaws.com/nul-repo-deploy/packages/libvips-dev_8.7.4-1_amd64.deb && \
+    curl -sO https://s3.amazonaws.com/nul-repo-deploy/packages/libvips42_8.7.4-1_amd64.deb && \
+    curl -sO https://s3.amazonaws.com/nul-repo-deploy/packages/gir1.2-vips-8.0_8.7.4-1_amd64.deb && \
+    apt-get install -y $(find . -name '*.deb') && \
+    # Clean up package cruft
+    apt-get clean -y && \
+    rm -rf /var/lib/apt/lists/* /tmp/*.deb && \
+    # Update Bundler
+    gem update --system && \
     gem update bundler
 
 COPY --from=base /tmp/stage/bin/* /usr/local/bin/
