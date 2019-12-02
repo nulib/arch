@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Proquest::Metadata do
-  let(:today) { Date.parse('2019-10-31') }
+  let(:today) { Time.zone.parse('2019-10-31').to_date }
 
   describe '#proquest_metadata' do
     context 'etd with embargo code 0 (no embargo)' do
@@ -10,7 +10,8 @@ RSpec.describe Proquest::Metadata do
 
       it 'extracts metadata (without an embargo) and file list' do
         expect(record.proquest_metadata).to eq([{ creator: ['Last, First Middle'],
-                                                  identifier: ['http://dissertations.umi.com/northwestern:12345'],
+                                                  date_uploaded: today,
+                                                  identifier: ['http://dissertations.umi.com/northwestern:12345', 'proquest'],
                                                   keyword: ['keyword1', 'keyword2', 'Architecture', 'Quantum physics', 'Animal behavior'],
                                                   language: ['en'],
                                                   resource_type: ['Dissertation'],

@@ -1,8 +1,9 @@
 class Proquest::Metadata
-  attr_reader :metadata
+  attr_reader :metadata, :proquest_zip, :today
 
   def initialize(metadata_file, today = Time.zone.today)
     @metadata = File.open(metadata_file) { |f| Nokogiri::XML(f) }
+    @proquest_zip = Pathname(metadata_file).parent.basename.to_s
     @today = today
   end
 
@@ -16,6 +17,7 @@ class Proquest::Metadata
       {
         admin_set_id: @admin_set_id,
         creator: creators,
+        date_uploaded: today,
         depositor: Settings.dissertation_depositor,
         embargo_release_date: embargo_release_date,
         identifier: identifier,
@@ -59,7 +61,7 @@ class Proquest::Metadata
     end
 
     def identifier
-      Array(metadata.xpath('//DISS_description/@external_id').text)
+      [metadata.xpath('//DISS_description/@external_id').text, proquest_zip]
     end
 
     def language
@@ -74,8 +76,8 @@ class Proquest::Metadata
       end
     end
 
-    def embargo_release_date # rubocop:disable Metrics/CyclomaticComplexity
-      release_date = [accept_date, @today].max
+    def embargo_release_date # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity
+      release_date = [accept_date, today].max
 
       case embargo_code
       when 0
@@ -87,10 +89,10 @@ class Proquest::Metadata
       when 3
         release_date += 2.years
       when 4
-        release_date = remove_date.present? ? remove_date : @today + 200.years
+        release_date = remove_date.present? ? remove_date : today + 200.years
       end
 
-      release_date < @today ? nil : release_date.to_s
+      release_date < today ? nil : release_date.to_s
     end
 
     def embargo_code
