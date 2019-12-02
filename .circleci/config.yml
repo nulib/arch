@@ -99,6 +99,7 @@ workflows:
                 - /^deploy\/.+/
           cache-key: docker-stages
           cache-stages: build run
+          image: nulib/arch
       - deploy:
           requires:
             - docker-cache/publish
