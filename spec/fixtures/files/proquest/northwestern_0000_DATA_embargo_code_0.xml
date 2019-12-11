@@ -109,9 +109,7 @@
   </DISS_description>
   <DISS_content>
     <DISS_abstract>
-      <DISS_para>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus iaculis pulvinar nisl, sit amet hendrerit dui posuere rhoncus. Suspendisse vestibulum nisl vestibulum cursus tristique. </DISS_para>
-      <DISS_para>Nam felis ex, consequat eget lacus a, venenatis facilisis est. </DISS_para>
-      <DISS_para>Pellentesque non placerat lacus. Cras aliquam efficitur dolor. Morbi quis imperdiet lorem. Vestibulum ligula nibh, sagittis quis ornare id, tincidunt id augue. </DISS_para>
+      <DISS_para>Lorem ipsum dolor sit amet</DISS_para>
     </DISS_abstract>
     <DISS_supp_abstract/>
     <DISS_binary type="PDF">test_0000.pdf</DISS_binary>
