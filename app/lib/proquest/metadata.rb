@@ -19,12 +19,14 @@ class Proquest::Metadata
         creator: creators,
         date_uploaded: today,
         depositor: Settings.dissertation_depositor,
+        description: description,
         embargo_release_date: embargo_release_date,
         identifier: identifier,
         keyword: keywords.uniq.flatten,
         language: language,
         resource_type: ['Dissertation'],
         rights_statement: ['http://rightsstatements.org/vocab/InC/1.0/'],
+        subject: subject,
         title: title,
         visibility_after_embargo: Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC,
         visibility_during_embargo: Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PRIVATE,
@@ -52,12 +54,15 @@ class Proquest::Metadata
     end
 
     def keywords
-      keywords = metadata.xpath('//DISS_description/DISS_categorization/DISS_keyword').text.split(', ')
-      keywords << metadata.xpath('//DISS_description/DISS_categorization/DISS_category/DISS_cat_desc').map(&:text)
+      metadata.xpath('//DISS_description/DISS_categorization/DISS_keyword').text.split(', ')
+    end
+
+    def subject
+      metadata.xpath('//DISS_description/DISS_categorization/DISS_category/DISS_cat_desc').map(&:text)
     end
 
     def description
-      Array(metadata.xpath('//DISS_content/DISS_abstract').text)
+      metadata.xpath('//DISS_content/DISS_abstract/DISS_para').map { |description| description.text.strip }
     end
 
     def identifier
