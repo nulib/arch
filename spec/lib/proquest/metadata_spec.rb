@@ -9,9 +9,11 @@ RSpec.describe Proquest::Metadata do
       let(:record) { described_class.new(xml, today) }
 
       it 'extracts metadata (without an embargo) and file list' do
-        expect(record.proquest_metadata).to eq([{ creator: ['Last, First Middle'],
+        expect(record.proquest_metadata).to eq([{ admin_set_id: AdminSet::DEFAULT_ID,
+                                                  creator: ['Last, First Middle'],
                                                   date_uploaded: today,
-                                                  description: ['Lorem ipsum dolor sit amet'],
+                                                  depositor: 'registered',
+                                                  description: ['Lorem ipsum. Dolor sit amet.'],
                                                   identifier: ['http://dissertations.umi.com/northwestern:12345', 'proquest'],
                                                   keyword: ['keyword1', 'keyword2'],
                                                   language: ['en'],
