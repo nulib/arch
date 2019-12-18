@@ -5,6 +5,7 @@ RSpec.describe Proquest::Package do
   let(:package) { Aws::S3::Object.new(client: Aws::S3::Client.new, bucket_name: Settings.aws.buckets.proquest, key: File.basename(zip)) }
 
   before do
+    AdminSet.find_or_create_default_admin_set_id
     User.find_or_create_by(username: 'registered')
     package.upload_file(zip)
   end

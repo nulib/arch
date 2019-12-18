@@ -15,10 +15,10 @@ class Proquest::Metadata
 
     def work_attributes
       {
-        admin_set_id: @admin_set_id,
+        admin_set_id: AdminSet::DEFAULT_ID,
         creator: creators,
         date_uploaded: today,
-        depositor: Settings.dissertation_depositor,
+        depositor: Settings.proquest.dissertation_depositor,
         description: description,
         embargo_release_date: embargo_release_date,
         identifier: identifier,
@@ -31,7 +31,7 @@ class Proquest::Metadata
         visibility_after_embargo: Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC,
         visibility_during_embargo: Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PRIVATE,
         visibility: visibility
-      }.reject! { |_k, v| v.blank? }
+      }.compact
     end
 
     def file_list
@@ -62,7 +62,7 @@ class Proquest::Metadata
     end
 
     def description
-      metadata.xpath('//DISS_content/DISS_abstract/DISS_para').map { |description| description.text.strip }
+      Array(metadata.xpath('//DISS_content/DISS_abstract/DISS_para').map(&:text).join(' '))
     end
 
     def identifier
