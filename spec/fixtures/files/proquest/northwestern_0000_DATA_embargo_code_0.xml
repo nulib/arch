@@ -109,7 +109,8 @@
   </DISS_description>
   <DISS_content>
     <DISS_abstract>
-      <DISS_para>Lorem ipsum dolor sit amet</DISS_para>
+      <DISS_para>Lorem ipsum.</DISS_para>
+      <DISS_para>Dolor sit amet.</DISS_para>
     </DISS_abstract>
     <DISS_supp_abstract/>
     <DISS_binary type="PDF">test_0000.pdf</DISS_binary>
