@@ -19,6 +19,8 @@ class Proquest::Package
                       resource: metadata.merge(title: [f]),
                       f: file_path)
     end
+    s3_package.copy_to(bucket: s3_package.bucket.name, key: "_completed/#{s3_package.key}", multipart_copy: s3_package.size > 5.megabytes)
+    s3_package.delete
   end
 
   private
