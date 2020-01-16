@@ -19,6 +19,7 @@ Metrics/ClassLength:
     - "app/controllers/catalog_controller.rb"
     - "app/services/doi_minting_service.rb"
     - "app/lib/proquest/package.rb"
+    - "app/lib/proquest/metadata.rb"
 
 Metrics/BlockLength:
   Exclude:
