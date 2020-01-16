@@ -11,6 +11,7 @@ RSpec.describe Proquest::Metadata do
       it 'extracts metadata (without an embargo) and file list' do
         expect(record.proquest_metadata).to eq([{ admin_set_id: AdminSet::DEFAULT_ID,
                                                   creator: ['Last, First Middle'],
+                                                  date_created: ['2019-01-01'],
                                                   date_uploaded: today,
                                                   depositor: 'registered',
                                                   description: ['Lorem ipsum. Dolor sit amet.'],
