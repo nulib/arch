@@ -17,6 +17,7 @@ class Proquest::Metadata
       {
         admin_set_id: AdminSet::DEFAULT_ID,
         creator: creators,
+        date_created: [accept_date.to_s],
         date_uploaded: today,
         depositor: Settings.proquest.dissertation_depositor,
         description: description,
