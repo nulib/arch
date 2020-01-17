@@ -75,3 +75,4 @@ RSpec/DescribeClass:
 
 RSpec/ExampleLength:
   Exclude:
+    - "spec/lib/proquest/metadata_spec.rb"
