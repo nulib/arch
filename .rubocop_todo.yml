@@ -10,40 +10,49 @@
 Metrics/AbcSize:
   Max: 20
   Exclude:
-    - 'app/services/work_zip_creator.rb'
-    - 'app/services/arch/user_service.rb'
+    - "app/services/work_zip_creator.rb"
+    - "app/services/arch/user_service.rb"
+    - "app/lib/proquest/package.rb"
 
 Metrics/ClassLength:
   Exclude:
-    - 'app/controllers/catalog_controller.rb'
-    - 'app/services/doi_minting_service.rb'
+    - "app/controllers/catalog_controller.rb"
+    - "app/services/doi_minting_service.rb"
+    - "app/lib/proquest/package.rb"
+    - "app/lib/proquest/metadata.rb"
 
 Metrics/BlockLength:
   Exclude:
-    - 'spec/**/*'
-    - 'app/controllers/catalog_controller.rb'
-    - 'config/routes.rb'
-    - 'config/initializers/hyrax.rb'
-    - 'config/initializers/simple_form_bootstrap.rb'
-    - 'lib/tasks/arch.rake'
-    - 'lib/tasks/arch_prod.rake'
+    - "spec/**/*"
+    - "app/controllers/catalog_controller.rb"
+    - "config/routes.rb"
+    - "config/initializers/hyrax.rb"
+    - "config/initializers/simple_form_bootstrap.rb"
+    - "lib/tasks/arch.rake"
+    - "lib/tasks/arch_prod.rake"
 
 Metrics/MethodLength:
   Exclude:
-    - 'app/controllers/catalog_controller.rb'
-    - 'app/services/doi_minting_service.rb'
-    - 'app/services/work_zip_creator.rb'
-    - 'app/services/arch/user_service.rb'
+    - "app/controllers/catalog_controller.rb"
+    - "app/services/doi_minting_service.rb"
+    - "app/services/work_zip_creator.rb"
+    - "app/services/arch/user_service.rb"
+    - "app/lib/proquest/metadata.rb"
+    - "app/lib/proquest/package.rb"
+
+Metrics/LineLength:
+  Exclude:
+    - "app/lib/proquest/metadata.rb"
 
 Rails/FilePath:
   Exclude:
-    - 'config/environments/development.rb'
+    - "config/environments/development.rb"
 
 RSpec/NamedSubject:
   Exclude:
-    - 'spec/models/solr_document_spec.rb'
-    - 'spec/presenters/generic_work_presenter_spec.rb'
+    - "spec/models/solr_document_spec.rb"
+    - "spec/presenters/generic_work_presenter_spec.rb"
 
 Style/GuardClause:
   Exclude:
-    - 'app/models/ability.rb'
+    - "app/models/ability.rb"

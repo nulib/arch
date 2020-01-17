@@ -1,6 +1,30 @@
 GIT
-  remote: git://github.com/nulib/hyrax.git
-  revision: 276ade53ae23e87066e2e5b5c354d8afc40c53c1
+  remote: https://github.com/nulib/active-elastic-job.git
+  revision: 09f50bc0ab20d4a4dd0dd8ffb6e3d12f9a694bd8
+  branch: latest-aws-sdk
+  specs:
+    active_elastic_job (2.0.1)
+      aws-sdk-sqs (~> 1)
+      rails (>= 4.2)
+
+GIT
+  remote: https://github.com/nulib/hydra-derivatives.git
+  revision: fbc325db8fa5f1e87172d7e83aa792ccf07b9ee4
+  branch: vips
+  specs:
+    hydra-derivatives (3.4.1)
+      active-fedora (>= 11.3.1, < 13)
+      active_encode (~> 0.1)
+      activesupport (>= 4.0, < 6)
+      addressable (~> 2.5)
+      deprecation
+      mime-types (> 2.0, < 4.0)
+      mini_magick (>= 3.2, < 5)
+      ruby-vips
+
+GIT
+  remote: https://github.com/nulib/hyrax.git
+  revision: 8426687f988de4191e797408fa60c481e05f09b6
   branch: 2.4.1-plus-be
   specs:
     hyrax (2.4.1)
@@ -51,30 +75,6 @@ GIT
       signet
       simple_form (~> 3.2, <= 3.5.0)
       tinymce-rails (~> 4.1)
-
-GIT
-  remote: https://github.com/nulib/active-elastic-job.git
-  revision: 09f50bc0ab20d4a4dd0dd8ffb6e3d12f9a694bd8
-  branch: latest-aws-sdk
-  specs:
-    active_elastic_job (2.0.1)
-      aws-sdk-sqs (~> 1)
-      rails (>= 4.2)
-
-GIT
-  remote: https://github.com/nulib/hydra-derivatives.git
-  revision: fbc325db8fa5f1e87172d7e83aa792ccf07b9ee4
-  branch: vips
-  specs:
-    hydra-derivatives (3.4.1)
-      active-fedora (>= 11.3.1, < 13)
-      active_encode (~> 0.1)
-      activesupport (>= 4.0, < 6)
-      addressable (~> 2.5)
-      deprecation
-      mime-types (> 2.0, < 4.0)
-      mini_magick (>= 3.2, < 5)
-      ruby-vips
 
 GEM
   remote: https://rubygems.org/
@@ -129,7 +129,7 @@ GEM
       activemodel (= 5.1.7)
       activesupport (= 5.1.7)
       arel (~> 8.0)
-    activerecord-import (0.28.1)
+    activerecord-import (1.0.4)
       activerecord (>= 3.2)
     activesupport (5.1.7)
       concurrent-ruby (~> 1.0, >= 1.0.2)
@@ -144,8 +144,8 @@ GEM
     ast (2.4.0)
     autoprefixer-rails (9.6.1)
       execjs
-    awesome_nested_set (3.1.4)
-      activerecord (>= 4.0.0, < 5.3)
+    awesome_nested_set (3.2.0)
+      activerecord (>= 4.0.0, < 7.0)
     aws-eventstream (1.0.1)
     aws-partitions (1.132.0)
     aws-sdk (3.0.1)
@@ -870,7 +870,7 @@ GEM
       blacklight (~> 6.0)
       cancancan (~> 1.8)
       deprecation (~> 1.0)
-    blacklight-gallery (0.11.0)
+    blacklight-gallery (0.12.0)
       blacklight (~> 6.3)
       bootstrap-sass (~> 3.0)
       openseadragon (>= 0.2.0)
@@ -959,8 +959,8 @@ GEM
       activesupport
       docker-api
       docker-compose
-    dropbox_api (0.1.12)
-      faraday (~> 0.9, ~> 0.8)
+    dropbox_api (0.1.18)
+      faraday (<= 1.0)
       oauth2 (~> 1.1)
     dry-configurable (0.7.0)
       concurrent-ruby (~> 1.0)
@@ -970,7 +970,7 @@ GEM
     dry-core (0.4.7)
       concurrent-ruby (~> 1.0)
     dry-equalizer (0.2.1)
-    dry-events (0.1.0)
+    dry-events (0.2.0)
       concurrent-ruby (~> 1.0)
       dry-core (~> 0.4)
       dry-equalizer (~> 0.2)
@@ -979,8 +979,9 @@ GEM
       dry-container (~> 0.2, >= 0.2.6)
       dry-core (~> 0.2)
       dry-equalizer (~> 0.2)
-    dry-matcher (0.7.0)
-    dry-monads (1.2.0)
+    dry-matcher (0.8.1)
+      dry-core (>= 0.4.7)
+    dry-monads (1.3.5)
       concurrent-ruby (~> 1.0)
       dry-core (~> 0.4, >= 0.4.4)
       dry-equalizer
@@ -1030,19 +1031,19 @@ GEM
     fcrepo_wrapper (0.9.0)
       ruby-progressbar
     ffi (1.11.1)
-    flipflop (2.4.0)
+    flipflop (2.6.0)
       activesupport (>= 4.0)
     flot-rails (0.0.7)
       jquery-rails
-    font-awesome-rails (4.7.0.4)
-      railties (>= 3.2, < 6.0)
+    font-awesome-rails (4.7.0.5)
+      railties (>= 3.2, < 6.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
-    google-api-client (0.27.3)
+    google-api-client (0.32.1)
       addressable (~> 2.5, >= 2.5.1)
       googleauth (>= 0.5, < 0.10.0)
       httpclient (>= 2.8.1, < 3.0)
-      mime-types (~> 3.0)
+      mini_mime (~> 1.0)
       representable (~> 3.0)
       retriable (>= 2.0, < 4.0)
       signet (~> 0.10)
@@ -1057,7 +1058,7 @@ GEM
       multi_json (~> 1.11)
       os (>= 0.9, < 2.0)
       signet (~> 0.7)
-    haml (5.0.4)
+    haml (5.1.2)
       temple (>= 0.8.0)
       tilt
     hamster (3.0.0)
@@ -1069,15 +1070,15 @@ GEM
     htmlentities (4.3.4)
     http_logger (0.5.1)
     httpclient (2.8.3)
-    hydra-access-controls (10.6.0)
-      active-fedora (>= 10.0.0, < 13)
+    hydra-access-controls (10.7.0)
+      active-fedora (>= 10.0.0)
       activesupport (>= 4, < 6)
       blacklight (>= 5.16)
       blacklight-access_controls (~> 0.6.0)
       cancancan (~> 1.8)
       deprecation (~> 1.0)
-    hydra-core (10.6.0)
-      hydra-access-controls (= 10.6.0)
+    hydra-core (10.7.0)
+      hydra-access-controls (= 10.7.0)
       railties (>= 4.0.0, < 6)
     hydra-editor (4.0.2)
       active-fedora (>= 9.0.0)
@@ -1086,26 +1087,24 @@ GEM
       rails (>= 4.2.0, < 6)
       simple_form (~> 3.2)
       sprockets-es6
-    hydra-file_characterization (0.3.3)
+    hydra-file_characterization (1.1.0)
       activesupport (>= 3.0.0)
-    hydra-head (10.6.0)
-      hydra-access-controls (= 10.6.0)
-      hydra-core (= 10.6.0)
+    hydra-head (10.7.0)
+      hydra-access-controls (= 10.7.0)
+      hydra-core (= 10.7.0)
       rails (>= 3.2.6)
-    hydra-pcdm (1.0.0)
-      active-fedora (>= 10, < 13)
-      activesupport (< 5.2)
+    hydra-pcdm (1.1.0)
+      active-fedora (>= 10, < 14)
       mime-types (>= 1)
     hydra-role-management (1.0.0)
       blacklight
       bootstrap_form
       cancancan
-    hydra-works (1.0.0)
-      activesupport (>= 4.2.10, < 5.2)
+    hydra-works (1.2.0)
+      activesupport (>= 4.2.10, < 6.0)
       hydra-derivatives (~> 3.0)
-      hydra-file_characterization (~> 0.3, >= 0.3.3)
+      hydra-file_characterization (~> 1.0)
       hydra-pcdm (>= 0.9)
-      om (~> 3.1)
     i18n (1.7.0)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
@@ -1130,13 +1129,13 @@ GEM
     json-ld (3.0.2)
       multi_json (~> 1.12)
       rdf (>= 2.2.8, < 4.0)
-    json-ld-preloaded (3.0.2)
+    json-ld-preloaded (3.0.6)
       json-ld (~> 3.0)
       multi_json (~> 1.12)
       rdf (~> 3.0)
     json-schema (2.8.1)
       addressable (>= 2.4)
-    jwt (2.1.0)
+    jwt (2.2.1)
     kaminari (1.1.1)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.1.1)
@@ -1208,7 +1207,7 @@ GEM
     mailboxer (0.15.1)
       carrierwave (>= 0.5.8)
       rails (>= 5.0.0)
-    memoist (0.16.0)
+    memoist (0.16.2)
     method_source (0.9.2)
     mime-types (3.2.2)
       mime-types-data (~> 3.2015)
@@ -1221,9 +1220,9 @@ GEM
     multi_xml (0.6.0)
     multipart-post (2.0.0)
     mustermann (1.0.3)
-    nest (3.1.1)
+    nest (3.2.0)
       redic
-    net-http-persistent (3.0.0)
+    net-http-persistent (3.1.0)
       connection_pool (~> 2.2)
     net-ldap (0.16.1)
     nio4r (2.4.0)
@@ -1236,17 +1235,12 @@ GEM
     nokogumbo (1.5.0)
       nokogiri
     oauth (0.5.4)
-    oauth2 (1.4.1)
-      faraday (>= 0.8, < 0.16.0)
+    oauth2 (1.4.2)
+      faraday (>= 0.8, < 2.0)
       jwt (>= 1.0, < 3.0)
       multi_json (~> 1.3)
       multi_xml (~> 0.5)
       rack (>= 1.2, < 3)
-    om (3.1.1)
-      activemodel
-      activesupport
-      nokogiri (>= 1.4.2)
-      solrizer (~> 3.3)
     omniauth (1.9.0)
       hashie (>= 3.4.6, < 3.7.0)
       rack (>= 1.6.2, < 3)
@@ -1256,7 +1250,7 @@ GEM
     openseadragon (0.5.0)
       rails (> 3.2.0)
     orm_adapter (0.5.0)
-    os (1.0.0)
+    os (1.0.1)
     parallel (1.13.0)
     parser (2.6.0.0)
       ast (~> 2.4.0)
@@ -1333,8 +1327,10 @@ GEM
       nokogiri (~> 1.8)
       rdf (>= 2.2.8, < 4.0)
       rdf-xsd (>= 2.2, < 4.0)
-    rdf-n3 (3.0.1)
+    rdf-n3 (3.1.0)
       rdf (~> 3.0)
+      sparql (~> 3.0)
+      sxp (~> 1.0)
     rdf-normalize (0.3.3)
       rdf (>= 2.2, < 4.0)
     rdf-rdfa (3.0.1)
@@ -1348,17 +1344,17 @@ GEM
       rdf (>= 2.2, < 4.0)
       rdf-rdfa (>= 2.2, < 4.0)
       rdf-xsd (>= 2.2, < 4.0)
-    rdf-reasoner (0.5.1)
+    rdf-reasoner (0.5.3)
       rdf (~> 3.0)
       rdf-vocab (~> 3.0)
       rdf-xsd (~> 3.0)
-    rdf-tabular (2.2.1)
+    rdf-tabular (2.2.2)
       addressable (~> 2.3)
       bcp47 (~> 0.3, >= 0.3.3)
       json-ld (>= 2.1, < 4.0)
-      rdf (>= 2.2, < 4.0)
-      rdf-vocab (>= 2.2, < 4.0)
-      rdf-xsd (>= 2.2, < 4.0)
+      rdf (~> 3.0)
+      rdf-vocab (~> 3.0)
+      rdf-xsd (~> 3.0)
     rdf-trig (3.0.1)
       ebnf (~> 1.1)
       rdf (~> 3.0)
@@ -1375,7 +1371,7 @@ GEM
     rdoc (6.1.1)
     recaptcha (4.13.1)
       json
-    redic (1.5.1)
+    redic (1.5.3)
       hiredis
     redis (4.1.0)
     redis-actionpack (5.0.2)
@@ -1385,7 +1381,7 @@ GEM
     redis-activesupport (5.0.7)
       activesupport (>= 3, < 6)
       redis-store (>= 1.3, < 2)
-    redis-namespace (1.6.0)
+    redis-namespace (1.7.0)
       redis (>= 3.0.4)
     redis-rack (2.0.5)
       rack (>= 1.5, < 3)
@@ -1396,7 +1392,7 @@ GEM
       redis-store (>= 1.2, < 2)
     redis-store (1.6.0)
       redis (>= 2.2, < 5)
-    redlock (1.0.0)
+    redlock (1.1.0)
       redis (>= 3.0.0, < 5.0)
     representable (3.0.4)
       declarative (< 0.1.0)
@@ -1480,7 +1476,7 @@ GEM
       rack (>= 1.5.0)
       rack-protection (>= 1.5.0)
       redis (>= 3.3.5, < 5)
-    signet (0.11.0)
+    signet (0.12.0)
       addressable (~> 2.3)
       faraday (~> 0.9)
       jwt (>= 1.5, < 3.0)
@@ -1531,11 +1527,11 @@ GEM
     stomp (1.4.8)
     sxp (1.0.1)
       rdf (>= 2.2, < 4.0)
-    temple (0.8.0)
+    temple (0.8.2)
     thor (0.20.3)
     thread_safe (0.3.6)
     tilt (2.0.9)
-    tinymce-rails (4.9.2)
+    tinymce-rails (4.9.7)
       railties (>= 3.1.1)
     turbolinks (5.2.0)
       turbolinks-source (~> 5.2)
@@ -1630,4 +1626,4 @@ DEPENDENCIES
   zk
 
 BUNDLED WITH
-   1.17.3
+   2.1.4

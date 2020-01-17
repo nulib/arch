@@ -8,8 +8,11 @@ aws:
   buckets:
     archives: dev-archives
     dropbox: dev-dropbox
+    proquest: dev-proquest
   queues:
     default: arch-queue
 solrcloud: true
 zookeeper:
   connection_str: "localhost:9983/configs"
+proquest:
+  dissertation_depositor: registered
