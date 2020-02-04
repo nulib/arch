@@ -25,6 +25,7 @@ class DOI
     redirectCount redirectUrls relatedIdentifiers resourceType rightsList ris schemaOrg schemaOrgid
     schemaVersion sizes source state subjects suffix title titles types url url version volume
   ].freeze
+  REJECTABLE_VALUES = [nil, '', 0, [], {}].freeze
 
   class << self
     def client
@@ -105,7 +106,7 @@ class DOI
       raise Error, response unless response.success?
       @document = Hashie::Mash.new(JSON.parse(response.body)).data.tap do |result|
         result.delete('relationships')
-        result.attributes.select! { |k, _v| PERMITTED_ATTRIBUTES.include?(k) }
+        result.attributes.select! { |k, v| PERMITTED_ATTRIBUTES.include?(k) && !REJECTABLE_VALUES.include?(v) }
       end
       self
     end
