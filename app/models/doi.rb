@@ -17,7 +17,14 @@ class DOI
   delegate :attributes, :attributes=, to: :document
 
   TOMBSTONE_URL = 'https://www.datacite.org/invalid.html'.freeze
-  UNPERMITTED_ATTRIBUTES = %w[created container metadataVersion published schemaVersion state updated xml].freeze
+  PERMITTED_ATTRIBUTES = %w[
+    bibtex bodyhasPid citationDoi citeproc container contentType contentUrl contributors creators
+    dates dcIdentifier descriptions doi downloadLatency error event firstPage formats
+    fundingReferences geoLocations hasSchemaOrg identifier identifierType identifiers isActive
+    issue landingPage language lastPage metadataVersion prefix publicationYear publisher
+    redirectCount redirectUrls relatedIdentifiers resourceType rightsList ris schemaOrg schemaOrgid
+    schemaVersion sizes source state subjects suffix title titles types url url version volume
+  ].freeze
 
   class << self
     def client
@@ -98,7 +105,7 @@ class DOI
       raise Error, response unless response.success?
       @document = Hashie::Mash.new(JSON.parse(response.body)).data.tap do |result|
         result.delete('relationships')
-        result.attributes.reject! { |k, _v| UNPERMITTED_ATTRIBUTES.include?(k) }
+        result.attributes.select! { |k, _v| PERMITTED_ATTRIBUTES.include?(k) }
       end
       self
     end
