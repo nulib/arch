@@ -18,7 +18,7 @@ class DOI
 
   TOMBSTONE_URL = 'https://www.datacite.org/invalid.html'.freeze
   PERMITTED_ATTRIBUTES = %w[
-    bibtex bodyhasPid citationDoi citeproc container contentType contentUrl contributors creators
+    bibtex bodyhasPid citationDoi citeproc contentType contentUrl contributors creators
     dates dcIdentifier descriptions doi downloadLatency error event firstPage formats
     fundingReferences geoLocations hasSchemaOrg identifier identifierType identifiers isActive
     issue landingPage language lastPage metadataVersion prefix publicationYear publisher
