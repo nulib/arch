@@ -49,8 +49,11 @@ WORKDIR /home/app/current
 COPY --chown=app:app Gemfile /home/app/current/
 COPY --chown=app:app Gemfile.lock /home/app/current/
 
-RUN chown -R app:app /home/app/current &&  \
-    bundle install --jobs 20 --retry 5 --with aws:postgres --without development:test --path vendor/gems && \
+RUN chown -R app:app /home/app/current && \
+    bundle config set path 'vendor/gems' && \
+    bundle config set without 'development:test' && \
+    bundle config set with 'aws:postgres' && \
+    bundle install --jobs 20 --retry 5 && \
     rm -rf vendor/gems/ruby/*/cache/* vendor/gems/ruby/*/bundler/gems/*/.git
 
 #################################
@@ -108,12 +111,14 @@ COPY --from=base /tmp/stage/fits-${FITS_VERSION} /usr/local/fits
 COPY --chown=app:staff --from=base /usr/local/bundle /usr/local/bundle
 COPY --chown=app:app --from=base /home/app/current/vendor/gems/ /home/app/current/vendor/gems/
 COPY --chown=app:app . /home/app/current/
+COPY --chown=app:app --from=base /home/app/current/Gemfile* /home/app/current/
 
 RUN mkdir /var/run/puma && chown root:app /var/run/puma && chmod 0775 /var/run/puma
 
 USER app
 WORKDIR /home/app/current
-RUN bundle exec rake assets:precompile SECRET_KEY_BASE=$(ruby -r 'securerandom' -e 'puts SecureRandom.hex(64)')
+RUN bundle config set path 'vendor/gems' && \
+    bundle exec rake assets:precompile SECRET_KEY_BASE=$(ruby -r 'securerandom' -e 'puts SecureRandom.hex(64)')
 
 EXPOSE 3000
 CMD bin/boot_container
