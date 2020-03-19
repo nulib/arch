@@ -1,29 +1,5 @@
 GIT
-  remote: https://github.com/nulib/active-elastic-job.git
-  revision: 09f50bc0ab20d4a4dd0dd8ffb6e3d12f9a694bd8
-  branch: latest-aws-sdk
-  specs:
-    active_elastic_job (2.0.1)
-      aws-sdk-sqs (~> 1)
-      rails (>= 4.2)
-
-GIT
-  remote: https://github.com/nulib/hydra-derivatives.git
-  revision: fbc325db8fa5f1e87172d7e83aa792ccf07b9ee4
-  branch: vips
-  specs:
-    hydra-derivatives (3.4.1)
-      active-fedora (>= 11.3.1, < 13)
-      active_encode (~> 0.1)
-      activesupport (>= 4.0, < 6)
-      addressable (~> 2.5)
-      deprecation
-      mime-types (> 2.0, < 4.0)
-      mini_magick (>= 3.2, < 5)
-      ruby-vips
-
-GIT
-  remote: https://github.com/nulib/hyrax.git
+  remote: git://github.com/nulib/hyrax.git
   revision: 8426687f988de4191e797408fa60c481e05f09b6
   branch: 2.4.1-plus-be
   specs:
@@ -75,6 +51,30 @@ GIT
       signet
       simple_form (~> 3.2, <= 3.5.0)
       tinymce-rails (~> 4.1)
+
+GIT
+  remote: https://github.com/nulib/active-elastic-job.git
+  revision: 09f50bc0ab20d4a4dd0dd8ffb6e3d12f9a694bd8
+  branch: latest-aws-sdk
+  specs:
+    active_elastic_job (2.0.1)
+      aws-sdk-sqs (~> 1)
+      rails (>= 4.2)
+
+GIT
+  remote: https://github.com/nulib/hydra-derivatives.git
+  revision: fbc325db8fa5f1e87172d7e83aa792ccf07b9ee4
+  branch: vips
+  specs:
+    hydra-derivatives (3.4.1)
+      active-fedora (>= 11.3.1, < 13)
+      active_encode (~> 0.1)
+      activesupport (>= 4.0, < 6)
+      addressable (~> 2.5)
+      deprecation
+      mime-types (> 2.0, < 4.0)
+      mini_magick (>= 3.2, < 5)
+      ruby-vips
 
 GEM
   remote: https://rubygems.org/
@@ -138,8 +138,8 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
-    almond-rails (0.1.0)
-      rails (>= 4.2, < 6)
+    almond-rails (0.3.0)
+      rails (>= 4.2)
     arel (8.0.0)
     ast (2.4.0)
     autoprefixer-rails (9.6.1)
@@ -1235,7 +1235,7 @@ GEM
     nokogumbo (1.5.0)
       nokogiri
     oauth (0.5.4)
-    oauth2 (1.4.2)
+    oauth2 (1.4.4)
       faraday (>= 0.8, < 2.0)
       jwt (>= 1.0, < 3.0)
       multi_json (~> 1.3)
@@ -1392,7 +1392,7 @@ GEM
       redis-store (>= 1.2, < 2)
     redis-store (1.6.0)
       redis (>= 2.2, < 5)
-    redlock (1.1.0)
+    redlock (1.2.0)
       redis (>= 3.0.0, < 5.0)
     representable (3.0.4)
       declarative (< 0.1.0)
@@ -1531,7 +1531,7 @@ GEM
     thor (0.20.3)
     thread_safe (0.3.6)
     tilt (2.0.9)
-    tinymce-rails (4.9.7)
+    tinymce-rails (4.9.8)
       railties (>= 3.1.1)
     turbolinks (5.2.0)
       turbolinks-source (~> 5.2)

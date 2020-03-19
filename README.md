@@ -43,7 +43,7 @@ These should match closely with the [Hyrax requirements](https://github.com/proj
 ## Running the tests
 
 - Start the test stack `devstack -t up arch`
-- Run the seed task for the test environmenbt: `bundle exec rake arch:seed RAILS_ENV=test`
+- Run the seed task for the test environment: `bundle exec rake arch:seed RAILS_ENV=test`
 - Run the test suite: `bundle exec rspec`
 
 ## Deploying
