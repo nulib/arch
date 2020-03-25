@@ -49,11 +49,11 @@ gem 'config'
 gem 'devise'
 gem 'devise-guests', '~> 0.3'
 gem 'honeybadger', '~> 4.0'
-gem 'omniauth-openam'
+gem 'omniauth-nusso'
 gem 'recaptcha'
 gem 'rsolr', '~> 2.0'
 # Use Puma as the app server
-gem 'puma', '~> 3.7'
+gem 'puma', '~> 4.3'
 
 gem 'docker-stack'
 

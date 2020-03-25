@@ -20,3 +20,5 @@ zookeeper:
   connection_str: "localhost:9985/configs"
 proquest:
   dissertation_depositor: registered
+nusso:
+  consumer_key: test-key
