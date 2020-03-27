@@ -1244,7 +1244,7 @@ GEM
     omniauth (1.9.1)
       hashie (>= 3.4.6)
       rack (>= 1.6.2, < 3)
-    omniauth-nusso (0.1.1)
+    omniauth-nusso (0.1.2)
       faraday
       omniauth
     openseadragon (0.5.0)
@@ -1599,7 +1599,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   lograge
-  omniauth-nusso
+  omniauth-nusso (>= 0.1.2)
   pg (~> 0.21)
   pry-byebug
   pry-rails
