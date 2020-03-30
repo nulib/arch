@@ -2,7 +2,7 @@
 version: 2.1
 orbs:
   aws-cli: circleci/aws-cli@0.1
-  docker-cache: nulib/docker-cache@0.3
+  docker: circleci/docker@0.5.19
 jobs:
   test:
     working_directory: ~/arch
@@ -40,8 +40,8 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-          - v1-bundle-{{ checksum "Gemfile.lock" }}
-          - v1-bundle-
+            - v1-bundle-{{ checksum "Gemfile.lock" }}
+            - v1-bundle-
       - run:
           name: Install Dependencies
           command: bundle install --jobs 20 --retry 5 --with aws:postgres --without production --path vendor/bundle
@@ -61,48 +61,81 @@ jobs:
       - store_artifacts:
           path: /tmp/test-results
           destination: tests
-  deploy:
-    docker: 
+  publish:
+    docker:
       - image: circleci/python:3.7.1
     steps:
-    - docker-cache/set-deploy-tag
-    - run:
-        command: |
-          echo "export AWS_ACCESS_KEY_ID=\$${DEPLOY_TAG}_AWS_ACCESS_KEY_ID" >> $BASH_ENV
-          echo "export AWS_SECRET_ACCESS_KEY=\$${DEPLOY_TAG}_AWS_SECRET_ACCESS_KEY" >> $BASH_ENV
-    - aws-cli/install
-    - aws-cli/setup
-    - run:
-        name: Restart Elastic Beanstalk app server
-        environment:
-          APP_NAME: arch
-        command: |
-          APP_PREFIX=$(echo $DEPLOY_TAG | cut -b 1-1)
-          APP_FULL_NAME=stack-${APP_PREFIX}-${APP_NAME}
-          APP_VERSION=$(aws elasticbeanstalk describe-application-versions --application-name ${APP_FULL_NAME} | jq -r '.ApplicationVersions[0].VersionLabel')
-          for environ in $(aws elasticbeanstalk describe-environments --application-name ${APP_FULL_NAME} | jq -r '.Environments[].EnvironmentName'); do
-            echo -n "Redeploying ${APP_FULL_NAME}/${APP_VERSION} to ${environ}..."
-            aws elasticbeanstalk update-environment --application-name ${APP_FULL_NAME} --environment-name ${environ} --version-label=${APP_VERSION} > /dev/null
-            echo ""
-          done
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Set DEPLOY_TAG from branch name
+          command: |
+            if [[ $CIRCLE_BRANCH == "master" ]]; then
+              echo "export DEPLOY_TAG=production" >> $BASH_ENV
+            else
+              echo "export DEPLOY_TAG=$(echo $CIRCLE_BRANCH | awk -F/ '{print $NF}')" >> $BASH_ENV
+            fi
+      - docker/check
+      - docker/build:
+          cache_from: nulib/arch-deps:${DEPLOY_TAG}
+          image: nulib/arch
+          tag: ${DEPLOY_TAG}
+      - run:
+          command: |
+            DEPS_IMAGE=$(docker image ls --filter "label=edu.northwestern.library.app=Arch" --filter "label=edu.northwestern.library.stage=build" --format '{{.CreatedAt}}\t{{.ID}}' | sort -nr | cut -f2 | head -1)
+            docker tag ${DEPS_IMAGE} nulib/arch-deps:${DEPLOY_TAG}
+      - docker/push:
+          image: nulib/arch-deps
+          tag: ${DEPLOY_TAG}
+      - docker/push:
+          image: nulib/arch
+          tag: ${DEPLOY_TAG}
+  deploy:
+    docker:
+      - image: circleci/python:3.7.1
+    steps:
+      - run:
+          name: Set DEPLOY_TAG from branch name
+          command: |
+            if [[ $CIRCLE_BRANCH == "master" ]]; then
+              echo "export DEPLOY_TAG=production" >> $BASH_ENV
+            else
+              echo "export DEPLOY_TAG=$(echo $CIRCLE_BRANCH | awk -F/ '{print $NF}')" >> $BASH_ENV
+            fi
+      - run:
+          command: |
+            echo "export AWS_ACCESS_KEY_ID=\$${DEPLOY_TAG}_AWS_ACCESS_KEY_ID" >> $BASH_ENV
+            echo "export AWS_SECRET_ACCESS_KEY=\$${DEPLOY_TAG}_AWS_SECRET_ACCESS_KEY" >> $BASH_ENV
+      - aws-cli/install
+      - aws-cli/setup
+      - run:
+          name: Restart Elastic Beanstalk app server
+          environment:
+            APP_NAME: arch
+          command: |
+            APP_PREFIX=$(echo $DEPLOY_TAG | cut -b 1-1)
+            APP_FULL_NAME=stack-${APP_PREFIX}-${APP_NAME}
+            APP_VERSION=$(aws elasticbeanstalk describe-application-versions --application-name ${APP_FULL_NAME} | jq -r '.ApplicationVersions[0].VersionLabel')
+            for environ in $(aws elasticbeanstalk describe-environments --application-name ${APP_FULL_NAME} | jq -r '.Environments[].EnvironmentName'); do
+              echo -n "Redeploying ${APP_FULL_NAME}/${APP_VERSION} to ${environ}..."
+              aws elasticbeanstalk update-environment --application-name ${APP_FULL_NAME} --environment-name ${environ} --version-label=${APP_VERSION} > /dev/null
+              echo ""
+            done
 workflows:
   ci:
     jobs:
       - test
-      - docker-cache/publish:
+      - publish:
           requires:
             - test
           filters:
             branches:
               only:
-                - master
+                - /^build-.+/
                 - /^deploy\/.+/
-          cache-key: docker-stages
-          cache-stages: build run
-          image: nulib/arch
       - deploy:
           requires:
-            - docker-cache/publish
+            - publish
           filters:
             branches:
               only:
