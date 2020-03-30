@@ -30,10 +30,10 @@ class User < ApplicationRecord
       find_or_create_by(email: user_key)
     end
 
-    def from_omniauth(auth) # rubocop:disable Metrics/AbcSize
+    def from_omniauth(auth)
       username = auth.uid
       email = auth.info.email
-      display_name = auth.extra.raw_info.values_at('givenName', 'sn').flatten.compact.join(' ')
+      display_name = auth.info.name
 
       (User.find_by(username: username) ||
         User.find_by(email: email) ||
