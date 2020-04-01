@@ -6,7 +6,7 @@ Arch is our institutional repository and is a Hyrax 2 application.
 
 - Production: https://arch.library.northwestern.edu/
 - Staging: http://arch.stack.rdc-staging.library.northwestern.edu/
-- Local development: http://devbox.library.northwestern.edu/
+- Local development: https://devbox.library.northwestern.edu:3000/
 
 ## Software Architecture
 
@@ -27,18 +27,16 @@ These should match closely with the [Hyrax requirements](https://github.com/proj
 - fits `brew install fits`
 - vips `brew install vips`
 - Install [`devstack`](https://github.com/nulib/devstack) according to the instructions in the README
-- Follow the [Authentication Setup for Dev Environment](https://github.com/nulib/donut/wiki/Authentication-setup-for-dev-environment) instructions
+- Follow the [Dev Environment Setup](http://docs.rdc.library.northwestern.edu/2._Developer_Guides/Environment_and_Tools/Developer-Tools---Dev-Environment-Setup/#setup) instructions
 
 ## Developer Installation
-
 - Clone this repository `git clone git@github.com:nulib/institutional-repository.git`
-- Grab the development environment configs from the `miscellany` repo: `arch/config/settings/development.local.yml` and save to `config/settings/development.local.yml` inside the project.
 - From inside the project directory run `bundle install`
 - Start the docker stack with `devstack up arch`
 - From inside the project directory run `bundle exec rake arch:seed`
   - You can include the optional arguments to create an admin user (such as yourself). Ex: `bundle exec rake arch:seed ADMIN_USER=your_netid ADMIN_EMAIL=your_email@northwestern.edu`
 - In a separate tab, start the rails server `bundle exec rails server`
-- You can see the app in a browser at http://devbox.library.northwestern.edu
+- You can see the app in a browser at https://devbox.library.northwestern.edu:3000
 
 ## Running the tests
 

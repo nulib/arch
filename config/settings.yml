@@ -18,6 +18,8 @@ browse_everything:
     home:
 doi_credentials: {}
 fedora: {}
+nusso:
+  consumer_key:
 system_user: repository@northwestern.edu
 solr:
   configset: arch
