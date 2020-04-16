@@ -132,6 +132,7 @@ workflows:
             branches:
               only:
                 - /^build-.+/
+                - master
                 - /^deploy\/.+/
       - deploy:
           requires:
