@@ -49,7 +49,7 @@ gem 'config'
 gem 'devise'
 gem 'devise-guests', '~> 0.3'
 gem 'honeybadger', '~> 4.0'
-gem 'omniauth-nusso', '>= 0.1.2'
+gem 'omniauth-nusso', '>= 0.1.3'
 gem 'recaptcha'
 gem 'rsolr', '~> 2.0'
 # Use Puma as the app server
