@@ -1,5 +1,7 @@
 # Arch
 
+[![CircleCI](https://circleci.com/gh/nulib/arch.svg?style=svg)](https://circleci.com/gh/nulib/arch)
+
 Arch is our institutional repository and is a Hyrax 2 application.
 
 ## Environments
@@ -30,7 +32,7 @@ These should match closely with the [Hyrax requirements](https://github.com/proj
 - Follow the [Dev Environment Setup](http://docs.rdc.library.northwestern.edu/2._Developer_Guides/Environment_and_Tools/Developer-Tools---Dev-Environment-Setup/#setup) instructions
 
 ## Developer Installation
-- Clone this repository `git clone git@github.com:nulib/institutional-repository.git`
+- Clone this repository `git clone git@github.com:nulib/arch.git`
 - From inside the project directory run `bundle install`
 - Start the docker stack with `devstack up arch`
 - From inside the project directory run `bundle exec rake arch:seed`
