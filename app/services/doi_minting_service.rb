@@ -64,7 +64,7 @@ class DoiMintingService
         titles: titles,
         publisher: publishers,
         dates: [dates_created].flatten,
-        publicationYear: dates_created.first[:date],
+        publicationYear: work.create_date.year,
         types: resource_type,
         url: url
       )
