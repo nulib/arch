@@ -1,4 +1,4 @@
-require 'solrizer'
+require 'wings'
 
 Hyrax.config do |config|
   # Injected via `rails g hyrax:work GenericWork`
