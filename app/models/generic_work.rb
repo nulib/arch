@@ -1,7 +1,6 @@
 class GenericWork < Hyrax::Work
+  include Hyrax::Schema(:generic_work)
   include Hyrax::Schema(:basic_metadata)
-
-  attribute :doi, Valkyrie::Types::String
 
   # TODO: Replace these hooks with changesets?
   # after_save do

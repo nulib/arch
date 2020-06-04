@@ -6,7 +6,7 @@ RSpec.describe Hyrax::GenericWorkForm do
   let(:work) { GenericWork.new }
   let(:ability) { Ability.new(nil) }
   let(:request) { nil }
-  let(:form)    { described_class.new(work, ability, request) }
+  let(:form)    { described_class.new(work) }
 
   describe '::terms' do
     subject(:terms) { form.terms }

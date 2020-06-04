@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'hyrax/forms/resource_form'
+
 class GenericWorkForm < Hyrax::Forms::ResourceForm(GenericWork)
   include Hyrax::FormFields(:basic_metadata)
   include Hyrax::FormFields(:generic_work)

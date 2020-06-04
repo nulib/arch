@@ -1,0 +1,9 @@
+attributes:
+  doi:
+    type: string
+    multiple: false
+    index_keys:
+      - "doi_ssi"
+    form:
+      required: true
+      primary: true
