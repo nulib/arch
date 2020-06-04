@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.7'
+gem 'rails', '~> 5.2.3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -31,8 +31,7 @@ gem 'yaml_db'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
-gem 'hydra-derivatives', git: 'https://github.com/nulib/hydra-derivatives.git', branch: 'vips'
-gem 'hyrax', github: 'nulib/hyrax', branch: '2.4.1-plus-be'
+gem 'hyrax', github: 'samvera/hyrax'
 
 # Admin users enabled by hydra-role-management
 gem 'hydra-role-management'
@@ -53,7 +52,7 @@ gem 'omniauth-nusso', '>= 0.1.3'
 gem 'recaptcha'
 gem 'rsolr', '~> 2.0'
 # Use Puma as the app server
-gem 'puma', '~> 4.3'
+gem 'puma', '~> 3.11'
 
 gem 'docker-stack'
 
