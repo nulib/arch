@@ -26,7 +26,6 @@ class SolrDocument
   use_extension(Hydra::ContentNegotiation)
 
   def doi
-    # TODO: replace Solrizer method call here
-    fetch(Solrizer.solr_name('doi', :stored_searchable), [])
+    fetch('doi_tesim', [])
   end
 end
