@@ -52,7 +52,7 @@ gem 'omniauth-nusso', '>= 0.1.3'
 gem 'recaptcha'
 gem 'rsolr', '~> 2.0'
 # Use Puma as the app server
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 4.3.0'
 
 gem 'docker-stack'
 
