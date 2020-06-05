@@ -10,7 +10,7 @@ module Hyrax
     include Hyrax::BreadcrumbsForWorks
     self.curation_concern_type = ::GenericWork
     self.search_builder_class = Wings::WorkSearchBuilder(::GenericWork)
-    self.work_form_service = Hyrax::FormFactory.new
+    self.work_form_service = Hyrax::WorkFormService
 
     private
 

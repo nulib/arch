@@ -5,5 +5,5 @@ attributes:
     index_keys:
       - "doi_tesim"
     form:
-      required: true
+      required: false
       primary: true
