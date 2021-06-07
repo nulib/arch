@@ -1,8 +1,8 @@
 # Generated via
-#  `rails generate hyrax:work GenericWork`
+#  `rails generate hyrax:work Dataset`
 require 'rails_helper'
 
-RSpec.describe Hyrax::GenericWorksController do
+RSpec.describe Hyrax::DatasetsController do
   it { is_expected.to be_kind_of(Hyrax::WorksControllerBehavior) }
 
   it 'includes DoiBehavior' do
@@ -12,12 +12,12 @@ RSpec.describe Hyrax::GenericWorksController do
   describe '#curation_concern_type' do
     subject { described_class.curation_concern_type }
 
-    it { is_expected.to eq(::GenericWork) }
+    it { is_expected.to eq(::Dataset) }
   end
 
   describe 'show presenter' do
     subject { described_class.show_presenter }
 
-    it { is_expected.to eq(Hyrax::GenericWorkPresenter) }
+    it { is_expected.to eq(Hyrax::DatasetPresenter) }
   end
 end

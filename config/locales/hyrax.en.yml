@@ -1,4 +1,8 @@
 en:
+  activefedora:
+    models:
+      generic_work: 'Work'
+      dataset: 'Dataset'
   blacklight:
     search:
       fields:
@@ -77,3 +81,6 @@ en:
         related_url: "A link to the publisher’s webpage of the work or other specific content (such as PDF documents) related to the file. For example, the URL of a research project from which the file was derived or a dataset stored in a data repository."
         source: "Enter the journal title or name of the book in which the work was published. Source refers to the origin of the document."
         resource_type: "Pre-definied categories to describe the type of content being uploaded, such as 'article' or 'presentation'."
+      dataset:
+        contact_information: "Please enter the name and email of the contact person for this dataset."
+        related_citation: "Please enter the citation information for any related publication."
