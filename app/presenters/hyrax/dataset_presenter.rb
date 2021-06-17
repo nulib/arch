@@ -19,6 +19,8 @@ module Hyrax
     end
 
     def total_file_size
+      return unless solr_document.present? && solr_document.keys.include?('file_set_ids_ssim')
+
       file_size = solr_document['file_set_ids_ssim'].map do |file_set_id|
         begin
           ::FileSet.find(file_set_id)&.file_size&.first&.to_i || 0
