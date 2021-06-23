@@ -4,8 +4,8 @@ en:
       generic_work:     'fa fa-file-text-o'
     select_type:
       generic_work:
-        name:               "Generic Work"
-        description:        "Generic work works"
+        name:               "Academic Work"
+        description:        "Research papers, dissertations, theses, presentations, educational resources, conference proceedings, and other scholarly works."
   simple_form:
     labels:
       generic_work:
