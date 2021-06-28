@@ -6,3 +6,7 @@ en:
       dataset:
         description:        "Research data that was prepared in support of formal publications, such as journal articles, dissertations, theses, or monographs. All datasets are required to be in their final state and suitable for public access and distribution. Deposit of sensitive, proprietary, or personally identifiable information is prohibited."
         name:               "Dataset"
+  simple_form:
+    labels:
+      dataset:
+        identifier:       "Alternate Identifier"

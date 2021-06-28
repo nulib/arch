@@ -8,7 +8,6 @@ FactoryBot.define do
     date_created { ['2021'] }
     subject { ['Just Northwestern Things'] }
 
-    alternate_identifier { ['test-123'] }
     contact_information { ['Test contact information'] }
     related_citation { ['Test citation'] }
 
