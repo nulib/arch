@@ -4,6 +4,10 @@ module Hyrax
   class DatasetPresenter < Hyrax::WorkShowPresenter
     delegate :bibliographic_citation, :contact_information, :doi, :related_citation, to: :solr_document
 
+    def doi
+      "https://doi.org/#{solr_document.doi.first.split(':').last}" unless solr_document.doi.empty?
+    end
+
     def public_member_presenters
       @public_member_presenters ||= file_set_presenters.find_all do |m|
         m.solr_document['visibility_ssi'] == Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC
