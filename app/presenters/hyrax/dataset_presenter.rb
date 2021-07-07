@@ -2,7 +2,7 @@
 #  `rails generate hyrax:work Dataset`
 module Hyrax
   class DatasetPresenter < Hyrax::WorkShowPresenter
-    delegate :alternate_identifier, :bibliographic_citation, :contact_information, :doi, :related_citation, to: :solr_document
+    delegate :bibliographic_citation, :contact_information, :doi, :related_citation, to: :solr_document
 
     def public_member_presenters
       @public_member_presenters ||= file_set_presenters.find_all do |m|
