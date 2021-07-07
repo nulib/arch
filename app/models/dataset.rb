@@ -16,10 +16,6 @@ class Dataset < ActiveFedora::Base
   DEFAULT_PUBLISHER = 'Northwestern University'.freeze
   DEFAULT_RESOURCE_TYPE = Qa::Authorities::Local.subauthority_for('resource_types').find('Dataset').fetch('id').freeze
 
-  property :alternate_identifier, predicate: ::RDF::URI('https://www.library.northwestern.edu/terms#alternateIdentifier') do |index|
-    index.as :stored_searchable
-  end
-
   property :contact_information, predicate: ::RDF::Vocab::DCAT.contactPoint do |index|
     index.as :stored_searchable
   end

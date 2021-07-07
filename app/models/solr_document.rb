@@ -25,10 +25,6 @@ class SolrDocument
   # Do content negotiation for AF models.
   use_extension(Hydra::ContentNegotiation)
 
-  def alternate_identifier
-    fetch(Solrizer.solr_name('alternate_identifier', :stored_searchable), [])
-  end
-
   def bibliographic_citation
     fetch(Solrizer.solr_name('bibliographic_citation', :stored_searchable), [])
   end
