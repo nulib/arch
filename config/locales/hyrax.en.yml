@@ -82,5 +82,8 @@ en:
         source: "Enter the journal title or name of the book in which the work was published. Source refers to the origin of the document."
         resource_type: "Pre-defined categories to describe the type of content being uploaded, such as 'article' or 'presentation'."
       dataset:
+        title: "A name for identifying the work."
+        date_created: "Use the following format: YYYY-MM-DD. At minimum, enter the year."
+        bibliographic_citation: "Specify how you prefer the work to be cited."
         contact_information: "Please enter the name and email of the contact person for this dataset."
         related_citation: "Please enter the citation information for any related publication."
