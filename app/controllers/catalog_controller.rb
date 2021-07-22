@@ -81,10 +81,12 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name('rights', :stored_searchable), helper_method: :license_links
     config.add_index_field solr_name('resource_type', :stored_searchable), label: 'Resource Type', link_to_search: solr_name('resource_type', :facetable)
     config.add_index_field solr_name('file_format', :stored_searchable), link_to_search: solr_name('file_format', :facetable)
-    config.add_index_field solr_name('identifier', :stored_searchable), field_name: 'identifier'
+    config.add_index_field solr_name('identifier', :stored_searchable), label: 'Alternate Identifier', field_name: 'identifier'
     config.add_index_field solr_name('embargo_release_date', :stored_sortable, type: :date), label: 'Embargo release date', helper_method: :human_readable_date
     config.add_index_field solr_name('lease_expiration_date', :stored_sortable, type: :date), label: 'Lease expiration date', helper_method: :human_readable_date
     config.add_index_field solr_name('doi', :stored_sortable)
+    config.add_index_field solr_name('contact_information', :stored_sortable), label: 'Contact Information'
+    config.add_index_field solr_name('related_citation', :stored_sortable), label: 'Related Citation'
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
@@ -105,6 +107,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('format', :stored_searchable)
     config.add_show_field solr_name('identifier', :stored_searchable)
     config.add_show_field solr_name('doi', :stored_searchable)
+    config.add_show_field solr_name('bibliographic_citation', :stored_searchable), label: 'Citation'
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields

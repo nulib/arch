@@ -3,6 +3,8 @@ require 'solrizer'
 Hyrax.config do |config|
   # Injected via `rails g hyrax:work GenericWork`
   config.register_curation_concern :generic_work
+  # Injected via `rails g hyrax:work Dataset`
+  config.register_curation_concern :dataset
   # Register roles that are expected by your implementation.
   # @see Hyrax::RoleRegistry for additional details.
   # @note there are magical roles as defined in Hyrax::RoleRegistry::MAGIC_ROLES
@@ -143,7 +145,7 @@ Hyrax.config do |config|
 
   # A configuration point for changing the behavior of the license service
   #   @see Hyrax::LicenseService for implementation details
-  # config.license_service_class = Hyrax::LicenseService
+  config.license_service_class = Arch::LicenseService
 
   # Labels for permission levels
   # config.permission_levels = { "Choose Access" => "none", "View/Download" => "read", "Edit" => "edit" }
