@@ -1,0 +1,7 @@
+terms:
+    - id: http://creativecommons.org/publicdomain/zero/1.0/
+      term: Creative Commons CC0 1.0 Universal
+      active: true
+    - id: http://opendatacommons.org/licenses/by/1.0/
+      term: Open Data Commons Attribution License (ODC-By)
+      active: true

@@ -20,6 +20,7 @@ Metrics/LineLength:
   Max: 164 # default is 80
   Exclude: 
     - 'app/controllers/catalog_controller.rb'
+    - 'spec/services/arch/license_service_spec.rb'
 
 Metrics/MethodLength:
   Max: 14 # default is 10
@@ -65,6 +66,10 @@ Style/WordArray:
 
 Style/SymbolArray:
   Enabled: false
+
+RSpec/AnyInstance:
+  Exclude:
+  - 'spec/presenters/hyrax/dataset_presenter_spec.rb'
 
 RSpec/MultipleExpectations:
   Enabled: false

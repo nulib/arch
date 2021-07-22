@@ -1,4 +1,8 @@
 en:
+  activefedora:
+    models:
+      generic_work: 'Work'
+      dataset: 'Dataset'
   blacklight:
     search:
       fields:
@@ -20,7 +24,7 @@ en:
           date_uploaded_dtsi: Date Uploaded
           description_tesim: Description
           file_format_tesim: File Format
-          identifier_tesim: Identifier
+          identifier_tesim: Alternate Identifier
           keyword_tesim: Keyword
           language_tesim: Language
           publisher_tesim: Publisher
@@ -35,7 +39,7 @@ en:
           date_uploaded_dtsi: Date Uploaded
           description_tesim: Description
           file_format_tesim: File Format
-          identifier_tesim: Identifier
+          identifier_tesim: Alternate Identifier
           keyword_tesim: Keyword
           language_tesim: Language
           publisher_tesim: Publisher
@@ -70,10 +74,16 @@ en:
         abstract_or_summary: "A short description of the research findings or data using 300 words or fewer."
         publisher: "The name of the organization that published this work."
         date_created: "The date on which the content was created, produced or published. Dates are accepted in the form YYYY-MM-DD, e.g. 1976-07-04."
-        subject: "This field is for controlled subject vocabulary terms. Together, 'Keywords” and “Subjects' help make your work more discoverable online. Use <a href='http://fast.oclc.org/searchfast/''>FAST Subject Headings</a> to link your research with related research. Add one Subject per box."
+        subject: "This field is for controlled subject vocabulary terms. Together, 'Keywords' and 'Subjects' help make your work more discoverable online. Use <a href='http://fast.oclc.org/searchfast/''>FAST Subject Headings</a> to link your research with related research. Add one Subject per box."
         language: "The language in which the paper is written or the data set is documented."
-        identifier: "A unique string of characters such as DOI for a journal article, PubMed ID, PubMed Central ID, or an ISBN for a book. The type of identifier used should be entered before the identifier itself, e.g. “DOI 10.1186/s40169-016-0099-0"
+        identifier: "A unique string of characters such as DOI for a journal article, PubMed ID, PubMed Central ID, or an ISBN for a book. The type of identifier used should be entered before the identifier itself, e.g. 'DOI 10.1186/s40169-016-0099-0'"
         location: "The name of the location where the research was published or otherwise made available."
-        related_url: "A link to the publisher’s webpage of the work or other specific content (such as PDF documents) related to the file. For example, the URL of a research project from which the file was derived or a dataset stored in a data repository."
+        related_url: "A link to the publisher's webpage of the work or other specific content (such as PDF documents) related to the file. For example, the URL of a research project from which the file was derived or a dataset stored in a data repository."
         source: "Enter the journal title or name of the book in which the work was published. Source refers to the origin of the document."
-        resource_type: "Pre-definied categories to describe the type of content being uploaded, such as 'article' or 'presentation'."
+        resource_type: "Pre-defined categories to describe the type of content being uploaded, such as 'article' or 'presentation'."
+      dataset:
+        title: "A name for identifying the work."
+        date_created: "Use the following format: YYYY-MM-DD. At minimum, enter the year."
+        bibliographic_citation: "Specify how you prefer the work to be cited."
+        contact_information: "Please enter the name and email of the contact person for this dataset."
+        related_citation: "Please enter the citation information for any related publication."

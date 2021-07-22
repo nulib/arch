@@ -47,6 +47,3 @@ terms:
     - id: http://creativecommons.org/publicdomain/mark/1.0/
       term: Creative Commons Public Domain Mark 1.0
       active: true
-    - id: http://opendatacommons.org/licenses/by/1.0/
-      term: Open Data Commons Attribution License (ODC-By)
-      active: true

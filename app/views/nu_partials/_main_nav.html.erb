@@ -1,6 +1,10 @@
 <li>
-  <%= link_to '/concern/generic_works/new' do %>
-    <%= t('hyrax.share_button') %>
+  <% if signed_in? && @presenter.try(:create_many_work_types?) %>
+    <%= link_to t('hyrax.share_button'),
+                '#',
+                data: { behavior: 'select-work', target: '#worktypes-to-create', 'create-type' => 'single' } %>
+  <% else %>
+    <%= link_to t('hyrax.share_button'), hyrax.my_works_path %>
   <% end %>
 </li>
 <li><%= link_to t('Browse'), main_app.search_catalog_path %></li>
