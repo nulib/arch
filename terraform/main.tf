@@ -10,7 +10,14 @@ provider "aws" {
 
 locals {
   namespace             = module.core.outputs.stack.namespace
-  tags                  = merge(module.core.outputs.stack.tags, { Project = "Arch" })
+  tags                  = merge(
+    module.core.outputs.stack.tags, 
+    {
+      Component = "arch"
+      Git       = "github.com/nulib/avalon"
+      Project   = "Arch"
+    }
+  )
   domain_host           = "${var.app_name}.${module.core.outputs.vpc.public_dns_zone.name}"
   zookeeper_endpoint    = "${element(module.solrcloud.outputs.zookeeper.servers, 0)}/configs"
 }
