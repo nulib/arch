@@ -81,7 +81,8 @@ resource "aws_security_group" "arch_load_balancer" {
   name          = "${var.app_name}-lb"
   description   = "arch Load Balancer Security Group"
   vpc_id        = module.core.outputs.vpc.id
-
+  tags          = local.tags
+  
   egress {
     from_port   = 0
     to_port     = 0
@@ -119,6 +120,7 @@ resource "aws_iam_role" "arch_role" {
 resource "aws_iam_policy" "arch_role_policy" {
   name   = "${var.app_name}-policy"
   policy = data.aws_iam_policy_document.arch_role_permissions.json
+  tags   = local.tags
 }
 
 resource "aws_iam_role_policy_attachment" "arch_role_policy" {
@@ -129,6 +131,7 @@ resource "aws_iam_role_policy_attachment" "arch_role_policy" {
 resource "aws_iam_policy" "this_bucket_policy" {
   name   = "arch-bucket-access"
   policy = data.aws_iam_policy_document.this_bucket_access.json
+  tags   = local.tags
 }
 
 resource "aws_iam_role_policy_attachment" "bucket_role_access" {
@@ -173,6 +176,7 @@ resource "aws_lb_listener" "arch_lb_listener_http" {
   load_balancer_arn = aws_lb.arch_load_balancer.arn
   port              = 80
   protocol          = "HTTP"
+  tags              = local.tags
 
   default_action {
     type = "redirect"
@@ -191,7 +195,7 @@ resource "aws_lb_listener" "arch_lb_listener_https" {
   protocol          = "HTTPS"
   ssl_policy        = "ELBSecurityPolicy-2016-08"
   certificate_arn   = data.aws_acm_certificate.arch_cert.arn
-
+  tags              = local.tags
   default_action {
     type             = "forward"
     target_group_arn = aws_lb_target_group.arch_target.arn
