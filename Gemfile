@@ -45,6 +45,7 @@ gem 'devise_ldap_authenticatable', '~> 0.8.5'
 gem 'pg', '~> 0.21'
 gem 'sqlite3'
 
+gem 'bootsnap', require: false
 gem 'config'
 gem 'devise'
 gem 'devise-guests', '~> 0.3'
@@ -78,16 +79,14 @@ group :development, :test do
   gem 'xray-rails'
 end
 
-group :aws, :test do
-  gem 'active_elastic_job', git: 'https://github.com/nulib/active-elastic-job.git', branch: 'latest-aws-sdk'
-end
-
 group :aws do
   gem 'aws-sdk', '~> 3'
   gem 'aws-sdk-rails'
   gem 'carrierwave-aws'
   gem 'cloudfront-signer'
+  gem 'rack-redis-session-store'
   gem 'redis-rails'
+  gem 'shoryuken'
 end
 
 group :production do
