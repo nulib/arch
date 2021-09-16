@@ -53,5 +53,7 @@ config/settings/*.local.yml
 config/environments/*.local.yml
 config/ssl
 
-# Terraform cache
+# Terraform cache and artifacts
 .terraform
+terraform/package
+node_modules
