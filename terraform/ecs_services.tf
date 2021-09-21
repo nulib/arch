@@ -1,21 +1,21 @@
 locals {
-  arch_urls = [for hostname in concat([aws_route53_record.app_hostname.fqdn], var.additional_hostnames) : "//${hostname}"]
+  arch_urls = [for hostname in concat([aws_route53_record.app_hostname.fqdn], local.secrets.additional_hostnames) : "//${hostname}"]
 
   container_config = {
-    app_name                  = var.app_name
-    aws_region                = var.aws_region
-    database_url              = "postgresql://${var.app_name}:${module.db_schema.password}@${module.data_services.outputs.postgres.address}:${module.data_services.outputs.postgres.port}/${var.app_name}"
+    app_name                  = local.secrets.app_name
+    aws_region                = local.aws_region
+    database_url              = "postgresql://${local.secrets.app_name}:${module.db_schema.password}@${module.data_services.outputs.postgres.address}:${module.data_services.outputs.postgres.port}/${local.secrets.app_name}"
     derivatives_volume_id     = aws_efs_file_system.arch_derivatives_volume.id
     docker_tag                = terraform.workspace
     fedora_base_path          = "/nuf"
     fedora_url                = module.fcrepo.outputs.endpoint
-    honeybadger_api_key       = var.honeybadger_api_key
+    honeybadger_api_key       = local.secrets.honeybadger_api_key
     honeybadger_environment   = substr(module.core.outputs.stack.namespace, -1, -1) == "s" ? "staging" : "production"
     host_name                 = aws_route53_record.app_hostname.fqdn
     log_group                 = aws_cloudwatch_log_group.arch_logs.name
     redis_host                = module.data_services.outputs.redis.address
     redis_port                = module.data_services.outputs.redis.port
-    region                    = var.aws_region
+    region                    = local.aws_region
     secret_key_base           = random_id.secret_key_base.hex
     solr_cluster_size         = module.solrcloud.outputs.solr.cluster_size
     solr_url                  = "${module.solrcloud.outputs.solr.endpoint}/arch"
@@ -26,8 +26,8 @@ locals {
 
 module "db_schema" {
   source        = "git::https://github.com/nulib/infrastructure.git//modules/dbschema"
-  schema        = var.app_name
-  aws_region    = var.aws_region
+  schema        = local.secrets.app_name
+  aws_region    = local.aws_region
   state_bucket  = "nulterra-state-sandbox"
 }
 
@@ -38,12 +38,12 @@ module "arch_task_webapp" {
   memory           = 4096
   container_role   = "webapp"
   role_arn         = aws_iam_role.arch_role.arn
-  app_name         = var.app_name
+  app_name         = local.secrets.app_name
   tags             = local.tags
 }
 
 resource "aws_ecs_service" "arch_webapp" {
-  name                              = "${var.app_name}-webapp"
+  name                              = "${local.secrets.app_name}-webapp"
   cluster                           = aws_ecs_cluster.arch.id
   task_definition                   = module.arch_task_webapp.task_definition.arn
   desired_count                     = 1
@@ -85,12 +85,12 @@ module "arch_task_worker" {
   memory           = 4096
   container_role   = "worker"
   role_arn         = aws_iam_role.arch_role.arn
-  app_name         = var.app_name
+  app_name         = local.secrets.app_name
   tags             = local.tags
 }
 
 resource "aws_ecs_service" "arch_worker" {
-  name                              = "${var.app_name}-worker"
+  name                              = "${local.secrets.app_name}-worker"
   cluster                           = aws_ecs_cluster.arch.id
   task_definition                   = module.arch_task_worker.task_definition.arn
   desired_count                     = 1
