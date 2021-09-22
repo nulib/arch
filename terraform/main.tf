@@ -12,7 +12,7 @@ locals {
     module.core.outputs.stack.tags, 
     {
       Component = "arch"
-      Git       = "github.com/nulib/avalon"
+      Git       = "github.com/nulib/arch"
       Project   = "Arch"
     }
   )
