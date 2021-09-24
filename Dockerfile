@@ -12,7 +12,7 @@ ENV BUILD_DEPS="build-essential libpq-dev libsqlite3-dev tzdata locales git curl
     FITS_VERSION="1.0.5"
 
 RUN useradd -m -U app && \
-    su -s /bin/bash -c "mkdir -p /home/app/current" app
+    su -s /bin/bash -c "mkdir -p /home/app" app
 
 RUN apt-get update -qq && \
     apt-get install -y $BUILD_DEPS --no-install-recommends
@@ -44,12 +44,12 @@ RUN \
     gem update bundler
 
 USER app
-WORKDIR /home/app/current
+WORKDIR /home/app
 
-COPY --chown=app:app Gemfile /home/app/current/
-COPY --chown=app:app Gemfile.lock /home/app/current/
+COPY --chown=app:app Gemfile /home/app/
+COPY --chown=app:app Gemfile.lock /home/app/
 
-RUN chown -R app:app /home/app/current && \
+RUN chown -R app:app /home/app && \
     bundle config set path 'vendor/gems' && \
     bundle config set without 'development:test' && \
     bundle config set with 'aws:postgres' && \
@@ -65,9 +65,9 @@ LABEL edu.northwestern.library.app=Arch \
 
 
 RUN useradd -m -U app && \
-    su -s /bin/bash -c "mkdir -p /home/app/current/vendor/gems" app
+    su -s /bin/bash -c "mkdir -p /home/app/vendor/gems" app
 
-ENV RUNTIME_DEPS="imagemagick libexif12 libexpat1 libgif7 glib-2.0 libgsf-1-114 libjpeg62-turbo libpng16-16 libpoppler-glib8 libpq5 libreoffice librsvg2-2 libsqlite3-0 libtiff5 locales nodejs openjdk-8-jre postgresql-client tzdata yarn" \
+ENV RUNTIME_DEPS="imagemagick libexif12 libexpat1 libgif7 glib-2.0 libgsf-1-114 libjpeg62-turbo libpng16-16 libpoppler-glib8 libpq5 libreoffice librsvg2-2 libsqlite3-0 libtiff5 locales nodejs openjdk-8-jre postgresql-client sudo tzdata yarn" \
     DEBIAN_FRONTEND="noninteractive" \
     RAILS_ENV="production" \
     LANG="en_US.UTF-8" \
@@ -77,7 +77,7 @@ RUN mkdir -p /usr/share/man/man1 /usr/share/man/man7 && \
     apt-get update -qq && \
     apt-get install -y curl gnupg2 --no-install-recommends && \
     # Install NodeJS and Yarn package repos
-    curl -sL https://deb.nodesource.com/setup_10.x | bash - && \
+    curl -sL https://deb.nodesource.com/setup_12.x | bash - && \
     curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
     echo "deb http://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
     # Install runtime dependencies
@@ -109,17 +109,18 @@ RUN mkdir -p /usr/share/man/man1 /usr/share/man/man7 && \
 COPY --from=base /tmp/stage/bin/* /usr/local/bin/
 COPY --from=base /tmp/stage/fits-${FITS_VERSION} /usr/local/fits
 COPY --chown=app:staff --from=base /usr/local/bundle /usr/local/bundle
-COPY --chown=app:app --from=base /home/app/current/vendor/gems/ /home/app/current/vendor/gems/
-COPY --chown=app:app . /home/app/current/
-COPY --chown=app:app --from=base /home/app/current/Gemfile* /home/app/current/
+COPY --chown=app:app --from=base /home/app/vendor/gems/ /home/app/vendor/gems/
+COPY --chown=app:app . /home/app/
+COPY --chown=app:app --from=base /home/app/Gemfile* /home/app/
 
 RUN mkdir /var/run/puma && chown root:app /var/run/puma && chmod 0775 /var/run/puma
 
 USER app
-WORKDIR /home/app/current
+WORKDIR /home/app
 RUN bundle config set path 'vendor/gems' && \
     bundle exec rake assets:precompile SECRET_KEY_BASE=$(ruby -r 'securerandom' -e 'puts SecureRandom.hex(64)')
 
 EXPOSE 3000
+ENV PATH="/home/app/bin:${PATH}"
 CMD bin/boot_container
 HEALTHCHECK --start-period=60s CMD curl -f http://localhost:3000/

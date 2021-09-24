@@ -46,13 +46,25 @@ module Nufia7
       }
     end
 
-    config.before_initialize do
-      if defined? ActiveElasticJob
-        Rails.application.configure do
-          config.active_elastic_job.secret_key_base = Rails.application.secrets[:secret_key_base]
-        end
+    if Settings&.active_job&.queue_adapter.present?
+      # rubocop:disable Lint/HandleExceptions
+      begin
+        require Settings.active_job.queue_adapter.to_s
+      rescue LoadError
       end
+      # rubocop:enable Lint/HandleExceptions
+      config.active_job.queue_adapter = Settings.active_job.queue_adapter.to_s
+    else
+      config.active_job.queue_adapter = :sidekiq
     end
+
+    config.active_job.queue_name_prefix = Settings&.active_job&.queue_name_prefix
+    config.active_job.queue_name_delimiter = Settings&.active_job&.queue_name_delimiter || (config.active_job.queue_name_prefix.present? ? '-' : nil)
+    default_queue_name = [
+      config.active_job.queue_name_prefix,
+      Settings&.active_job&.default_queue_name || 'default'
+    ].join(config.active_job.queue_name_delimiter)
+    ActionMailer::Base.deliver_later_queue_name = ActiveJob::Base.queue_name = default_queue_name
 
     config.action_dispatch.default_headers = { 'X-Frame-Options' => 'ALLOWALL' }
   end
