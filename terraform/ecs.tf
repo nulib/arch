@@ -4,7 +4,7 @@ resource "aws_ecs_cluster" "arch" {
 }
 
 data "aws_acm_certificate" "arch_cert" {
-  domain = "${local.secrets.certificate_name}.${trimsuffix(module.core.outputs.vpc.public_dns_zone.name, ".")}"
+  domain = local.secrets.arch_certificate_domain
 }
 
 data "aws_caller_identity" "current" {}
