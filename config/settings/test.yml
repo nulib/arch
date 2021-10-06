@@ -1,10 +1,9 @@
 localstack:
   sqs: false
   port_offset: 200
-active_job:
-  queue_adapter: inline
 aws:
-  endpoint: http://localhost:9002
+  s3:
+    endpoint: http://localhost:9002
   buckets:
     archives: test-archives
     proquest: test-proquest

@@ -16,7 +16,26 @@ module Nufia7
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
-    config.active_job.queue_adapter = Settings.active_job.queue_adapter
+    if Settings&.active_job&.queue_adapter.present?
+      begin
+        require Settings.active_job.queue_adapter.to_s
+      rescue LoadError
+      end
+      config.active_job.queue_adapter = Settings.active_job.queue_adapter.to_s
+    else
+      config.active_job.queue_adapter = :inline
+    end
+
+    config.active_job.queue_name_prefix = Settings&.active_job&.queue_name_prefix
+    config.active_job.queue_name_delimiter = Settings&.active_job&.queue_name_delimiter || (config.active_job.queue_name_prefix.present? ? '-' : nil)
+
+    # ActiveJob::Base gets configured with the queue prefix; ActionMailer::Base without
+    default_queue_name = [
+      config.active_job.queue_name_prefix, 
+      Settings&.active_job&.default_queue_name || 'default'
+    ].join(config.active_job.queue_name_delimiter)
+    ActionMailer::Base.deliver_later_queue_name = Settings&.active_job&.default_queue_name || 'default'
+    ActiveJob::Base.queue_name = default_queue_name
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.

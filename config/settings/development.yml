@@ -4,7 +4,10 @@ localstack:
 active_job:
   queue_adapter: inline
 aws:
-  endpoint: https://devbox.library.northwestern.edu:9001
+  s3:
+    endpoint: https://devbox.library.northwestern.edu:9001
+  sqs:
+    endpoint: http://localhost:4101  
   buckets:
     archives: dev-archives
     dropbox: dev-dropbox
