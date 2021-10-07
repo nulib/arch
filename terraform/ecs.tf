@@ -145,8 +145,9 @@ resource "aws_iam_role_policy_attachment" "ecs_exec_command" {
 }
 
 resource "aws_cloudwatch_log_group" "arch_logs" {
-  name = "/ecs/${local.secrets.app_name}"
-  tags = local.tags
+  name                = "/ecs/${local.secrets.app_name}"
+  retention_in_days   = 30
+  tags                = local.tags
 }
 resource "aws_lb_target_group" "arch_target" {
   port                    = 3000
