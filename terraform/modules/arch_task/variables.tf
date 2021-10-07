@@ -6,6 +6,11 @@ variable "cpu" {
   type    = number
 }
 
+variable "db_pool_size" {
+  type    = number
+  default = 5
+}
+
 variable "memory" {
   type    = number
 }
