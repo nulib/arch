@@ -16,7 +16,7 @@ resource "aws_ecs_task_definition" "this_task_definition" {
       environment = [
         { name = "AWS_REGION",               value = var.container_config.region },
         { name = "CONTAINER_ROLE",           value = var.container_role },
-        { name = "DATABASE_URL",             value = var.container_config.database_url },
+        { name = "DATABASE_URL",             value = "${var.container_config.database_url}?pool=${var.db_pool_size}" },
         { name = "FEDORA_BASE_PATH",         value = var.container_config.fedora_base_path },
         { name = "FEDORA_URL",               value = var.container_config.fedora_url },
         { name = "HONEYBADGER_API_KEY",      value = var.container_config.honeybadger_api_key },
