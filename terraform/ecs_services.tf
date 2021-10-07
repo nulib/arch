@@ -82,6 +82,7 @@ module "arch_task_worker" {
   source           = "./modules/arch_task"
   container_config = local.container_config
   cpu              = 2048
+  db_pool_size     = 20
   memory           = 4096
   container_role   = "worker"
   role_arn         = aws_iam_role.arch_role.arn
