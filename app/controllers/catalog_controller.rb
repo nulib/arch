@@ -3,6 +3,7 @@ class CatalogController < ApplicationController
   include Hydra::Controller::ControllerBehavior
 
   # These before_filters apply the hydra access controls
+  before_action :block_invalid_sort_params, only: :index
   before_action :enforce_show_permissions, only: :show
 
   def self.uploaded_field
@@ -282,6 +283,12 @@ class CatalogController < ApplicationController
     # If there are more than this many search results, no spelling ("did you
     # mean") suggestion is offered.
     config.spell_max = 5
+  end
+
+  def block_invalid_sort_params
+    return unless params[:sort]
+    return if blacklight_config.sort_fields.key?(params[:sort])
+    render plain: "Requested illegal sort val: #{params[:sort]}", status: :bad_request
   end
 
   # disable the bookmark control from displaying in gallery view

@@ -11,6 +11,7 @@ module "secrets" {
   defaults  = jsonencode({
     additional_hostnames    = []
     app_name                = "arch"
+    arch_certificate_domain = "*.${trimsuffix(module.core.outputs.vpc.public_dns_zone.name, ".")}"
     availability_zones      = ["us-east-1a", "us-east-1b", "us-east-1c"]
     certificate_name        = "*"
     email_contact           = "repository@northwestern.edu"

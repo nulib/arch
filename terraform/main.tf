@@ -40,10 +40,6 @@ module "solrcloud" {
   component = "solrcloud"
 }
 
-data "aws_acm_certificate" "wildcard_cert" {
-  domain = "*.${trimsuffix(module.core.outputs.vpc.public_dns_zone.name, ".")}"
-}
-
 resource "aws_efs_file_system" "arch_derivatives_volume" {
   encrypted      = false
   tags           = merge(local.tags, { Name = "stack-${local.secrets.app_name}-derivatives"})

@@ -4,7 +4,7 @@ resource "aws_ecs_cluster" "arch" {
 }
 
 data "aws_acm_certificate" "arch_cert" {
-  domain = "${local.secrets.certificate_name}.${trimsuffix(module.core.outputs.vpc.public_dns_zone.name, ".")}"
+  domain = local.secrets.arch_certificate_domain
 }
 
 data "aws_caller_identity" "current" {}
@@ -145,8 +145,9 @@ resource "aws_iam_role_policy_attachment" "ecs_exec_command" {
 }
 
 resource "aws_cloudwatch_log_group" "arch_logs" {
-  name = "/ecs/${local.secrets.app_name}"
-  tags = local.tags
+  name                = "/ecs/${local.secrets.app_name}"
+  retention_in_days   = 30
+  tags                = local.tags
 }
 resource "aws_lb_target_group" "arch_target" {
   port                    = 3000
