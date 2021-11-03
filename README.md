@@ -50,4 +50,4 @@ These should match closely with the [Hyrax requirements](https://github.com/proj
 
 - Submit a PR in github to the environment's deploy branch
   - To deploy to staging submit a PR to `deploy/staging`
-  - To deploy to production submit a PR to `master`
+  - To deploy to production submit a PR to `main`
