@@ -16,5 +16,5 @@ rule "aws_resource_missing_tags" {
 rule "terraform_module_pinned_source" {
   enabled             = false
   style               = "flexible"
-  default_branches    = ["master"]
+  default_branches    = ["main"]
 }
