@@ -79,6 +79,13 @@ resource "aws_ssm_parameter" "domain-host" {
   tags    = local.tags
 }
 
+resource "aws_ssm_parameter" "email-mailer" {
+  type    = "String"
+  name    = "${local.settings_prefix}/email/mailer"
+  value   = "aws_sdk"
+  tags    = local.tags
+}
+
 resource "aws_ssm_parameter" "nusso-base_url" {
   type    = "String"
   name    = "${local.settings_prefix}/nusso/base_url"
