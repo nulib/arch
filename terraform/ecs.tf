@@ -75,6 +75,15 @@ data "aws_iam_policy_document" "arch_role_permissions" {
     ]
     resources = ["arn:aws:ssm:${local.aws_region}:${data.aws_caller_identity.current.account_id}:parameter/arch/*"]
   }
+
+  statement {
+    sid = "email"
+    effect = "Allow"
+    actions = [
+      "ses:Send*"
+    ]
+    resources = ["*"]
+  }
 }
 
 resource "aws_security_group" "arch_load_balancer" {
