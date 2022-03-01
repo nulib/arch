@@ -15,7 +15,7 @@ RSpec.describe CloudStorageArchive do
       end
 
       it 'has a url' do
-        expect(instance.url).to start_with('http://')
+        expect(instance.url).to start_with('https://')
       end
     end
   end
