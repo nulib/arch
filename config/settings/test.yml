@@ -4,7 +4,7 @@ localstack:
 active_job:
   queue_adapter: inline
 aws:
-  endpoint: http://localhost:9002
+  endpoint: https://localhost.localstack.cloud:4568
   buckets:
     archives: test-archives
     proquest: test-proquest

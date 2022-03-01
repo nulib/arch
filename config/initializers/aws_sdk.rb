@@ -3,8 +3,8 @@ if Settings.localstack
 
   Aws.config.update(
     endpoint: Settings.aws.endpoint,
-    access_key_id: 'minio',
-    secret_access_key: 'minio123',
+    access_key_id: 'fake',
+    secret_access_key: 'fake',
     force_path_style: true,
     region: 'us-east-1'
   )
