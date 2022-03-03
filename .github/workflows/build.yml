@@ -5,8 +5,8 @@ jobs:
   test:
     runs-on: ubuntu-latest
     env:
-      AWS_ACCESS_KEY_ID: minio
-      AWS_SECRET_ACCESS_KEY: minio123
+      AWS_ACCESS_KEY_ID: fake
+      AWS_SECRET_ACCESS_KEY: fake
       BUNDLE_WITH: aws:postgres
       BUNDLE_WITHOUT: production
       CFLAGS: -Wno-error=format-overflow
@@ -31,15 +31,12 @@ jobs:
           JAVA_OPTIONS: -Xmx3G
         ports:
           - 8986:8080
-      minio:
-        image: bitnami/minio
-        env:
-          MINIO_ROOT_USER: minio
-          MINIO_ROOT_PASSWORD: minio123
-          MINIO_ACCESS_KEY: minio
-          MINIO_SECRET_KEY: minio123
+      localstack:
+        image: localstack/localstack
         ports:
-          - 9002:9000
+          - 4568:4566
+        env:
+          LOCALSTACK_API_KEY: ${{ secrets.LOCALSTACK_API_KEY }}
       redis:
         image: circleci/redis:alpine
         ports:
