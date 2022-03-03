@@ -21,6 +21,7 @@ class Proquest::Package
     end
     s3_package.copy_to(bucket: s3_package.bucket.name, key: "_completed/#{s3_package.key}", multipart_copy: s3_package.size > 5.megabytes)
     s3_package.delete
+    resource
   end
 
   private
@@ -64,11 +65,14 @@ class Proquest::Package
     end
 
     def ingest_work(metadata)
-      resource = GenericWork.new(metadata)
-      resource.visibility = metadata[:visibility]
+      resource = GenericWork.new(metadata.except(:file_set_visibility,
+                                                 :work_visibility,
+                                                 :work_visibility_during_embargo,
+                                                 :work_visibility_after_embargo))
+      resource.visibility = metadata[:work_visibility]
       if metadata[:embargo_release_date].present?
-        resource.visibility_during_embargo = metadata[:visibility_during_embargo]
-        resource.visibility_after_embargo = metadata[:visibility_after_embargo]
+        resource.visibility_during_embargo = metadata[:work_visibility_during_embargo]
+        resource.visibility_after_embargo = metadata[:work_visibility_after_embargo]
         resource.embargo_release_date = metadata[:embargo_release_date]
       end
       resource.save!
@@ -80,14 +84,14 @@ class Proquest::Package
       file_set_metadata = file_record(resource)
 
       if file_set_metadata['embargo_release_date'].blank?
-        file_set_metadata.except!('embargo_release_date', 'visibility_during_embargo', 'visibility_after_embargo')
+        file_set_metadata.except!('embargo_release_date', 'work_visibility_during_embargo', 'work_visibility_after_embargo')
       end
       file_set = FileSet.create(file_set_metadata)
       actor = Hyrax::Actors::FileSetActor.new(file_set, User.where(username: Settings.proquest.dissertation_depositor).first)
       actor.create_metadata(file_set_metadata)
       file = File.open(f)
       actor.create_content(file)
-      actor.attach_to_work(parent)
+      actor.attach_to_work(parent, file_set_metadata)
       file.close
 
       file_set
@@ -110,11 +114,11 @@ class Proquest::Package
         end
 
         file_attributes[:date_created] = attrs[:date_created]
-        file_attributes[:visibility] = attrs[:visibility]
+        file_attributes[:visibility] = attrs[:file_set_visibility]
         if attrs[:embargo_release_date].present?
           file_attributes[:embargo_release_date] = attrs[:embargo_release_date]
-          file_attributes[:visibility_during_embargo] = attrs[:visibility_during_embargo]
-          file_attributes[:visibility_after_embargo] = attrs[:visibility_after_embargo]
+          file_attributes[:visibility_during_embargo] = attrs[:work_visibility_during_embargo]
+          file_attributes[:visibility_after_embargo] = attrs[:work_visibility_after_embargo]
         end
       end
     end
