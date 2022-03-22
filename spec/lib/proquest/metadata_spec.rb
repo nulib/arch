@@ -96,6 +96,19 @@ RSpec.describe Proquest::Metadata do
         metadata, _file_list = record.proquest_metadata
         expect(metadata[:file_set_visibility]).to eq 'restricted'
         expect(metadata[:work_visibility]).to eq 'restricted'
+        expect(metadata[:work_visibility_after_embargo]).to eq 'open'
+      end
+    end
+
+    context 'DISS_access_option campus use only with an embargo' do
+      let(:xml) { "#{file_fixture_path}/proquest/northwestern_0000_DATA_diss_access_option_campus_use_only_with_embargo.xml" }
+      let(:record) { described_class.new(xml, today) }
+
+      it 'sets work visibility and file set visibility to private' do
+        metadata, _file_list = record.proquest_metadata
+        expect(metadata[:file_set_visibility]).to eq 'restricted'
+        expect(metadata[:work_visibility]).to eq 'restricted'
+        expect(metadata[:work_visibility_after_embargo]).to eq 'authenticated'
       end
     end
 

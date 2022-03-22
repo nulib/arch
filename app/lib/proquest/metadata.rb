@@ -30,7 +30,7 @@ class Proquest::Metadata
         rights_statement: ['http://rightsstatements.org/vocab/InC/1.0/'],
         subject: subject,
         title: title,
-        work_visibility_after_embargo: Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC,
+        work_visibility_after_embargo: convert_diss_access_option,
         work_visibility_during_embargo: Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PRIVATE,
         work_visibility: work_visibility
       }.compact
@@ -79,6 +79,10 @@ class Proquest::Metadata
       # DISS_access_option is typically 'Open access' for embargoed dissertations
       return Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PRIVATE if embargo_release_date.present?
 
+      convert_diss_access_option
+    end
+
+    def convert_diss_access_option
       case metadata.xpath('//DISS_access_option')&.text&.downcase
       when 'open access'
         Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC
