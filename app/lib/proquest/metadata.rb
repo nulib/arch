@@ -8,12 +8,12 @@ class Proquest::Metadata
   end
 
   def proquest_metadata
-    [work_attributes, file_list]
+    [attributes, file_list]
   end
 
   private
 
-    def work_attributes
+    def attributes
       {
         admin_set_id: AdminSet::DEFAULT_ID,
         creator: creators,
@@ -21,6 +21,7 @@ class Proquest::Metadata
         date_uploaded: today,
         depositor: Settings.proquest.dissertation_depositor,
         description: description,
+        file_set_visibility: file_set_visibility,
         embargo_release_date: embargo_release_date,
         identifier: identifier,
         keyword: keywords.uniq.flatten,
@@ -29,9 +30,9 @@ class Proquest::Metadata
         rights_statement: ['http://rightsstatements.org/vocab/InC/1.0/'],
         subject: subject,
         title: title,
-        visibility_after_embargo: Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC,
-        visibility_during_embargo: Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PRIVATE,
-        visibility: visibility
+        work_visibility_after_embargo: convert_diss_access_option,
+        work_visibility_during_embargo: Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PRIVATE,
+        work_visibility: work_visibility
       }.compact
     end
 
@@ -74,7 +75,25 @@ class Proquest::Metadata
       Array(metadata.xpath('//DISS_description/DISS_categorization/DISS_language').text)
     end
 
-    def visibility
+    def file_set_visibility
+      # DISS_access_option is typically 'Open access' for embargoed dissertations
+      return Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PRIVATE if embargo_release_date.present?
+
+      convert_diss_access_option
+    end
+
+    def convert_diss_access_option
+      case metadata.xpath('//DISS_access_option')&.text&.downcase
+      when 'open access'
+        Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC
+      when 'campus use only'
+        Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_AUTHENTICATED
+      else
+        Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PRIVATE
+      end
+    end
+
+    def work_visibility
       if embargo_release_date.present?
         Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PRIVATE
       else
