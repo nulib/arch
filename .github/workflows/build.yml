@@ -151,6 +151,8 @@ jobs:
           key: tflint-${{ hashFiles('.tflint.hcl') }}
 
       - uses: terraform-linters/setup-tflint@v1
+        with:
+          tflint_version: v0.30.0
         name: Setup tflint
 
       - name: Show version
