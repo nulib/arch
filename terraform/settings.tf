@@ -23,6 +23,13 @@ resource "aws_ssm_parameter" "aws-buckets-dropbox" {
   tags    = local.tags
 }
 
+resource "aws_ssm_parameter" "aws-queues-encode" {
+  type    = "String"
+  name    = "${local.settings_prefix}/aws/queues/encode"
+  value   = "encode"
+  tags    = local.tags
+}
+
 resource "aws_ssm_parameter" "doi_credentials-default_shoulder" {
   type    = "String"
   name    = "${local.settings_prefix}/doi_credentials/default_shoulder"

@@ -2,6 +2,7 @@ locals {
   queues = {
     # queue name => visibility timeout in seconds
     default = 300
+    encode = 3600
   }
 }
 
