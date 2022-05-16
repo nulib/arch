@@ -1,10 +1,10 @@
 resource "aws_ecs_cluster" "arch" {
-  name = local.secrets.app_name
+  name = var.app_name
   tags = local.tags
 }
 
 data "aws_acm_certificate" "arch_cert" {
-  domain = local.secrets.arch_certificate_domain
+  domain = local.arch_certificate_domain
 }
 
 data "aws_caller_identity" "current" {}
@@ -87,7 +87,7 @@ data "aws_iam_policy_document" "arch_role_permissions" {
 }
 
 resource "aws_security_group" "arch_load_balancer" {
-  name          = "${local.secrets.app_name}-lb"
+  name          = "${var.app_name}-lb"
   description   = "arch Load Balancer Security Group"
   vpc_id        = module.core.outputs.vpc.id
   tags          = local.tags
@@ -121,13 +121,13 @@ data "aws_iam_policy" "ecs_exec_command" {
 }
 
 resource "aws_iam_role" "arch_role" {
-  name               = "${local.secrets.app_name}-task-role"
+  name               = "${var.app_name}-task-role"
   assume_role_policy = data.aws_iam_policy_document.ecs_assume_role.json
   tags               = local.tags
 }
 
 resource "aws_iam_policy" "arch_role_policy" {
-  name   = "${local.secrets.app_name}-policy"
+  name   = "${var.app_name}-policy"
   policy = data.aws_iam_policy_document.arch_role_permissions.json
   tags   = local.tags
 }
@@ -154,7 +154,7 @@ resource "aws_iam_role_policy_attachment" "ecs_exec_command" {
 }
 
 resource "aws_cloudwatch_log_group" "arch_logs" {
-  name                = "/ecs/${local.secrets.app_name}"
+  name                = "/ecs/${var.app_name}"
   retention_in_days   = 30
   tags                = local.tags
 }
@@ -173,7 +173,7 @@ resource "aws_lb_target_group" "arch_target" {
 }
 
 resource "aws_lb" "arch_load_balancer" {
-  name               = "${local.secrets.app_name}-lb"
+  name               = "${var.app_name}-lb"
   internal           = false
   load_balancer_type = "application"
 

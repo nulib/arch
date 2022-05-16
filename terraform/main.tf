@@ -6,18 +6,22 @@ terraform {
 
 provider "aws" { }
 
+data "aws_region" "current" { }
+
 locals {
+  aws_region            = data.aws_region.current.name
   namespace             = module.core.outputs.stack.namespace
-  tags                  = merge(
+  domain_host           = "${var.app_name}.${module.core.outputs.vpc.public_dns_zone.name}"
+  zookeeper_endpoint    = "${element(module.solrcloud.outputs.zookeeper.servers, 0)}/configs"
+
+  tags = merge(
     module.core.outputs.stack.tags, 
     {
-      Component = "arch"
-      Git       = "github.com/nulib/arch"
-      Project   = "Arch"
+      Component   = "arch"
+      Git         = "github.com/nulib/arch"
+      Project     = "Arch"
     }
   )
-  domain_host           = "${local.secrets.app_name}.${module.core.outputs.vpc.public_dns_zone.name}"
-  zookeeper_endpoint    = "${element(module.solrcloud.outputs.zookeeper.servers, 0)}/configs"
 }
 
 module "core" {
@@ -42,7 +46,7 @@ module "solrcloud" {
 
 resource "aws_efs_file_system" "arch_derivatives_volume" {
   encrypted      = false
-  tags           = merge(local.tags, { Name = "stack-${local.secrets.app_name}-derivatives"})
+  tags           = merge(local.tags, { Name = "stack-${var.app_name}-derivatives"})
 }
 
 resource "aws_efs_mount_target" "arch_derivatives_mount_target" {
@@ -91,7 +95,7 @@ resource "aws_security_group_rule" "arch_derivatives_ingress_bastion" {
 
 resource "aws_efs_file_system" "arch_working_volume" {
   encrypted      = false
-  tags           = merge(local.tags, { Name = "stack-${local.secrets.app_name}-working"})
+  tags           = merge(local.tags, { Name = "stack-${var.app_name}-working"})
 }
 
 resource "aws_efs_mount_target" "arch_working_mount_target" {
@@ -224,7 +228,7 @@ data "aws_iam_policy_document" "this_bucket_access" {
 }
 
 resource "aws_security_group" "arch" {
-  name        = local.secrets.app_name
+  name        = var.app_name
   description = "The Arch Application"
   vpc_id      = module.core.outputs.vpc.id
 
@@ -249,7 +253,7 @@ resource "aws_security_group_rule" "allow_alb_access" {
 
 resource "aws_route53_record" "app_hostname" {
   zone_id = module.core.outputs.vpc.public_dns_zone.id
-  name    = local.secrets.app_name
+  name    = var.app_name
   type    = "A"
 
   alias {

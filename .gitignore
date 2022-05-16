@@ -56,4 +56,7 @@ config/ssl
 # Terraform cache and artifacts
 .terraform
 terraform/package
+terraform/*.plan
+terraform/*.tfstate
+terraform/*.tfvars
 node_modules
