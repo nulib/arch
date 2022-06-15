@@ -1,10 +1,10 @@
 resource "aws_ecs_cluster" "arch" {
-  name = local.secrets.app_name
+  name = var.app_name
   tags = local.tags
 }
 
 data "aws_acm_certificate" "arch_cert" {
-  domain = local.secrets.arch_certificate_domain
+  domain = local.arch_certificate_domain
 }
 
 data "aws_caller_identity" "current" {}
@@ -32,7 +32,7 @@ data "aws_iam_policy_document" "arch_role_permissions" {
     ]
     resources = ["*"]
   }
-  
+
   statement {
     sid    = "sns"
     effect = "Allow"
@@ -77,7 +77,7 @@ data "aws_iam_policy_document" "arch_role_permissions" {
   }
 
   statement {
-    sid = "email"
+    sid    = "email"
     effect = "Allow"
     actions = [
       "ses:Send*"
@@ -87,11 +87,11 @@ data "aws_iam_policy_document" "arch_role_permissions" {
 }
 
 resource "aws_security_group" "arch_load_balancer" {
-  name          = "${local.secrets.app_name}-lb"
-  description   = "arch Load Balancer Security Group"
-  vpc_id        = module.core.outputs.vpc.id
-  tags          = local.tags
-  
+  name        = "${var.app_name}-lb"
+  description = "arch Load Balancer Security Group"
+  vpc_id      = module.core.outputs.vpc.id
+  tags        = local.tags
+
   egress {
     from_port   = 0
     to_port     = 0
@@ -100,19 +100,19 @@ resource "aws_security_group" "arch_load_balancer" {
   }
 
   ingress {
-    description   = "HTTP in"
-    from_port     = 80
-    to_port       = 80
-    protocol      = "tcp"
-    cidr_blocks   = ["0.0.0.0/0"]
+    description = "HTTP in"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {
-    description   = "HTTPS in"
-    from_port     = 443
-    to_port       = 443
-    protocol      = "tcp"
-    cidr_blocks   = ["0.0.0.0/0"]
+    description = "HTTPS in"
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 }
 
@@ -121,13 +121,13 @@ data "aws_iam_policy" "ecs_exec_command" {
 }
 
 resource "aws_iam_role" "arch_role" {
-  name               = "${local.secrets.app_name}-task-role"
+  name               = "${var.app_name}-task-role"
   assume_role_policy = data.aws_iam_policy_document.ecs_assume_role.json
   tags               = local.tags
 }
 
 resource "aws_iam_policy" "arch_role_policy" {
-  name   = "${local.secrets.app_name}-policy"
+  name   = "${var.app_name}-policy"
   policy = data.aws_iam_policy_document.arch_role_permissions.json
   tags   = local.tags
 }
@@ -154,17 +154,17 @@ resource "aws_iam_role_policy_attachment" "ecs_exec_command" {
 }
 
 resource "aws_cloudwatch_log_group" "arch_logs" {
-  name                = "/ecs/${local.secrets.app_name}"
-  retention_in_days   = 30
-  tags                = local.tags
+  name              = "/ecs/${var.app_name}"
+  retention_in_days = 30
+  tags              = local.tags
 }
 resource "aws_lb_target_group" "arch_target" {
-  port                    = 3000
-  deregistration_delay    = 30
-  target_type             = "ip"
-  protocol                = "HTTP"
-  vpc_id                  = module.core.outputs.vpc.id
-  tags                    = local.tags
+  port                 = 3000
+  deregistration_delay = 30
+  target_type          = "ip"
+  protocol             = "HTTP"
+  vpc_id               = module.core.outputs.vpc.id
+  tags                 = local.tags
 
   stickiness {
     enabled = false
@@ -173,13 +173,14 @@ resource "aws_lb_target_group" "arch_target" {
 }
 
 resource "aws_lb" "arch_load_balancer" {
-  name               = "${local.secrets.app_name}-lb"
+  name               = "${var.app_name}-lb"
   internal           = false
   load_balancer_type = "application"
+  idle_timeout       = 3600
 
   subnets         = module.core.outputs.vpc.public_subnets.ids
   security_groups = [aws_security_group.arch_load_balancer.id]
-  tags    = local.tags
+  tags            = local.tags
 }
 
 resource "aws_lb_listener" "arch_lb_listener_http" {
