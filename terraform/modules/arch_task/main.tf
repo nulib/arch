@@ -83,6 +83,10 @@ resource "aws_ecs_task_definition" "this_task_definition" {
         { 
           "sourceVolume": "arch-working",
           "containerPath": "/var/arch-working"
+        },
+        {
+          "sourceVolume": "arch-temp",
+          "containerPath": "/tmp"
         }
       ]
     }
@@ -99,6 +103,14 @@ resource "aws_ecs_task_definition" "this_task_definition" {
     name = "arch-working"
     efs_volume_configuration {
       file_system_id = var.container_config.working_volume_id
+    }
+  }
+
+  volume {
+    name = "arch-temp"
+    efs_volume_configuration {
+      file_system_id = var.container_config.working_volume_id
+      root_directory = "/tmp"
     }
   }
 
