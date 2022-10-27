@@ -31,20 +31,20 @@ Hyrax.config do |config|
 
   # Enable displaying usage statistics in the UI
   # Defaults to false
-  if Rails.env.production? || Rails.env.staging?
-    # Requires a Google Analytics id and OAuth2 keyfile.  See README for more info
-    config.analytics = true
+  # if Rails.env.production? || Rails.env.staging?
+  # Requires a Google Analytics id and OAuth2 keyfile.  See README for more info
+  config.analytics = false
 
-    # Google Analytics tracking ID to gather usage statistics
-    config.google_analytics_id = Settings.arch.google_analytics_id
+  # Google Analytics tracking ID to gather usage statistics
+  # config.google_analytics_id = Settings.arch.google_analytics_id
 
-    # Date you wish to start collecting Google Analytic statistics for
-    # Leaving it blank will set the start date to when ever the file was uploaded by
-    # NOTE: if you have always sent analytics to GA for downloads and page views leave this commented out
-    config.analytic_start_date = ''
+  # Date you wish to start collecting Google Analytic statistics for
+  # Leaving it blank will set the start date to when ever the file was uploaded by
+  # NOTE: if you have always sent analytics to GA for downloads and page views leave this commented out
+  # config.analytic_start_date = ''
 
-    config.realtime_notifications = false
-  end
+  # config.realtime_notifications = false
+  # end
 
   # Enables a link to the citations page for a work
   # Default is false
