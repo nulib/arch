@@ -64,8 +64,6 @@ jobs:
       - name: Run Spec Tests
         run: bundle exec rake spec
   publish:
-    needs:
-      - test
     if: ${{ (!github.event.pull_request) && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/deploy/') || startsWith(github.ref, 'refs/heads/build/')) }}
     runs-on: ubuntu-latest
     env:

@@ -2,19 +2,19 @@
 
 // headers
 h2 {
-  font: 46px/1.2em $CamptonExtraLight;
+  font: 46px/1.2em $PoppinsExtraLight;
   color: $nu-purple;
   margin-bottom: 1rem;
 }
 
 h3 {
-  font: 30px/1.2em $CamptonBold;
+  font: 30px/1.2em $PoppinsBold;
   color: $nu-purple;
   margin-bottom: 0.5rem;
 
   &.demo {
     // used only for boilerplate.html (not for production!)
-    font: 26px/1.2em $CamptonBold;
+    font: 26px/1.2em $PoppinsBold;
     background: $nu-purple-120;
     color: $white;
     padding: 1rem;
@@ -35,7 +35,7 @@ h5 {
 }
 
 h6 {
-  font: 18px/1.3em $CamptonBold;
+  font: 18px/1.3em $PoppinsBold;
   color: $rich-black-50;
   margin-bottom: 0.5rem;
 }
@@ -365,71 +365,71 @@ h6 {
 
 // web fonts
 @font-face {
-  font-family: 'Akkurat Pro Light';
-  src: url('#{$path-fonts}/AkkuratProLight.woff') format('woff');
+  font-family: "Akkurat Pro Light";
+  src: url("#{$path-fonts}/AkkuratProLight.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Akkurat Pro Light Italic';
-  src: url('#{$path-fonts}/AkkuratProLightItalic.woff') format('woff');
+  font-family: "Akkurat Pro Light Italic";
+  src: url("#{$path-fonts}/AkkuratProLightItalic.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Akkurat Pro Regular';
-  src: url('#{$path-fonts}/AkkuratProRegular.woff') format('woff');
+  font-family: "Akkurat Pro Regular";
+  src: url("#{$path-fonts}/AkkuratProRegular.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Akkurat Pro Italic';
-  src: url('#{$path-fonts}/AkkuratProItalic.woff') format('woff');
+  font-family: "Akkurat Pro Italic";
+  src: url("#{$path-fonts}/AkkuratProItalic.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Akkurat Pro Bold';
-  src: url('#{$path-fonts}/AkkuratProBold.woff') format('woff');
+  font-family: "Akkurat Pro Bold";
+  src: url("#{$path-fonts}/AkkuratProBold.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Akkurat Pro Bold Italic';
-  src: url('#{$path-fonts}/AkkuratProBoldItalic.woff') format('woff');
+  font-family: "Akkurat Pro Bold Italic";
+  src: url("#{$path-fonts}/AkkuratProBoldItalic.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Campton Book';
-  src: url('#{$path-fonts}/CamptonBook.woff') format('woff');
-  font-weight: normal;
+  font-family: "Poppins Light";
+  src: url("#{$path-fonts}/Poppins-Light.woff") format("woff");
+  font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Campton Bold';
-  src: url('#{$path-fonts}/CamptonBold.woff') format('woff');
-  font-weight: normal;
+  font-family: "Poppins Bold";
+  src: url("#{$path-fonts}/Poppins-Bold.woff") format("woff");
+  font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Campton Extra Bold';
-  src: url('#{$path-fonts}/CamptonExtraBold.woff') format('woff');
-  font-weight: normal;
+  font-family: "Poppins Extra Bold";
+  src: url("#{$path-fonts}/Poppins-ExtraBold.woff") format("woff");
+  font-weight: 800;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Campton Extra Light';
-  src: url('#{$path-fonts}/CamptonExtraLight.woff') format('woff');
-  font-weight: normal;
+  font-family: "Poppins Extra Light";
+  src: url("#{$path-fonts}/Poppins-ExtraLight.woff") format("woff");
+  font-weight: 100;
   font-style: normal;
 }

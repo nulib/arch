@@ -14,6 +14,11 @@ ENV BUILD_DEPS="build-essential libpq-dev libsqlite3-dev tzdata locales git curl
 RUN useradd -m -U app && \
     su -s /bin/bash -c "mkdir -p /home/app" app
 
+RUN sed -i '/stretch-updates/d' /etc/apt/sources.list && \
+    sed -i 's|http://deb.debian.org/debian|http://archive.debian.org/debian|g' /etc/apt/sources.list && \
+    sed -i 's|http://security.debian.org|http://archive.debian.org|g' /etc/apt/sources.list && \
+    echo 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/99no-check-valid-until
+
 RUN apt-get update -qq && \
     apt-get install -y $BUILD_DEPS --no-install-recommends
 
@@ -40,8 +45,9 @@ RUN \
     unzip -o /tmp/fits-${FITS_VERSION}.zip && \
     \
     # Update bundler
-    gem update --system && \
-    gem update bundler
+    gem install rubygems-update --version 3.3.24 && \
+    update_rubygems && \
+    gem install bundler --version 2.3.8
 
 USER app
 WORKDIR /home/app
@@ -73,6 +79,11 @@ ENV RUNTIME_DEPS="imagemagick libexif12 libexpat1 libgif7 glib-2.0 libgsf-1-114 
     LANG="en_US.UTF-8" \
     FITS_VERSION="1.0.5"
 
+RUN sed -i '/stretch-updates/d' /etc/apt/sources.list && \
+    sed -i 's|http://deb.debian.org/debian|http://archive.debian.org/debian|g' /etc/apt/sources.list && \
+    sed -i 's|http://security.debian.org|http://archive.debian.org|g' /etc/apt/sources.list && \
+    echo 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/99no-check-valid-until
+
 RUN mkdir -p /usr/share/man/man1 /usr/share/man/man7 && \
     apt-get update -qq && \
     apt-get install -y curl gnupg2 --no-install-recommends && \
@@ -103,8 +114,9 @@ RUN mkdir -p /usr/share/man/man1 /usr/share/man/man7 && \
     apt-get clean -y && \
     rm -rf /var/lib/apt/lists/* /tmp/*.deb && \
     # Update Bundler
-    gem update --system && \
-    gem update bundler
+    gem install rubygems-update --version 3.3.24 && \
+    update_rubygems && \
+    gem install bundler --version 2.3.8
 
 COPY --from=base /tmp/stage/bin/* /usr/local/bin/
 COPY --from=base /tmp/stage/fits-${FITS_VERSION} /usr/local/fits
@@ -122,5 +134,5 @@ RUN bundle config set path 'vendor/gems' && \
 
 EXPOSE 3000
 ENV PATH="/home/app/bin:${PATH}"
-CMD bin/boot_container
+CMD bundle exec bin/boot_container
 HEALTHCHECK --start-period=60s CMD curl -f http://localhost:3000/
