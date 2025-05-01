@@ -72,3 +72,33 @@ variable "recaptcha_secret_key" {
 variable "recaptcha_site_key" {
   type    = string
 }
+
+variable "enable_autoscaling" {
+  type    = bool
+  default = false
+}
+
+variable "service_count_min" {
+  type    = number
+  default = 1
+}
+
+variable "service_count_max" {
+  type    = number
+  default = 3
+}
+
+variable "service_count_desired" {
+  type    = number
+  default = 1
+}
+
+variable "cpu_target" {
+  type    = number
+  default = 70
+}
+
+variable "memory_target" {
+  type    = number
+  default = 70
+}
