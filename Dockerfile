@@ -1,6 +1,6 @@
 #################################
 # Build the support container
-FROM ruby:2.6.5-slim-stretch as base
+FROM ruby:2.6.5-slim-stretch AS base
 LABEL edu.northwestern.library.app=Arch \
       edu.northwestern.library.stage=build \
       edu.northwestern.library.role=support
@@ -21,31 +21,30 @@ RUN sed -i '/stretch-updates/d' /etc/apt/sources.list && \
 
 RUN apt-get update -qq && \
     apt-get install -y $BUILD_DEPS --no-install-recommends
-
-RUN \
-    # Set locale
-    dpkg-reconfigure -f noninteractive tzdata && \
+    
+# Set locale
+RUN dpkg-reconfigure -f noninteractive tzdata && \
     sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
     echo 'LANG="en_US.UTF-8"'>/etc/default/locale && \
     dpkg-reconfigure --frontend=noninteractive locales && \
     update-locale LANG=en_US.UTF-8 && \
     \
-    mkdir -p /tmp/stage/bin && \
-    \
-    # Install FFMPEG
-    mkdir -p /tmp/ffmpeg && \
+    mkdir -p /tmp/stage/bin
+
+# Install FFMPEG
+RUN mkdir -p /tmp/ffmpeg && \
     cd /tmp/ffmpeg && \
     curl https://s3.amazonaws.com/nul-repo-deploy/ffmpeg-release-64bit-static.tar.xz | tar xJ && \
-    cp `find . -type f -executable` /tmp/stage/bin/ && \
-    \
-    # Install FITS
-    cd /tmp && \
+    cp `find . -type f -executable` /tmp/stage/bin/
+
+# Install FITS
+RUN cd /tmp && \
     curl -O https://s3.amazonaws.com/nul-repo-deploy/fits-${FITS_VERSION}.zip && \
     cd /tmp/stage && \
-    unzip -o /tmp/fits-${FITS_VERSION}.zip && \
-    \
-    # Update bundler
-    gem install rubygems-update --version 3.3.24 && \
+    unzip -o /tmp/fits-${FITS_VERSION}.zip
+
+# Update bundler
+RUN gem install rubygems-update --version 3.3.24 && \
     update_rubygems && \
     gem install bundler --version 2.3.8
 
@@ -64,7 +63,7 @@ RUN chown -R app:app /home/app && \
 
 #################################
 # Build the Application container
-FROM ruby:2.6.5-slim-stretch as app
+FROM ruby:2.6.5-slim-stretch AS app
 LABEL edu.northwestern.library.app=Arch \
       edu.northwestern.library.stage=run \
       edu.northwestern.library.role=app
@@ -86,35 +85,42 @@ RUN sed -i '/stretch-updates/d' /etc/apt/sources.list && \
 
 RUN mkdir -p /usr/share/man/man1 /usr/share/man/man7 && \
     apt-get update -qq && \
-    apt-get install -y curl gnupg2 --no-install-recommends && \
-    # Install NodeJS and Yarn package repos
-    curl -sL https://deb.nodesource.com/setup_12.x | bash - && \
+    apt-get install -y ca-certificates curl gnupg2 --no-install-recommends
+
+# Install NodeJS and Yarn package repos
+RUN curl -sL https://deb.nodesource.com/setup_12.x | sed '/deprecation_warning$/ s/^/#/' | bash - && \
     curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
-    echo "deb http://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
-    # Install runtime dependencies
-    apt-get update -qq && \
-    apt-get install -y $RUNTIME_DEPS --no-install-recommends && \
-    # Install webpack
-    alias nodejs=node && \
-    yarn add webpack && \
-    # Set locale
-    dpkg-reconfigure -f noninteractive tzdata && \
+    echo "deb http://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+
+# Install runtime dependencies
+RUN apt-get update -qq && \
+    apt-get install -y $RUNTIME_DEPS --no-install-recommends
+
+# Install webpack
+RUN alias nodejs=node && \
+    yarn add webpack
+
+# Set locale
+RUN dpkg-reconfigure -f noninteractive tzdata && \
     sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
     echo 'LANG="en_US.UTF-8"'>/etc/default/locale && \
     dpkg-reconfigure --frontend=noninteractive locales && \
-    update-locale LANG=en_US.UTF-8 && \
-    # Install VIPS
-    cd /tmp && \
+    update-locale LANG=en_US.UTF-8
+
+# Install VIPS
+RUN cd /tmp && \
     curl -sO https://s3.amazonaws.com/nul-repo-deploy/packages/libvips-tools_8.7.4-1_amd64.deb && \
     curl -sO https://s3.amazonaws.com/nul-repo-deploy/packages/libvips-dev_8.7.4-1_amd64.deb && \
     curl -sO https://s3.amazonaws.com/nul-repo-deploy/packages/libvips42_8.7.4-1_amd64.deb && \
     curl -sO https://s3.amazonaws.com/nul-repo-deploy/packages/gir1.2-vips-8.0_8.7.4-1_amd64.deb && \
-    apt-get install -y $(find . -name '*.deb') && \
-    # Clean up package cruft
-    apt-get clean -y && \
-    rm -rf /var/lib/apt/lists/* /tmp/*.deb && \
-    # Update Bundler
-    gem install rubygems-update --version 3.3.24 && \
+    apt-get install -y $(find . -name '*.deb')
+
+# Clean up package cruft
+RUN apt-get clean -y && \
+    rm -rf /var/lib/apt/lists/* /tmp/*.deb
+
+# Update Bundler
+RUN gem install rubygems-update --version 3.3.24 && \
     update_rubygems && \
     gem install bundler --version 2.3.8
 
