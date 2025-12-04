@@ -33,6 +33,7 @@ module "db_schema" {
 
 module "arch_task_webapp" {
   source           = "./modules/arch_task"
+  db_pool_size     = 5
   container_config = local.container_config
   cpu              = 2048
   memory           = 4096
@@ -81,9 +82,9 @@ resource "aws_ecs_service" "arch_webapp" {
 module "arch_task_worker" {
   source           = "./modules/arch_task"
   container_config = local.container_config
-  cpu              = 2048
-  db_pool_size     = 20
-  memory           = 4096
+  cpu              = 4096
+  memory           = 8192
+  db_pool_size     = 50
   container_role   = "worker"
   role_arn         = aws_iam_role.arch_role.arn
   app_name         = var.app_name
@@ -116,4 +117,51 @@ resource "aws_ecs_service" "arch_worker" {
   }
 
   tags = local.tags
+}
+
+resource "aws_appautoscaling_target" "webapp_target" {
+  count              = var.enable_autoscaling ? 1 : 0
+  max_capacity       = var.service_count_max
+  min_capacity       = var.service_count_min
+  resource_id        = "service/${aws_ecs_cluster.arch.name}/${aws_ecs_service.arch_webapp.name}"
+  scalable_dimension = "ecs:service:DesiredCount"
+  service_namespace  = "ecs"
+}
+
+resource "aws_appautoscaling_policy" "webapp_cpu_policy" {
+  count              = var.enable_autoscaling ? 1 : 0
+  name               = "scale-up-on-cpu"
+  policy_type        = "TargetTrackingScaling"
+  resource_id        = aws_appautoscaling_target.webapp_target[0].resource_id
+  scalable_dimension = aws_appautoscaling_target.webapp_target[0].scalable_dimension
+  service_namespace  = aws_appautoscaling_target.webapp_target[0].service_namespace
+
+  target_tracking_scaling_policy_configuration {
+    predefined_metric_specification {
+      predefined_metric_type = "ECSServiceAverageCPUUtilization"
+    }
+    scale_in_cooldown  = 300
+    scale_out_cooldown = 300
+
+    target_value = var.cpu_target
+  }
+}
+
+resource "aws_appautoscaling_policy" "webapp_memory_policy" {
+  count              = var.enable_autoscaling ? 1 : 0
+  name               = "auto-scale-on-mem"
+  policy_type        = "TargetTrackingScaling"
+  resource_id        = aws_appautoscaling_target.webapp_target[0].resource_id
+  scalable_dimension = aws_appautoscaling_target.webapp_target[0].scalable_dimension
+  service_namespace  = aws_appautoscaling_target.webapp_target[0].service_namespace
+
+  target_tracking_scaling_policy_configuration {
+    predefined_metric_specification {
+      predefined_metric_type = "ECSServiceAverageMemoryUtilization"
+    }
+    scale_in_cooldown  = 300
+    scale_out_cooldown = 300
+
+    target_value = var.cpu_target
+  }
 }
