@@ -4,11 +4,11 @@ locals {
   container_config = {
     app_name                  = var.app_name
     aws_region                = local.aws_region
-    database_url              = "postgresql://${var.app_name}:${module.db_schema.password}@${module.data_services.outputs.postgres.address}:${module.data_services.outputs.postgres.port}/${var.app_name}"
+    database_url              = "postgresql://${var.app_name}:${random_string.app_db_password.result}@${module.data_services.outputs.aurora.endpoint}:${module.data_services.outputs.aurora.port}/${var.app_name}"
     derivatives_volume_id     = aws_efs_file_system.arch_derivatives_volume.id
     docker_tag                = terraform.workspace
     fedora_base_path          = "/nuf"
-    fedora_url                = module.fcrepo.outputs.endpoint
+    fedora_url                = module.fcrepo.outputs.fedora4_endpoint
     honeybadger_api_key       = var.honeybadger_api_key
     honeybadger_environment   = substr(module.core.outputs.stack.namespace, -1, -1) == "s" ? "staging" : "production"
     host_name                 = aws_route53_record.app_hostname.fqdn
@@ -24,11 +24,19 @@ locals {
   }
 }
 
-module "db_schema" {
-  source        = "git::https://github.com/nulib/infrastructure.git//modules/dbschema"
-  schema        = var.app_name
-  aws_region    = local.aws_region
-  state_bucket  = "nulterra-state-sandbox"
+resource "random_string" "app_db_password" {
+  length  = "16"
+  special = "false"
+}
+
+resource "aws_lambda_invocation" "create_app_db_user" {
+  function_name = module.data_services.outputs.aurora.user_lambda
+
+  input = jsonencode({
+    username = var.app_name
+    password = random_string.app_db_password.result
+    database = var.app_name
+  })
 }
 
 module "arch_task_webapp" {

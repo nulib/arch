@@ -96,7 +96,7 @@
     <fieldType name="point" class="solr.PointType" dimension="2" subFieldSuffix="_d"/>
 
     <!-- A specialized field for geospatial search. If indexed, this fieldType must not be multivalued. -->
-    <fieldType name="location" class="solr.LatLonType" subFieldSuffix="_coordinate"/>
+    <fieldType name="location" class="solr.LatLonPointSpatialField" />
 
     <!-- An alternative geospatial field type new to Solr 4.  It supports multiValued and polygon shapes.
       For more information about this and other Spatial fields new to Solr 4, see:
@@ -165,7 +165,7 @@
       </analyzer>
     </fieldType>
 
-<!--
+    <!--
     <fieldType class="solr.TextField" name="textSuggest" positionIncrementGap="100">
       <analyzer>
         <tokenizer class="solr.KeywordTokenizerFactory"/>
@@ -322,7 +322,7 @@
     <dynamicField name="*_llsi" type="location" stored="true" indexed="true" multiValued="false"/>
     <dynamicField name="*_llsim" type="location" stored="true" indexed="true" multiValued="true"/>
 
-<!--
+    <!--
     <dynamicField name="*suggest" type="textSuggest" indexed="true" stored="false" multiValued="true" />
 -->
 
@@ -332,43 +332,43 @@
 
   </fields>
 
- <!-- Field to use to determine and enforce document uniqueness.
+  <!-- Field to use to determine and enforce document uniqueness.
       Unless this field is marked with required="false", it will be a required field
    -->
  <uniqueKey>id</uniqueKey>
 
- <!-- field for the QueryParser to use when an explicit fieldname is absent -->
- <!--  <defaultSearchField>text</defaultSearchField> -->
+  <!-- field for the QueryParser to use when an explicit fieldname is absent -->
+  <!--  <defaultSearchField>text</defaultSearchField> -->
 
- <!-- SolrQueryParser configuration: defaultOperator="AND|OR" -->
+  <!-- SolrQueryParser configuration: defaultOperator="AND|OR" -->
  <solrQueryParser defaultOperator="OR"/>
 
   <!-- copyField commands copy one field to another at the time a document
         is added to the index.  It's used either to index the same field differently,
         or to add multiple fields to the same field for easier/faster searching.  -->
-   <!-- Copy Fields -->
+  <!-- Copy Fields -->
 
-   <!-- Above, multiple source fields are copied to the [text] field.
+  <!-- Above, multiple source fields are copied to the [text] field.
     Another way to map multiple source fields to the same
     destination field is to use the dynamic field syntax.
     copyField also supports a maxChars to copy setting.  -->
 
-   <!-- <copyField source="*_tesim" dest="all_text_timv" maxChars="3000"/> -->
-   <!-- for suggestions -->
-   <!--
+  <!-- <copyField source="*_tesim" dest="all_text_timv" maxChars="3000"/> -->
+  <!-- for suggestions -->
+  <!--
    <copyField source="*_tesim" dest="suggest"/>
    <copyField source="*_ssim" dest="suggest"/>
    -->
 
- <!-- Similarity is the scoring routine for each document vs. a query.
+  <!-- Similarity is the scoring routine for each document vs. a query.
       A custom similarity may be specified here, but the default is fine
       for most applications.  -->
- <!-- <similarity class="org.apache.lucene.search.DefaultSimilarity"/> -->
- <!-- ... OR ...
+  <!-- <similarity class="org.apache.lucene.search.DefaultSimilarity"/> -->
+  <!-- ... OR ...
       Specify a SimilarityFactory class name implementation
       allowing parameters to be used.
  -->
- <!--
+  <!--
  <similarity class="com.example.solr.CustomSimilarityFactory">
    <str name="paramkey">param value</str>
  </similarity>
